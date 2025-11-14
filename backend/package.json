@@ -1,0 +1,19 @@
+{
+  "name": "testimonial_cms_backend",
+  "version": "1.0.0",
+  "description": "Plataforma para publicar testimonios.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leonasturizaga/NCs1125e44.git"
+  },
+  "author": "Enmanuel Rodriguez, Florencia Lavié, Mateo Pinto, Leon Asturizaga, Lucas Altamirano, Paula Quiroga, Tomas Laus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leonasturizaga/NCs1125e44/issues"
+  },
+  "homepage": "https://github.com/leonasturizaga/NCs1125e44#readme"
+}
