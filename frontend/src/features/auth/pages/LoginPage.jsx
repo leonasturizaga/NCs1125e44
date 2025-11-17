@@ -63,7 +63,7 @@ export function LoginPage() {
           style={{
             width: "100%",
             padding: ".6rem",
-            background: "gray",
+            background: "green",
             //background: "#111827",
             color: "white",
             border: "none",
