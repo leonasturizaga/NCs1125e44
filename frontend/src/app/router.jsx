@@ -23,6 +23,8 @@ import DashboardPage from "../features/dashboard/pages/DashboardPage";
 import TestimonialsList from "../features/testimonials/pages/TestimonialsList";
 import SettingsPage from "../features/settings/pages/SettingsPage";
 import HomeVisitante from "../features/home/HomeVisitante";
+import CreateTestimonial from "../features/testimonials/pages/CreateTestimonial";
+import EditTestimonial from "../features/testimonials/pages/EditTestimonial";
 
 export function AppRouter() {
   return (
@@ -34,11 +36,16 @@ export function AppRouter() {
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/testimonials" element={<TestimonialsList />} />
           <Route path="/settings" element={<SettingsPage />} />
+          <Route path="/testimonials/create" element={<CreateTestimonial />} />
+          <Route path="/testimonials/edit/:id" element={<EditTestimonial />} />
         {/* Protected routes – WITH DashboardLayout */}
         <Route element={<ProtectedLayout />}>
           {/* <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/testimonials" element={<TestimonialsList />} />
-          <Route path="/settings" element={<SettingsPage />} /> */}
+          <Route path="/settings" element={<SettingsPage />} /> 
+          <Route path="/testimonials/create" element={<CreateTestimonial />} />
+          <Route path="/testimonials/edit/:id" element={<EditTestimonial />} />
+          */}
 
           {/* Optional: redirect root after login */}
           <Route path="*" element={<DashboardPage />} />
