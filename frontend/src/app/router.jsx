@@ -22,13 +22,14 @@ import ProtectedLayout from "../components/layout/ProtectedLayout";
 import DashboardPage from "../features/dashboard/pages/DashboardPage";
 import TestimonialsList from "../features/testimonials/pages/TestimonialsList";
 import SettingsPage from "../features/settings/pages/SettingsPage";
+import HomeVisitante from "../features/home/HomeVisitante";
 
 export function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
         {/* Public route – NO layout */}
-        <Route path="/" element={<LoginPage />} />
+        <Route path="/" element={<HomeVisitante />} />
         <Route path="/login" element={<LoginPage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/testimonials" element={<TestimonialsList />} />
