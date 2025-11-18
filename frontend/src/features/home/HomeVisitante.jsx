@@ -28,6 +28,12 @@ export default function HomeVisitante() {
           </li>
         </ul>
       </nav>
+            <div className="p-4 border-t">
+        <button href="/settings" className="flex items-center gap-3 px-4 py-3 text-red-600 hover:bg-red-50 rounded-lg w-full">
+          <Settings className="w-5 h-5" />
+          Home
+        </button>
+      </div>
       
     </div>
   );
