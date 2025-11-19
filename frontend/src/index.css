@@ -1,21 +1,42 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  background-color: #f3f4f6; 
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Custom utilities if you want */
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background-color: #f9fafb;
+  color: #111827;
+  min-height: 100vh;
+}
+
+/* GLOBAL DESIGN SYSTEM */
 @layer components {
-  .btn-primary {
-    @apply bg-indigo-600 text-white px-5 py-2 rounded-lg hover:bg-indigo-700;
+  .card {
+    @apply bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow w-full;
+  }
+  .btn-ghost {
+    @apply px-4 py-2 rounded-lg text-sm font-medium transition-colors hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium;
+  }
+  .badge-published { @apply bg-green-100 text-green-800; }
+  .badge-pending   { @apply bg-yellow-100 text-yellow-800; }
+  .badge-draft     { @apply bg-gray-100 text-gray-800; }
+
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    line-clamp: 3;
   }
 }

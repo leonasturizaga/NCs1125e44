@@ -24,7 +24,7 @@ import TestimonialsList from "../features/testimonials/pages/TestimonialsList";
 import SettingsPage from "../features/settings/pages/SettingsPage";
 import HomeVisitante from "../features/home/HomeVisitante";
 import CreateTestimonial from "../features/testimonials/pages/CreateTestimonial";
-import EditTestimonial from "../features/testimonials/pages/EditTestimonial";
+import EditTestimonial from "@/features/testimonials/pages/EditTestimonial";
 
 export function AppRouter() {
   return (
