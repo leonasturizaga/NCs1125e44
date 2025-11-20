@@ -63,8 +63,7 @@ export function LoginPage() {
           style={{
             width: "100%",
             padding: ".6rem",
-            background: "gray",
-            //background: "#111827",
+            background: "#111827",
             color: "white",
             border: "none",
             borderRadius: ".5rem",
@@ -77,3 +76,5 @@ export function LoginPage() {
     </div>
   );
 }
+
+export default LoginPage;

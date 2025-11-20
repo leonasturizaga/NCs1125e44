@@ -47,7 +47,7 @@ const statusConfig = {
 
 const ITEMS_PER_PAGE = 9;
 
-export default function TestimonialList() {
+export default function TestimonialsList() {
   // Load preferences from localStorage or fallback to defaults
   const savedView = localStorage.getItem("testimonialViewMode") || "table";
   const savedPage = parseInt(localStorage.getItem("testimonialPage") || "1");

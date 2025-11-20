@@ -1,5 +1,4 @@
 import { Home, MessageSquare, Settings, LogOut, LogIn } from "lucide-react";
-import { LoginPage } from "../auth/pages/LoginPage";
 
 export default function HomeVisitante() {
   return (

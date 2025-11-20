@@ -1,4 +1,4 @@
-export default function DashboardPage() {
+function DashboardPage() {
   return (
     <div className="text-center py-12">
       <h1 className="text-4xl font-bold text-gray-900 mb-4">Dashboard</h1>
@@ -9,3 +9,5 @@ export default function DashboardPage() {
     </div>
   );
 }
+
+export default DashboardPage;
