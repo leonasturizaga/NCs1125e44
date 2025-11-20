@@ -1,3 +1,4 @@
+
 //------------------------  version 2 ---------------------
 // src/features/testimonials/components/TestimonialCard.jsx
 import { CheckCircle, Clock, XCircle } from "lucide-react";
@@ -30,10 +31,10 @@ export default function TestimonialCard({ testimonial, showActions = false, onEd
 
       {showActions && (
         <div className="mt-6 flex gap-3 justify-end">
-          <button onClick={() => onEdit?.(testimonial)} className="btn-ghost text-indigo-600">
+          <button onClick={() => onEdit(testimonial)} className="btn-ghost text-indigo-600">
             Edit
           </button>
-          <button onClick={() => onDelete?.(testimonial)} className="btn-ghost text-red-600">
+          <button onClick={() => onDelete(testimonial)} className="btn-ghost text-red-600">
             Delete
           </button>
         </div>
