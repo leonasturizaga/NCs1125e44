@@ -2,10 +2,10 @@ const { Sequelize } = require("sequelize");
 require("dotenv").config();
 const pg = require("pg");
 
-const { DB_NAME, DB_USER, DB_PASS, DB_HOST } = process.env;
+const { DB_NAME, DB_USER, DB_PASS, DB_HOST, POSTGRES_USER, POSTGRES_HOST, POSTGRES_PASSWORD, POSTGRES_DATABASE } = process.env;
 
 const sequelize = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASS}@${DB_HOST}:5432/${DB_NAME}`,
+  `postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${POSTGRES_HOST}:5432/${POSTGRES_DATABASE}?sslmode=require`,
   { logging: false, dialect: "postgres", dialectModule: pg }
 );
 
