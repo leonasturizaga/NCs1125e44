@@ -1,6 +1,12 @@
-const { testimony, user } = require("../../db");
+const { testimony, user, image } = require("../../db");
 
-const postTestimony = async (title, description, youtubeUrl, userId) => {
+const postTestimony = async (
+  title,
+  description,
+  youtubeUrl,
+  userId,
+  uploadedImages
+) => {
   try {
     const userFound = await user.findByPk(userId);
 
@@ -12,13 +18,30 @@ const postTestimony = async (title, description, youtubeUrl, userId) => {
     }
 
     const newTestimony = await testimony.create({
-      title: title,
-      description: description,
-      youtubeUrl: youtubeUrl,
-      userId: userId,
+      title,
+      description,
+      youtubeUrl,
+      userId,
     });
 
-    const createdTestimony = await testimony.findByPk(newTestimony.id);
+    if (uploadedImages.length > 0) {
+      await image.bulkCreate(
+        uploadedImages.map((img) => ({
+          url: img.url,
+          publicId: img.publicId,
+          testimonyId: newTestimony.id,
+        }))
+      );
+    }
+
+    const createdTestimony = await testimony.findByPk(newTestimony.id, {
+      include: [
+        {
+          model: image,
+          as: "images",
+        },
+      ],
+    });
 
     return {
       success: true,
@@ -29,6 +52,7 @@ const postTestimony = async (title, description, youtubeUrl, userId) => {
     return {
       success: false,
       message: "Error al crear el testimonio",
+      error: error.message,
     };
   }
 };
