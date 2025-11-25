@@ -12,11 +12,19 @@ const sequelize = new Sequelize(
 const UserModel = require("./models/userModel")(sequelize);
 const TestimonyModel = require("./models/testimonyModel")(sequelize);
 const CategoryModel = require("./models/categoryModel")(sequelize);
+const ImageModel = require("./models/imageModel")(sequelize);
 
-const { user, testimony, category } = sequelize.models;
+const { user, testimony, category, image } = sequelize.models;
 
 user.hasMany(testimony);
 testimony.belongsTo(user);
+
+testimony.hasMany(image, {
+  foreignKey: "testimonyId",
+  as: "images",
+  onDelete: "CASCADE",
+});
+image.belongsTo(testimony, { foreignKey: "testimonyId", as: "testimony" });
 
 testimony.belongsToMany(category, { through: "petition_category" });
 category.belongsToMany(testimony, { through: "petition_category" });
@@ -25,5 +33,6 @@ module.exports = {
   user,
   testimony,
   category,
+  image,
   conn: sequelize,
 };
