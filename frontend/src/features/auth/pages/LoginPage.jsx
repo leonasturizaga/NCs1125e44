@@ -1,78 +1,67 @@
-import { useState } from "react";
-import { FiMail, FiLock } from "react-icons/fi";
+// src/features/auth/pages/LoginPage.jsx
+
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { FiMail, FiLock } from 'react-icons/fi'; // Íconos para los inputs
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleFormSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Login intent", { email, password });
+    // Lógica para enviar el formulario de login (debe conectarse con authApi.js)
+    console.log("Intentando iniciar sesión con diseño profesional oscuro...");
   };
 
   return (
-    <div className="min-h-screen flex bg-gray-950 text-white">
-      {/* COLUMNA IZQUIERDA CON IMAGEN */}
-      <div
-        className="hidden lg:flex w-1/2 bg-cover bg-center"
-        style={{
-          backgroundImage: `url("https://images.unsplash.com/photo-1522199710521-72d69614c702?auto=format&fit=crop&w=1500&q=80")`,
-        }}
-      >
-        <div className="w-full h-full bg-black bg-opacity-40 flex items-center justify-center">
-          <h1 className="text-4xl font-bold text-fuchsia-300 drop-shadow-lg">
-            Testimonial CMS
-          </h1>
-        </div>
-      </div>
+    // Contenedor principal: Fondo Carbón Profundo
+    <div className="min-h-screen flex items-center justify-center p-4 bg-gray-900 text-gray-200">
+      
+      {/* Tarjeta de Login: Fondo gris oscuro, esquinas redondeadas, sombra sutil */}
+      <div className="bg-gray-800 p-8 md:p-10 rounded-xl shadow-2xl w-full max-w-md border border-gray-700">
+        
+        {/* Título: Texto claro y profesional */}
+        <h2 className="text-3xl font-extrabold text-white text-center mb-2">
+          Acceso al CMS
+        </h2>
+        <p className="text-gray-400 text-center mb-8">
+          Utiliza tus credenciales de administrador
+        </p>
 
-      {/* COLUMNA DERECHA: LOGIN */}
-      <div className="flex w-full lg:w-1/2 items-center justify-center p-10">
-        <div className="max-w-xl w-full bg-gray-900 p-10 rounded-2xl shadow-2xl">
-          <h2 className="text-3xl font-bold text-center text-fuchsia-700 mb-6">
-            Iniciar Sesión
-          </h2>
-
-          {/* Formulario */}
-          <form onSubmit={handleFormSubmit} className="space-y-6">
-
-            {/* Email */}
-            <div>
-              <label htmlFor="email" className="sr-only">Email</label>
-              <div className="relative">
-                <FiMail className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xl" />
-                <input
-                  id="email"
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-11 pr-3 py-3 rounded-lg bg-gray-800 text-gray-100 border border-gray-700 placeholder-gray-400 focus:ring-fuchsia-500 focus:border-fuchsia-500"
-                  placeholder="Email"
-                />
-              </div>
+        {/* Formulario de Login */}
+        <form onSubmit={handleSubmit} className="space-y-6">
+          
+          {/* Campo de Email */}
+          <div>
+            <label htmlFor="email" className="sr-only">Email</label>
+            <div className="relative">
+              <FiMail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" />
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Correo Electrónico"
+                required
+                // Inputs: Fondo más oscuro que la tarjeta, borde y acento Indigo (profesional)
+                className="w-full pl-12 pr-5 py-3 bg-gray-900 border border-gray-700 rounded-lg placeholder-gray-500 text-gray-200 focus:ring-indigo-500 focus:border-indigo-500 transition"
+              />
             </div>
+          </div>
 
-            {/* Password */}
-            <div>
-              <label htmlFor="password" className="sr-only">Contraseña</label>
-              <div className="relative">
-                <FiLock className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-xl" />
-                <input
-                  id="password"
-                  type="password"
-                  required
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-11 pr-3 py-3 rounded-lg bg-gray-800 text-gray-100 border border-gray-700 placeholder-gray-400 focus:ring-fuchsia-500 focus:border-fuchsia-500"
-                  placeholder="Contraseña"
-                />
-              </div>
+          {/* Campo de Contraseña */}
+          <div>
+            <label htmlFor="password" className="sr-only">Contraseña</label>
+            <div className="relative">
+              <FiLock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" />
+              <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Contraseña"
+                required
+                className="w-full pl-12 pr-5 py-3 bg-gray-900 border border-gray-700 rounded-lg placeholder-gray-500 text-gray-200 focus:ring-indigo-500 focus:border-indigo-500 transition"
+              />
             </div>
-
-            
-
-            {/* Botón login con Google */}
+          </div>
+          {/* Botón login con Google */}
 <div className="mt-4">
   <button
     type="button"
@@ -87,28 +76,26 @@ export default function LoginPage() {
     Continuar con Google
   </button>
 </div>
-<div className="flex items-center gap-3 my-6">
-  <div className="flex-1 h-px bg-gray-700"></div>
-  <span className="text-gray-400 text-sm">o ingresa con email</span>
-  <div className="flex-1 h-px bg-gray-700"></div>
-</div>
+          
+          {/* Botón Principal (Entrar): Acento Azul/Índigo */}
+          <button
+            type="submit"
+            className="w-full bg-indigo-600 text-white font-bold py-3 rounded-lg hover:bg-indigo-700 transition shadow-lg"
+          >
+            Iniciar Sesión
+          </button>
+        </form>
 
-
-            {/* Botón */}
-            <button
-              type="submit"
-              className="w-full py-3 bg-fuchsia-800 hover:bg-fuchsia-950 rounded-lg font-semibold transition"
-            >
-              Entrar
-            </button>
-
-            <p className="text-center text-sm text-gray-400 mt-3">
-              ¿No tenés cuenta?{" "}
-              <a href="#" className="text-fuchsia-400 hover:underline">
-                Registrate
-              </a>
+        {/* Separador y Opciones Secundarias */}
+        <div className="flex justify-between items-center mt-4">
+            <a href="#" className="text-sm text-indigo-400 hover:text-indigo-300">
+                ¿Olvidaste tu contraseña?
+            </a>
+            <p className="text-center text-gray-400 text-sm">
+                <Link to="/register" className="text-indigo-400 hover:underline font-medium">
+                    Regístrate
+                </Link>
             </p>
-          </form>
         </div>
       </div>
     </div>
