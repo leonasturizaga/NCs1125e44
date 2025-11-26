@@ -110,6 +110,9 @@ import LoginPage from "../features/auth/pages/LoginPage";
 import DashboardPage from "../features/dashboard/pages/DashboardPage";
 import TestimonialsList from "../features/testimonials/pages/TestimonialsList";
 import SettingsPage from "../features/settings/pages/SettingsPage";
+import CreateTestimonial from "../features/testimonials/pages/CreateTestimonial";
+import EditTestimonial from "../features/testimonials/pages/EditTestimonial";
+import TestimonialList from "../features/testimonials/pages/TestimonialsList";
 
 export default function AppRouter() {
   return (
@@ -117,12 +120,15 @@ export default function AppRouter() {
       <Routes>
         <Route path="/" element={<HomeVisitante />} />
         <Route path="/login" element={<LoginPage />} />
-{/* <Route path="/testimonials" element={<TestimonialsList />} /> */}
 
         {/* ALL PROTECTED ROUTES INSIDE LAYOUT */}
         <Route element={<DashboardLayout />}>
           <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/testimonials" element={<TestimonialsList />} />
+          {/* <Route path="/testimonials" element={<TestimonialsList />} /> */}
+          <Route path="/testimonials" element={<TestimonialList />} />
+          <Route path="/testimonials/create" element={<CreateTestimonial />} />
+          <Route path="/testimonials/edit/:id" element={<EditTestimonial />} />
+
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Route>
