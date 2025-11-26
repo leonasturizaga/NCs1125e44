@@ -1,10 +1,130 @@
-* {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========================================
+   DESIGN TOKENS & GLOBAL RESET
+   ======================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  background-color: #f3f4f6; 
+  background-color: #f9fafb;
+  color: #111827;
+  min-height: 100vh;
+}
+
+/* ========================================
+   TYPOGRAPHY
+   ======================================== */
+@layer base {
+  h1 { @apply text-3xl font-bold text-gray-900; }
+  h2 { @apply text-2xl font-bold text-gray-900; }
+  h3 { @apply text-xl font-semibold text-gray-900; }
+  h4 { @apply text-lg font-semibold text-gray-800; }
+}
+
+/* ========================================
+   DESIGN TOKENS (change these → entire app updates)
+   ======================================== */
+@layer components {
+  /* Colors */
+  .color-primary   { @apply bg-indigo-600 text-white hover:bg-indigo-700; }
+  .color-secondary { @apply bg-gray-600 text-white hover:bg-gray-700; }
+  .color-accent    { @apply bg-purple-600 text-white hover:bg-purple-700; }
+  .color-success   { @apply bg-emerald-600 text-white hover:bg-emerald-700; }
+  .color-danger    { @apply bg-red-600 text-white hover:bg-red-700; }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-primary    { @apply color-primary focus:ring-indigo-500; }
+  .btn-secondary  { @apply color-secondary focus:ring-gray-500; }
+  .btn-accent     { @apply color-accent focus:ring-purple-500; }
+  .btn-success    { @apply color-success focus:ring-emerald-500; }
+  .btn-danger     { @apply color-danger focus:ring-red-500; }
+  .btn-ghost      { @apply px-4 py-2 text-gray-700 hover:bg-gray-100 focus:ring-indigo-500; }
+  .btn-link       { @apply text-indigo-600 hover:text-indigo-700 underline-offset-2 hover:underline; }
+
+  /* Cards & Containers */
+  .card {
+    @apply bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow w-full;
+  }
+  .card-elevated {
+    @apply bg-white rounded-xl shadow-lg border border-gray-200 p-8;
+  }
+
+  /* Modals */
+  .modal-overlay {
+    @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4;
+  }
+  .modal-content {
+    @apply bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-screen overflow-y-auto;
+  }
+  .modal-header {
+    @apply px-6 py-5 border-b border-gray-200 flex justify-between items-center;
+  }
+  .modal-body {
+    @apply p-6;
+  }
+  .modal-footer {
+    @apply px-6 py-4 border-t border-gray-200 flex justify-end gap-3;
+  }
+
+  /* Forms */
+  .input {
+    @apply w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition;
+  }
+  .label {
+    @apply block text-sm font-medium text-gray-700 mb-1.5;
+  }
+
+  /* Badges */
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium;
+  }
+  .badge-published { @apply bg-green-100 text-green-800; }
+  .badge-pending   { @apply bg-yellow-100 text-yellow-800; }
+  .badge-draft     { @apply bg-gray-100 text-gray-800; }
+
+  /* Shadows & Elevation */
+  /* .shadow-sm   { @apply shadow-sm; } */
+  /* .shadow      { @apply shadow; }
+  .shadow-md   { @apply shadow-md; }
+  .shadow-lg   { @apply shadow-lg; }
+  .shadow-xl   { @apply shadow-xl; } */
+
+  /* Border Radius */
+  .rounded-sm  { @apply rounded; }
+  .rounded     { @apply rounded-lg; }
+  .rounded-lg  { @apply rounded-xl; }
+  .rounded-xl  { @apply rounded-2xl; }
+  /* .rounded-full { @apply rounded-full; } */
+
+  /* Spacing */
+  .space-x-4 > * + * { @apply mx-4; }
+  .space-y-4 > * + * { @apply my-4; }
+  .space-x-6 > * + * { @apply mx-6; }
+  .space-y-6 > * + * { @apply my-6; }
+
+  /* Utilities */
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    line-clamp: 3;
+  }
 }
