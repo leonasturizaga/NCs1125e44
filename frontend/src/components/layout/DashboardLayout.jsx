@@ -7,10 +7,11 @@ import { useLayout } from "../../context/LayoutContext";
 import DashboardPage from "../../features/dashboard/pages/DashboardPage";
 import SettingsPage from "../../features/settings/pages/SettingsPage";
 import TestimonialsList from "../../features/testimonials/pages/TestimonialsList";
+import TestimonialList from "../../features/testimonials/pages/TestimonialList";
 
 const pageComponents = {
   dashboard: <DashboardPage />,
-  testimonials: <TestimonialsList />,
+  testimonials: <TestimonialList />,
   settings: <SettingsPage />,
 };
 
