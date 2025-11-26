@@ -54,7 +54,7 @@ function HomeVisitante() {
                 <div className="text-center md:text-left order-1 md:order-2 self-center"> 
                     
                     <p className="text-indigo-400 text-base font-semibold uppercase mb-3 tracking-widest">
-                        PRUEBA SOCIAL QUE CONVENCE
+                        PARA INSTITUCIONES Y EMPRESAS CON COMUNIDADES ACTIVAS
                     </p>
                     
                     <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight">

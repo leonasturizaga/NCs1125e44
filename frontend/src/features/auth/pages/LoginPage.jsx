@@ -61,7 +61,16 @@ export default function LoginPage() {
               />
             </div>
           </div>
-          {/* Botón login con Google */}
+
+          
+          {/* Botón Principal (Entrar): Acento Azul/Índigo */}
+          <button
+            type="submit"
+            className="w-full bg-indigo-600 text-white font-bold py-3 rounded-lg hover:bg-indigo-700 transition shadow-lg"
+          >
+            Iniciar Sesión
+          </button>
+                    {/* Botón login con Google */}
 <div className="mt-4">
   <button
     type="button"
@@ -76,14 +85,6 @@ export default function LoginPage() {
     Continuar con Google
   </button>
 </div>
-          
-          {/* Botón Principal (Entrar): Acento Azul/Índigo */}
-          <button
-            type="submit"
-            className="w-full bg-indigo-600 text-white font-bold py-3 rounded-lg hover:bg-indigo-700 transition shadow-lg"
-          >
-            Iniciar Sesión
-          </button>
         </form>
 
         {/* Separador y Opciones Secundarias */}
