@@ -39,59 +39,86 @@ body {
 
 
 @layer components {
+  /* Colors */
+  .color-primary   { @apply bg-indigo-600 text-white hover:bg-indigo-700; }
+  .color-secondary { @apply bg-gray-600 text-white hover:bg-gray-700; }
+  .color-accent    { @apply bg-purple-600 text-white hover:bg-purple-700; }
+  .color-success   { @apply bg-emerald-600 text-white hover:bg-emerald-700; }
+  .color-danger    { @apply bg-red-600 text-white hover:bg-red-700; }
+
   /* ========================================
      LAYOUT CLASSES — ONE SOURCE OF TRUTH
      ======================================== */
   .layout-root {
     @apply min-h-screen bg-gray-50 dark:bg-gray-900 flex;
   }
-
   .layout-main {
     @apply flex-1 flex flex-col;
   }
-
   .layout-content {
     @apply flex-1 p-6 bg-gray-50 dark:bg-gray-900;
   }
-
   .layout-container {
     @apply max-w-7xl mx-auto w-full;
   }
-
   .sidebar {
     @apply w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 hidden md:flex flex-col;
   }
-
   .sidebar-header {
     @apply p-6 border-b border-gray-200 dark:border-gray-700;
   }
-
   .sidebar-nav {
     @apply flex-1 px-4 py-6 space-y-2;
   }
-
   .sidebar-footer {
     @apply p-4 border-t border-gray-200 dark:border-gray-700;
   }
-
   .header {
     @apply bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4 shadow-sm;
   }
-
   /* Active nav item */
   .nav-item-active {
     @apply bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300 font-medium;
   }
-
   .nav-item-inactive {
     @apply text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800;
   }
-}
-
-
-
-
-@layer components {
+/* Modal */
+  .modal-overlay {
+    @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4;
+  }
+  .modal-content {
+    @apply bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-2xl w-full max-h-screen overflow-y-auto;
+  }
+  .modal-header {
+    @apply flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-700;
+  }
+  .modal-body {
+    @apply p-6;
+  }
+  .modal-footer {
+    @apply px-6 pb-6 flex justify-end gap-3;
+  }  
+/* Scrollbars bonitas (Chrome, Edge, Safari) */
+  .scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+  .scrollbar::-webkit-scrollbar-track {
+    @apply bg-gray-100 dark:bg-gray-800 rounded-full;
+  }
+  .scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-gray-400 dark:bg-gray-600 rounded-full hover:bg-gray-500 dark:hover:bg-gray-500 transition;
+  }
+  /* Para Firefox */
+  .scrollbar {
+    scrollbar-color: #9ca3af #f3f4f6;
+  }
+  .dark .scrollbar {
+    scrollbar-color: #6b7280 #1f2937;
+  }  
+   /* ========================================
+       REUSABLE COMPONENTS
+       ======================================== */
   /* Cards */
   .card {
     @apply bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md dark:hover:shadow-xl transition-shadow w-full;
@@ -101,9 +128,15 @@ body {
   .btn {
     @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50;
   }
-  .btn-primary { @apply bg-indigo-600 text-white hover:bg-indigo-700 focus:ring-indigo-500; }
-  .btn-danger  { @apply bg-red-600 text-white hover:bg-red-700 focus:ring-red-500; }
-  .btn-ghost   { @apply text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-4 py-2 rounded-lg; }
+  .btn-primary    { @apply color-primary focus:ring-indigo-500; }
+  .btn-secondary  { @apply color-secondary focus:ring-gray-500; }
+  .btn-accent     { @apply color-accent focus:ring-purple-500; }
+  .btn-success    { @apply color-success focus:ring-emerald-500; }
+  .btn-danger     { @apply color-danger focus:ring-red-500; }
+  .btn-ghost      { @apply px-4 py-2 text-gray-700 hover:bg-gray-100 focus:ring-indigo-500; }
+  .btn-link       { @apply text-indigo-600 hover:text-indigo-700 underline-offset-2 hover:underline; }
+  /* .btn-danger  { @apply bg-red-600 text-white hover:bg-red-700 focus:ring-red-500; }
+  .btn-ghost   { @apply text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 px-4 py-2 rounded-lg; } */
 
   /* Badges */
   .badge {
