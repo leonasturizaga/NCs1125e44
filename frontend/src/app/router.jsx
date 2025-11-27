@@ -113,26 +113,26 @@ import SettingsPage from "../features/settings/pages/SettingsPage";
 import CreateTestimonial from "../features/testimonials/pages/CreateTestimonial";
 import EditTestimonial from "../features/testimonials/pages/EditTestimonial";
 import TestimonialList from "../features/testimonials/pages/TestimonialsList";
+import ProtectedRoute from "../components/ProtectedRoute";
 
 export default function AppRouter() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomeVisitante />} />
-        <Route path="/login" element={<LoginPage />} />
-
-        {/* ALL PROTECTED ROUTES INSIDE LAYOUT */}
-        <Route element={<DashboardLayout />}>
-          <Route path="/dashboard" element={<DashboardPage />} />
-          {/* <Route path="/testimonials" element={<TestimonialsList />} /> */}
-          <Route path="/testimonials" element={<TestimonialList />} />
-          <Route path="/testimonials/create" element={<CreateTestimonial />} />
-          <Route path="/testimonials/edit/:id" element={<EditTestimonial />} />
-
-          <Route path="/settings" element={<SettingsPage />} />
-          <Route path="*" element={<Navigate to="/dashboard" replace />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  );
+   return (
+      <BrowserRouter>
+         <Routes>
+            <Route path="/" element={<HomeVisitante />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route element={<ProtectedRoute />}>
+               {/* ALL PROTECTED ROUTES INSIDE LAYOUT */}
+               <Route element={<DashboardLayout />}>
+                  <Route path="/dashboard" element={<DashboardPage />} />
+                  <Route path="/testimonials" element={<TestimonialList />} />
+                  <Route path="/testimonials/create" element={<CreateTestimonial />} />
+                  <Route path="/testimonials/edit/:id" element={<EditTestimonial />} />
+                  <Route path="/settings" element={<SettingsPage />} />
+                  <Route path="*" element={<Navigate to="/dashboard" replace />} />
+               </Route>
+            </Route>
+         </Routes>
+      </BrowserRouter>
+   );
 }

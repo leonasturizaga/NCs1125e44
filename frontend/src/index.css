@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* ========================================
-   DESIGN TOKENS & GLOBAL RESET
+   1. GLOBAL RESET & BASE
    ======================================== */
 *,
 *::before,
@@ -17,114 +17,156 @@ html {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 body {
-  background-color: #f9fafb;
-  color: #111827;
-  min-height: 100vh;
+  @apply bg-gray-50 text-gray-900 min-h-screen;
+}
+
+/* Dark mode base */
+.dark {
+  @apply bg-gray-900 text-gray-100;
 }
 
 /* ========================================
-   TYPOGRAPHY
-   ======================================== */
-@layer base {
-  h1 { @apply text-3xl font-bold text-gray-900; }
-  h2 { @apply text-2xl font-bold text-gray-900; }
-  h3 { @apply text-xl font-semibold text-gray-900; }
-  h4 { @apply text-lg font-semibold text-gray-800; }
-}
-
-/* ========================================
-   DESIGN TOKENS (change these → entire app updates)
+   2. COLOR PALETTE — ÚNICA FUENTE DE VERDAD
    ======================================== */
 @layer components {
-  /* Colors */
-  .color-primary   { @apply bg-indigo-600 text-white hover:bg-indigo-700; }
-  .color-secondary { @apply bg-gray-600 text-white hover:bg-gray-700; }
-  .color-accent    { @apply bg-purple-600 text-white hover:bg-purple-700; }
-  .color-success   { @apply bg-emerald-600 text-white hover:bg-emerald-700; }
-  .color-danger    { @apply bg-red-600 text-white hover:bg-red-700; }
+  /* Primary */
+  .color-primary { @apply bg-indigo-600 text-white hover:bg-indigo-700 focus:ring-indigo-500; }
+  .color-primary-light { @apply bg-indigo-100 text-indigo-700; }
+  .color-primary-dark { @apply bg-indigo-800 text-indigo-100; }
 
-  /* Buttons */
+  /* Secondary */
+  .color-secondary { @apply bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500; }
+  .color-secondary-light { @apply bg-gray-100 text-gray-700; }
+
+  /* Accent */
+  .color-accent { @apply bg-purple-600 text-white hover:bg-purple-700 focus:ring-purple-500; }
+
+  /* Success / Danger / Warning */
+  .color-success { @apply bg-emerald-600 text-white hover:bg-emerald-700 focus:ring-emerald-500; }
+  .color-danger  { @apply bg-red-600 text-white hover:bg-red-700 focus:ring-red-500; }
+  .color-warning { @apply bg-amber-600 text-white hover:bg-amber-700 focus:ring-amber-500; }
+
+  /* Neutral */
+  .color-muted { @apply bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300; }
+}
+
+/* ========================================
+   3. TYPOGRAPHY
+   ======================================== */
+@layer base {
+  h1 { @apply text-4xl font-bold text-gray-900 dark:text-white; }
+  h2 { @apply text-3xl font-bold text-gray-900 dark:text-white; }
+  h3 { @apply text-2xl font-bold text-gray-900 dark:text-white; }
+  h4 { @apply text-xl font-semibold text-gray-900 dark:text-white; }
+  .text-muted { @apply text-gray-600 dark:text-gray-400; }
+}
+
+/* ========================================
+   4. BUTTONS — Todos los tipos usados
+   ======================================== */
+@layer components {
   .btn {
     @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
   }
-  .btn-primary    { @apply color-primary focus:ring-indigo-500; }
-  .btn-secondary  { @apply color-secondary focus:ring-gray-500; }
-  .btn-accent     { @apply color-accent focus:ring-purple-500; }
-  .btn-success    { @apply color-success focus:ring-emerald-500; }
-  .btn-danger     { @apply color-danger focus:ring-red-500; }
-  .btn-ghost      { @apply px-4 py-2 text-gray-700 hover:bg-gray-100 focus:ring-indigo-500; }
-  .btn-link       { @apply text-indigo-600 hover:text-indigo-700 underline-offset-2 hover:underline; }
+  .btn-primary   { @apply color-primary; }
+  .btn-secondary { @apply color-secondary; }
+  .btn-accent    { @apply color-accent; }
+  .btn-success   { @apply color-success; }
+  .btn-danger    { @apply color-danger; }
+  .btn-ghost     { @apply px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition; }
+  .btn-link      { @apply text-indigo-600 dark:text-indigo-400 hover:underline; }
+}
 
-  /* Cards & Containers */
+/* ========================================
+   5. CARDS & CONTAINERS
+   ======================================== */
+@layer components {
   .card {
-    @apply bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow w-full;
+    @apply bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md dark:hover:shadow-xl transition-shadow w-full;
   }
-  .card-elevated {
-    @apply bg-white rounded-xl shadow-lg border border-gray-200 p-8;
-  }
+}
 
-  /* Modals */
-  .modal-overlay {
-    @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4;
-  }
-  .modal-content {
-    @apply bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-screen overflow-y-auto;
-  }
-  .modal-header {
-    @apply px-6 py-5 border-b border-gray-200 flex justify-between items-center;
-  }
-  .modal-body {
-    @apply p-6;
-  }
-  .modal-footer {
-    @apply px-6 py-4 border-t border-gray-200 flex justify-end gap-3;
-  }
-
-  /* Forms */
-  .input {
-    @apply w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition;
-  }
+/* ========================================
+   6. FORMS
+   ======================================== */
+@layer components {
   .label {
-    @apply block text-sm font-medium text-gray-700 mb-1.5;
+    @apply block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5;
   }
+  .input, .select, .textarea {
+    @apply w-full px-4 py-2.5 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition;
+  }
+  .textarea {
+    @apply resize-none;
+  }
+}
 
-  /* Badges */
+/* ========================================
+   7. BADGES
+   ======================================== */
+@layer components {
   .badge {
     @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium;
   }
-  .badge-published { @apply bg-green-100 text-green-800; }
-  .badge-pending   { @apply bg-yellow-100 text-yellow-800; }
-  .badge-draft     { @apply bg-gray-100 text-gray-800; }
+  .badge-published { @apply bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200; }
+  .badge-pending   { @apply bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200; }
+  .badge-draft     { @apply bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300; }
+}
 
-  /* Shadows & Elevation */
-  /* .shadow-sm   { @apply shadow-sm; } */
-  /* .shadow      { @apply shadow; }
-  .shadow-md   { @apply shadow-md; }
-  .shadow-lg   { @apply shadow-lg; }
-  .shadow-xl   { @apply shadow-xl; } */
+/* ========================================
+   8. LAYOUT (Dashboard)
+   ======================================== */
+@layer components {
+  .layout-root     { @apply min-h-screen bg-gray-50 dark:bg-gray-900 flex; }
+  .layout-main     { @apply flex-1 flex flex-col; }
+  .layout-content  { @apply flex-1 p-6 bg-gray-50 dark:bg-gray-900; }
+  .layout-container{ @apply max-w-7xl mx-auto w-full; }
 
-  /* Border Radius */
-  .rounded-sm  { @apply rounded; }
-  .rounded     { @apply rounded-lg; }
-  .rounded-lg  { @apply rounded-xl; }
-  .rounded-xl  { @apply rounded-2xl; }
-  /* .rounded-full { @apply rounded-full; } */
+  .sidebar         { @apply w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 hidden md:flex flex-col; }
+  .sidebar-header  { @apply p-6 border-b border-gray-200 dark:border-gray-700; }
+  .sidebar-nav     { @apply flex-1 px-4 py-6 space-y-2; }
+  .sidebar-footer  { @apply p-4 border-t border-gray-200 dark:border-gray-700; }
 
-  /* Spacing */
-  .space-x-4 > * + * { @apply mx-4; }
-  .space-y-4 > * + * { @apply my-4; }
-  .space-x-6 > * + * { @apply mx-6; }
-  .space-y-6 > * + * { @apply my-6; }
+  .header {
+    @apply bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4 shadow-sm;
+  }
 
-  /* Utilities */
-  .line-clamp-3 {
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    line-clamp: 3;
+  .nav-item-active   { @apply bg-indigo-100 text-indigo-700 dark:bg-indigo-900 dark:text-indigo-300 font-medium rounded-lg; }
+  .nav-item-inactive { @apply text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition; }
+}
+
+/* ========================================
+   9. MODAL
+   ======================================== */
+@layer components {
+  .modal-overlay   { @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4; }
+  .modal-content   { @apply bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-2xl w-full max-h-screen overflow-y-auto; }
+  .modal-header    { @apply flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-700; }
+  .modal-body      { @apply p-6; }
+  .modal-footer    { @apply px-6 pb-6 flex justify-end gap-3 border-t border-gray-200 dark:border-gray-700; }
+}
+
+/* ========================================
+   10. SCROLLBARS BONITOS
+   ======================================== */
+@layer components {
+  .scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+  .scrollbar::-webkit-scrollbar-track {
+    @apply bg-gray-100 dark:bg-gray-800 rounded-full;
+  }
+  .scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-gray-400 dark:bg-gray-600 rounded-full hover:bg-gray-500 dark:hover:bg-gray-500 transition;
+  }
+  .scrollbar {
+    scrollbar-color: #9ca3af #f3f4f6;
+  }
+  .dark .scrollbar {
+    scrollbar-color: "color-primary-dark";
   }
 }
