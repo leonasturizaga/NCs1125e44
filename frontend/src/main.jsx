@@ -17,11 +17,14 @@ import ReactDOM from "react-dom/client";
 import AppRouter from "./app/router.jsx"; // ← exact path
 import { LayoutProvider } from "./context/LayoutContext";
 import "./index.css";
+import { AuthProvider } from "./context/AuthContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
    <React.StrictMode>
-      <LayoutProvider>
-         <AppRouter />
-      </LayoutProvider>
+      <AuthProvider>
+         <LayoutProvider>
+            <AppRouter />
+         </LayoutProvider>
+      </AuthProvider>
    </React.StrictMode>
 );
