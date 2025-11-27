@@ -18,13 +18,16 @@ import AppRouter from "./app/router.jsx"; // ← exact path
 import { LayoutProvider } from "./context/LayoutContext";
 import "./index.css";
 import { AuthProvider } from "./context/AuthContext.jsx";
+import { ThemeProvider } from "./context/ThemeContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
    <React.StrictMode>
-      <AuthProvider>
-         <LayoutProvider>
-            <AppRouter />
-         </LayoutProvider>
-      </AuthProvider>
+      <ThemeProvider>
+         <AuthProvider>
+            <LayoutProvider>
+               <AppRouter />
+            </LayoutProvider>
+         </AuthProvider>
+      </ThemeProvider>
    </React.StrictMode>
 );

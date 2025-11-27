@@ -1,43 +1,53 @@
-//----------------- version 2 Sidebar.jsx --------------------------
-// src/components/layout/Sidebar.jsx   with context
+//----------------- version 3 Sidebar.jsx --------------------------
+// src/components/layout/Sidebar.jsx
 import { Home, MessageSquare, Settings, LogOut } from "lucide-react";
 import { useLayout } from "../../context/LayoutContext";
 
 export default function Sidebar() {
   const { currentPage, setCurrentPage } = useLayout();
 
-  const navItemClass = (page) =>
-    `flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition cursor-pointer ${
-      currentPage === page
-        ? "bg-indigo-100 text-indigo-700"
-        : "text-gray-600 hover:bg-gray-100"
-    }`;
-
   return (
-    <aside className="w-64 bg-white border-r border-gray-200 hidden md:flex flex-col">
-      <div className="p-6 border-b">
-        <h1 className="text-2xl font-bold text-indigo-600">Testimonial CMS</h1>
+    <aside className="sidebar">
+      <div className="sidebar-header">
+        <h1 className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">
+          Testimonial CMS
+        </h1>
       </div>
 
-      <nav className="flex-1 px-4 py-4 space-y-2">
-        <div onClick={() => setCurrentPage("dashboard")} className={navItemClass("dashboard")}>
+      <nav className="sidebar-nav">
+        <div
+          onClick={() => setCurrentPage("dashboard")}
+          className={`flex items-center gap-3 px-6 py-3 rounded-xl transition-all cursor-pointer ${
+            currentPage === "dashboard" ? "nav-item-active" : "nav-item-inactive"
+          }`}
+        >
           <Home className="w-5 h-5" />
           Dashboard
         </div>
 
-        <div onClick={() => setCurrentPage("testimonials")} className={navItemClass("testimonials")}>
+        <div
+          onClick={() => setCurrentPage("testimonials")}
+          className={`flex items-center gap-3 px-6 py-3 rounded-xl transition-all cursor-pointer ${
+            currentPage === "testimonials" ? "nav-item-active" : "nav-item-inactive"
+          }`}
+        >
           <MessageSquare className="w-5 h-5" />
           Testimonios
         </div>
 
-        <div onClick={() => setCurrentPage("settings")} className={navItemClass("settings")}>
+        <div
+          onClick={() => setCurrentPage("settings")}
+          className={`flex items-center gap-3 px-6 py-3 rounded-xl transition-all cursor-pointer ${
+            currentPage === "settings" ? "nav-item-active" : "nav-item-inactive"
+          }`}
+        >
           <Settings className="w-5 h-5" />
           Configuración
         </div>
       </nav>
 
-      <div className="p-4 border-t">
-        <button className="flex items-center gap-3 px-4 py-3 text-red-600 hover:bg-red-50 rounded-lg w-full">
+      <div className="sidebar-footer">
+        <button className="flex items-center gap-3 px-6 py-3 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl w-full font-medium transition">
           <LogOut className="w-5 h-5" />
           Cerrar sesión
         </button>

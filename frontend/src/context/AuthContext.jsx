@@ -22,7 +22,7 @@ export function AuthProvider({ children }) {
 
   const login = async (email, password) => {
     try {
-      const res = await api.post("https://n-cs1125e44.vercel.app/auth/login", { email, password });
+      const res = await api.post("/auth/login", { email, password });
 
       if (res.data.success) {
         const token = res.data.token;           // ← your real format
@@ -33,7 +33,6 @@ export function AuthProvider({ children }) {
 
         api.defaults.headers.Authorization = `Bearer ${token}`;
         setUser(userData);
-        console.log("Login successful:", userData);
         return true;
       }
     } catch (err) {
