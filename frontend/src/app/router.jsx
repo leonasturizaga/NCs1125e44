@@ -105,6 +105,7 @@ import DashboardLayout from "../components/layouts/DashboardLayout";
 // Public
 import HomeVisitante from "../features/home/HomeVisitante";
 import LoginPage from "../features/auth/pages/LoginPage";
+import AboutPage from "../features/about/pages/AboutPage.jsx";
 
 // Admin pages
 import DashboardPage from "../features/dashboard/pages/DashboardPage";
@@ -118,6 +119,8 @@ export default function AppRouter() {
         <Route path="/" element={<HomeVisitante />} />
         <Route path="/login" element={<LoginPage />} />
 <Route path="/testimonials" element={<TestimonialsList />} /> 
+{/* 💡 AÑADIR LA RUTA DE NOSOTROS/ACERCA DE */}
+        <Route path="/nosotros" element={<AboutPage />} />
 
         {/* ALL PROTECTED ROUTES INSIDE LAYOUT */}
         <Route element={<DashboardLayout />}>
