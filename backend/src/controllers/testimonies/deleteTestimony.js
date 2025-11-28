@@ -20,12 +20,12 @@ const deleteTestimony = async (id, userId) => {
       };
     }
 
-    if (
-      foundTestimony.userId === userId ||
-      foundUser.role === ("admin" || "editor")
-    ) {
+    // if (
+    //   foundTestimony.userId === userId ||
+    //   foundUser.role === ("admin" || "editor")
+    // ) {
       await testimony.destroy({ where: { id } });
-    }
+    // }
 
     return {
       success: true,
