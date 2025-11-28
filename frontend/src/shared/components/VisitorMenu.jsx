@@ -1,13 +1,15 @@
 // src/shared/components/VisitorMenu.jsx
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Home, MessageSquare, Settings, LogIn } from "lucide-react";
+import { Home, MessageSquare, Settings, LogIn, Contact, Users2Icon } from "lucide-react";
 
 // Lista de enlaces públicos y su ícono
 const links = [
     { to: '/', icon: Home, label: 'Home' },
+    { to: '/nosotros', icon: Users2Icon , label: 'Nosotros' },
     { to: '/testimonials', icon: MessageSquare, label: 'Testimonios' },
     { to: '/configuracion', icon: Settings, label: 'Configuración' },
+    { to: '/contacto', icon: Contact, label: 'Contacto' },
     { to: '/login', icon: LogIn, label: 'Iniciar Sesión' },
 ];
 

@@ -15,6 +15,7 @@
 import { useState, useEffect } from "react";
 import { Search, Plus, Grid3X3, Table as TableIcon, Edit2, Trash2, Eye, ChevronLeft, ChevronRight, CheckCircle, Clock, XCircle, X } from "lucide-react";
 import TestimonialCard from "../components/TestimonialCard";
+
 //import TestimonialModal from "../components/TestimonialModal";
 
 const mockTestimonials = [
@@ -297,16 +298,24 @@ const confirmDelete = () => {
                           {t.views}
                         </div>
                       </td>
-                      <td className="px-6 py-4 text-right">
-                        <div className="flex items-center justify-end gap-2">
-                          <button onClick={() => openEditModal(t)} className="btn-ghost text-indigo-600">
-                            <Edit2 className="w-5 h-5" />
-                          </button>
-                          <button onClick={() => { setEditingTestimonial(t); setModalOpen(true); }} className="btn-ghost text-red-600">
-                            <Trash2 className="w-5 h-5" />
-                          </button>
-                        </div>
-                      </td>
+                      
+
+<td className="px-6 py-4 text-right">
+    <div className="flex items-center justify-end gap-2">
+        <button onClick={() => openEditModal(t)} 
+            // 🛑 REPARACIÓN: Reemplazar 'btn-ghost' por clases Tailwind
+            className="p-2 rounded-full hover:bg-gray-700 text-indigo-400 transition"
+        >
+            <Edit2 className="w-5 h-5" />
+        </button>
+        <button onClick={() => openEditModal(t)} 
+            // 🛑 REPARACIÓN: Reemplazar 'btn-ghost' por clases Tailwind
+            className="p-2 rounded-full hover:bg-gray-700 text-red-400 transition"
+        >
+            <Trash2 className="w-5 h-5" />
+        </button>
+    </div>
+</td>
                     </tr>
                   );
                 })}
@@ -401,15 +410,31 @@ const confirmDelete = () => {
             </div>
 
             <div className="modal-footer">
-              <button onClick={confirmDelete} className="btn-danger mr-auto">
-                Delete
-              </button>
-              <button onClick={closeModal} className="btn-ghost">
-                Cancel
-              </button>
-              <button onClick={saveChanges} className="btn-primary">
-                Save Changes
-              </button>
+              <div className="flex justify-between items-center pt-4 border-t border-gray-700">
+    {/* Botón Eliminar: Peligro Rojo */}
+    <button onClick={confirmDelete} 
+        // 🛑 REPARACIÓN: Aplicar estilo de texto directo
+        className="text-red-400 hover:text-red-300 font-medium transition"
+    >
+        Eliminar
+    </button>
+    <div className="flex gap-3">
+        {/* Botón Cancelar: Estilo Fantasma/Secundario */}
+        <button onClick={closeModal} 
+            // 🛑 REPARACIÓN: Aplicar estilo de texto directo
+            className="text-gray-400 hover:text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition"
+        >
+            Cancelar
+        </button>
+        {/* Botón Guardar: Primario Índigo */}
+        <button onClick={saveChanges} 
+            // 🛑 REPARACIÓN: Aplicar estilo primario
+            className="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition font-medium shadow-md"
+        >
+            Guardar Cambios
+        </button>
+    </div>
+</div>
             </div>
           </div>
         </div>

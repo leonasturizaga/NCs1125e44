@@ -117,11 +117,11 @@ export default function AppRouter() {
       <Routes>
         <Route path="/" element={<HomeVisitante />} />
         <Route path="/login" element={<LoginPage />} />
-{/* <Route path="/testimonials" element={<TestimonialsList />} /> */}
+<Route path="/testimonials" element={<TestimonialsList />} /> 
 
         {/* ALL PROTECTED ROUTES INSIDE LAYOUT */}
         <Route element={<DashboardLayout />}>
-          <Route path="/dashboard" element={<DashboardPage />} />
+          {/*<Route path="/dashboard" element={<DashboardPage />} />*/}
           <Route path="/testimonials" element={<TestimonialsList />} />
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
