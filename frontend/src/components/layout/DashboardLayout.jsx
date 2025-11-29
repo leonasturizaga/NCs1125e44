@@ -7,11 +7,15 @@ import { useLayout } from "../../context/LayoutContext";
 import DashboardPage from "../../features/dashboard/pages/DashboardPage";
 import SettingsPage from "../../features/settings/pages/SettingsPage";
 import TestimonialList from "../../features/testimonials/pages/TestimonialList";
+import UserList from "../../features/users/pages/UserList";
+import HomeVisitante from "../../features/home/HomeVisitante";
 
 const pageComponents = {
-  dashboard: <DashboardPage />,
+   dashboard: <DashboardPage />,
+  users: <UserList />,
   testimonials: <TestimonialList />,
   settings: <SettingsPage />,
+  home: <HomeVisitante />,
 };
 
 export default function DashboardLayout() {

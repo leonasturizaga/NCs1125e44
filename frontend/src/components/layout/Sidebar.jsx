@@ -1,6 +1,6 @@
 //----------------- version 3 Sidebar.jsx --------------------------
 // src/components/layout/Sidebar.jsx
-import { Home, MessageSquare, Settings, LogOut } from "lucide-react";
+import { FiHome, FiMessageSquare, FiSettings, FiUsers, FiLogOut } from "react-icons/fi";
 import { useLayout } from "../../context/LayoutContext";
 
 export default function Sidebar() {
@@ -16,13 +16,13 @@ export default function Sidebar() {
 
       <nav className="sidebar-nav">
         <div
-          onClick={() => setCurrentPage("dashboard")}
+          onClick={() => setCurrentPage("users")}
           className={`flex items-center gap-3 px-6 py-3 rounded-xl transition-all cursor-pointer ${
-            currentPage === "dashboard" ? "nav-item-active" : "nav-item-inactive"
+            currentPage === "users" ? "nav-item-active" : "nav-item-inactive"
           }`}
         >
-          <Home className="w-5 h-5" />
-          Dashboard
+          <FiUsers className="w-5 h-5" />
+          Usuarios
         </div>
 
         <div
@@ -31,7 +31,7 @@ export default function Sidebar() {
             currentPage === "testimonials" ? "nav-item-active" : "nav-item-inactive"
           }`}
         >
-          <MessageSquare className="w-5 h-5" />
+          <FiMessageSquare className="w-5 h-5" />
           Testimonios
         </div>
 
@@ -41,14 +41,24 @@ export default function Sidebar() {
             currentPage === "settings" ? "nav-item-active" : "nav-item-inactive"
           }`}
         >
-          <Settings className="w-5 h-5" />
+          <FiSettings className="w-5 h-5" />
           Configuración
         </div>
+        <div
+          onClick={() => setCurrentPage("home")}
+          className={`flex items-center gap-3 px-6 py-3 rounded-xl transition-all cursor-pointer ${
+            currentPage === "/" ? "nav-item-active" : "nav-item-inactive"
+          }`}
+        >
+          <FiHome className="w-5 h-5" />
+          Home
+        </div>
+
       </nav>
 
       <div className="sidebar-footer">
         <button className="flex items-center gap-3 px-6 py-3 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-xl w-full font-medium transition">
-          <LogOut className="w-5 h-5" />
+          <FiLogOut className="w-5 h-5" />
           Cerrar sesión
         </button>
       </div>
