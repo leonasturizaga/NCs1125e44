@@ -2,7 +2,7 @@
 // src/features/testimonials/components/TestimonialForm.jsx
 import { useState } from "react";
 import { useAuth } from "@/context/AuthContext";
-const USER_ID = "895e3aa4-475e-410c-8e26-e53f347e2cca";
+// const USER_ID = "895e3aa4-475e-410c-8e26-e53f347e2cca";
 
 export default function TestimonialForm({ initialData = {}, onSubmit, submitText = "Guardar" }) {
   const { user } = useAuth();
