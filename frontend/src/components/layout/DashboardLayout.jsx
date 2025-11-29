@@ -1,37 +1,47 @@
-//------------ version 3 ----------------
-// src/components/layout/DashboardLayout.jsx
+// src/components/layouts/DashboardLayout.jsx
+
+import React from 'react';
+import { Outlet } from 'react-router-dom'; // 💡 NECESARIO para que el router anidado funcione
 import Sidebar from "./Sidebar";
 import Header from "./Header";
-import { useLayout } from "../../context/LayoutContext";
+// 🛑 ELIMINAR: import { useLayout } from "../../context/LayoutContext";
+// 🛑 ELIMINAR: import DashboardPage from "../../features/dashboard/pages/DashboardPage";
+// 🛑 ELIMINAR: const pageComponents = { ... };
 
-import DashboardPage from "../../features/dashboard/pages/DashboardPage";
-import SettingsPage from "../../features/settings/pages/SettingsPage";
-import TestimonialList from "../../features/testimonials/pages/TestimonialList";
-import UserList from "../../features/users/pages/UserList";
-import HomeVisitante from "../../features/home/HomeVisitante";
-
-const pageComponents = {
-   dashboard: <DashboardPage />,
-  users: <UserList />,
-  testimonials: <TestimonialList />,
-  settings: <SettingsPage />,
-  home: <HomeVisitante />,
-};
+// Ancho de la barra lateral (debe coincidir con Sidebar.jsx)
+const SIDEBAR_WIDTH = 'w-64'; 
 
 export default function DashboardLayout() {
-  const { currentPage } = useLayout();
+    // 🛑 ELIMINAR: const { currentPage } = useLayout();
 
-  return (
-    <div className="layout-root">
-      <Sidebar />
-      <div className="layout-main">
-        <Header />
-        <main className="layout-content">
-          <div className="layout-container">
-            {pageComponents[currentPage] || <DashboardPage />}
-          </div>
-        </main>
-      </div>
-    </div>
-  );
+    return (
+        // 1. layout-root: Fondo oscuro de toda la app
+        <div className="flex min-h-screen bg-gray-900"> 
+            
+            {/* 2. Sidebar Fija */}
+            <div className={`fixed inset-y-0 left-0 z-30 ${SIDEBAR_WIDTH}`}>
+                <Sidebar />
+            </div>
+
+            {/* 3. layout-main: Contenedor Principal (ajustado con margen) */}
+            <div 
+                className="flex-1 flex flex-col transition-all duration-300" 
+                style={{ marginLeft: '16rem' }} // Margen para compensar la Sidebar
+            >
+                <Header />
+                
+                {/* 4. layout-content: Área de Contenido Principal */}
+                <main className="flex-1 p-8"> 
+                    
+                    {/* 5. layout-container: Renderiza la página hija */}
+                    <div className="w-full h-full"> 
+                        
+                        {/* 💡 IMPLEMENTACIÓN CRÍTICA: El Router decide qué mostrar */}
+                        <Outlet /> 
+                        
+                    </div>
+                </main>
+            </div>
+        </div>
+    );
 }
