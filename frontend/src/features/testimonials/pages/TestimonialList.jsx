@@ -10,7 +10,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import { toast, Toaster } from "react-hot-toast";
+import { toast } from "react-toastify";
 import api from "@/services/apiClient";
 import TestimonialCard from "../components/TestimonialCard";
 import TestimonialModal from "../components/TestimonialModal";
@@ -142,7 +142,7 @@ const msg = err.response?.data?.message || "Error al editar";
 
   return (
     <div className="space-y-8">
-      <Toaster position="top-right" />
+      {/* <Toaster position="top-right" /> */}
 
       {/* Header */}
       <div className="flex justify-between items-center">
