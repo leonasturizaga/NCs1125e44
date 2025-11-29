@@ -125,7 +125,7 @@ export default function AppRouter() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/nosotros" element={<AboutPage />} />
             <Route path="/register" element={<RegisterPage />} />
-<Route path="/dashboard" element={<DashboardPage />} />
+{/*<Route path="/dashboard" element={<DashboardPage />} />*/}
             {/* A PARTIR DE AQUÍ DEBE SEGUIR LA ESTRUCTURA ORIGINAL DE RUTAS PROTEGIDAS */}
 <Route element={<ProtectedRoute />}>
                {/* ALL PROTECTED ROUTES INSIDE LAYOUT */}
