@@ -97,8 +97,8 @@
 // }
 
 //------------- version 3 --------------------------
-// src/app/Router.jsx   (name router.jsx change to Router.jsx)
-// src/app/Router.jsx
+// src/app/Router.jsx   (name router.jsx change from Router.jsx)
+// src/app/router.jsx
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import DashboardLayout from "../components/layout/DashboardLayout";
 
@@ -129,7 +129,7 @@ export default function AppRouter() {
                   <Route path="/testimonials/create" element={<CreateTestimonial />} />
                   <Route path="/testimonials/edit/:id" element={<EditTestimonial />} />
                   <Route path="/settings" element={<SettingsPage />} />
-                  <Route path="*" element={<Navigate to="/dashboard" replace />} />
+                  <Route path="*" element={<Navigate to="/" replace />} />
                </Route>
             </Route>
          </Routes>
