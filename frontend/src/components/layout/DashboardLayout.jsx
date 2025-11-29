@@ -4,12 +4,21 @@ import React from 'react';
 import { Outlet } from 'react-router-dom'; // 💡 NECESARIO para que el router anidado funcione
 import Sidebar from "./Sidebar";
 import Header from "./Header";
-// 🛑 ELIMINAR: import { useLayout } from "../../context/LayoutContext";
-// 🛑 ELIMINAR: import DashboardPage from "../../features/dashboard/pages/DashboardPage";
-// 🛑 ELIMINAR: const pageComponents = { ... };
+import { useLayout } from "../../context/LayoutContext";
 
-// Ancho de la barra lateral (debe coincidir con Sidebar.jsx)
-const SIDEBAR_WIDTH = 'w-64'; 
+import DashboardPage from "../../features/dashboard/pages/DashboardPage";
+import SettingsPage from "../../features/settings/pages/SettingsPage";
+import TestimonialList from "../../features/testimonials/pages/TestimonialList";
+import UserList from "../../features/users/pages/UserList";
+import HomeVisitante from "../../features/home/HomeVisitante";
+
+const pageComponents = {
+   dashboard: <DashboardPage />,
+  users: <UserList />,
+  testimonials: <TestimonialList />,
+  settings: <SettingsPage />,
+  home: <HomeVisitante />,
+};
 
 export default function DashboardLayout() {
     // 🛑 ELIMINAR: const { currentPage } = useLayout();

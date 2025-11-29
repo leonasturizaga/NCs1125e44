@@ -14,6 +14,7 @@ import { toast } from "react-toastify";
 import api from "@/services/apiClient";
 import TestimonialCard from "../components/TestimonialCard";
 import TestimonialModal from "../components/TestimonialModal";
+import { STATUS_CONFIG } from "@/constants/statusConfig";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -177,9 +178,9 @@ const msg = err.response?.data?.message || "Error al editar";
               onChange={(e) => setFilterStatus(e.target.value)}
             >
               <option value="all">Todos</option>
-              <option value="published">Publicado</option>
+              <option value="approved">Aprobado</option>
               <option value="pending">Pendiente</option>
-              <option value="draft">Borrador</option>
+              <option value="rejected">Rechazado</option>
             </select>
 
             <div className="flex bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
@@ -228,11 +229,11 @@ const msg = err.response?.data?.message || "Error al editar";
             <table className="w-full">
               <thead className="bg-gray-50 dark:bg-gray-700 border-b border-gray-200 dark:border-gray-600">
                 <tr>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Title</th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase hidden sm:table-cell">Description</th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Status</th>
-                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase hidden md:table-cell">Date</th>
-                  <th className="px-6 py-4 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Actions</th>
+                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Titulo</th>
+                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase hidden sm:table-cell">Descripción</th>
+                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Estado</th>
+                  <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase hidden md:table-cell">Fecha</th>
+                  <th className="px-6 py-4 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Acciones</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
@@ -244,7 +245,7 @@ const msg = err.response?.data?.message || "Error al editar";
                     </td>
                     <td className="px-6 py-4">
                       <span className={`badge badge-${t.status}`}>
-                        {t.status}
+                        {STATUS_CONFIG[t.status].label}
                       </span>
                     </td>
                     <td className="px-6 py-4 text-gray-500 dark:text-gray-400 text-sm hidden md:table-cell">

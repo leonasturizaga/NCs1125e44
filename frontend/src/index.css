@@ -70,10 +70,10 @@ body {
    ======================================== */
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
-  }
-  .btn-primary   { @apply color-primary; }
-  .btn-secondary { @apply color-secondary; }
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg font-medium text-sm transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed; }
+  .btn-primary   { @apply color-primary font-bold px-3 py-3 rounded-lg transition shadow-lg flex items-center justify-center gap-2 }
+  .btn-secondary { @apply color-secondary px-3 py-3 flex items-center justify-center gap-3 border rounded-lg font-medium transition; }
+  .btn-tertiary  { @apply px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition; }
   .btn-accent    { @apply color-accent; }
   .btn-success   { @apply color-success; }
   .btn-danger    { @apply color-danger; }
@@ -112,8 +112,10 @@ body {
   .badge {
     @apply inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium;
   }
-  .badge-published { @apply bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200; }
+  .badge-approved  { @apply bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200; }
   .badge-pending   { @apply bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200; }
+  .badge-rejected  { @apply bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300; }
+  .badge-published { @apply bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200; }
   .badge-draft     { @apply bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300; }
 }
 

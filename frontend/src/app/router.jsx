@@ -115,7 +115,8 @@ import CreateTestimonial from "../features/testimonials/pages/CreateTestimonial"
 import EditTestimonial from "../features/testimonials/pages/EditTestimonial";
 import TestimonialList from "../features/testimonials/pages/TestimonialsList";
 import ProtectedRoute from "../components/ProtectedRoute";
-
+import AboutPage from "../features/about/pages/AboutPage";
+import UserList from "../features/users/pages/UserList";
 
 export default function AppRouter() {
    return (
@@ -130,6 +131,7 @@ export default function AppRouter() {
 <Route element={<ProtectedRoute />}>
                {/* ALL PROTECTED ROUTES INSIDE LAYOUT */}
                <Route element={<DashboardLayout />}>
+                  <Route path="/users" element={<UserList />} />
                   <Route path="/dashboard" element={<DashboardPage />} />
                   <Route path="/testimonials" element={<TestimonialList />} />
                   <Route path="/testimonials/create" element={<CreateTestimonial />} />
