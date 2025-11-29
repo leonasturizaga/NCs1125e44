@@ -122,6 +122,7 @@ export default function AppRouter() {
          <Routes>
             <Route path="/" element={<HomeVisitante />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/nosotros" element={<AboutPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route element={<ProtectedRoute />}>
                {/* ALL PROTECTED ROUTES INSIDE LAYOUT */}
