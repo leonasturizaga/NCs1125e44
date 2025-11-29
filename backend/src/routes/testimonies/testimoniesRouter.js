@@ -8,6 +8,7 @@ const getTestimonyByIdHandler = require("../../handlers/testimonies/getTestimony
 const getAllTestimoniesHandler = require("../../handlers/testimonies/getAllTestimoniesHandler");
 const editTestimonyHandler = require("../../handlers/testimonies/editTestimonyHandler");
 const deleteTestimonyHandler = require("../../handlers/testimonies/deleteTestimonyHandler");
+const updateTestimonyStatusHandler = require("../../handlers/testimonies/updateTestimonyStatusHandler");
 
 const uploadWithErrors = (req, res, next) => {
   multer.array("images", 3)(req, res, (err) => {
@@ -47,6 +48,7 @@ router.post("/post", uploadWithErrors, postTestimonyHandler);
 router.get("/getById/:id", getTestimonyByIdHandler);
 router.get("/getAll", getAllTestimoniesHandler);
 router.put("/edit/:id", editTestimonyHandler);
-router.delete("/delete", deleteTestimonyHandler);
+router.put("/updateStatus", updateTestimonyStatusHandler);
+router.delete("/delete/:id", deleteTestimonyHandler);
 
 module.exports = router;
