@@ -105,6 +105,7 @@ import DashboardLayout from "../components/layout/DashboardLayout";
 // Public
 import HomeVisitante from "../features/home/HomeVisitante";
 import LoginPage from "../features/auth/pages/LoginPage";
+import RegisterPage from "../features/auth/pages/RegisterPage";
 
 // Admin pages
 import DashboardPage from "../features/dashboard/pages/DashboardPage";
@@ -123,7 +124,10 @@ export default function AppRouter() {
             <Route path="/" element={<HomeVisitante />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/nosotros" element={<AboutPage />} />
-            <Route element={<ProtectedRoute />}>
+            <Route path="/register" element={<RegisterPage />} />
+
+            {/* A PARTIR DE AQUÍ DEBE SEGUIR LA ESTRUCTURA ORIGINAL DE RUTAS PROTEGIDAS */}
+<Route element={<ProtectedRoute />}>
                {/* ALL PROTECTED ROUTES INSIDE LAYOUT */}
                <Route element={<DashboardLayout />}>
                   <Route path="/dashboard" element={<DashboardPage />} />

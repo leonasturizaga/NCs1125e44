@@ -140,12 +140,11 @@ const handleRegister = async (data) => {
                  ¿Olvidaste tu contraseña?
               </a>
               <p className="text-center text-gray-400 text-sm">
-                 <button
-                    type="button"
-                    onClick={() => setRegisterModalOpen(true)}
-                    className="text-indigo-400 hover:underline font-medium">
-                    Regístrate
-                 </button>
+                 <Link
+                  to="/register" // ⬅️ Redirige a la página completa
+                  className="text-indigo-400 hover:underline font-medium">
+                  Regístrate
+                  </Link>
               </p>
            </div>
         </div>
