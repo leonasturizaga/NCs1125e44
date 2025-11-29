@@ -114,9 +114,9 @@ export default function TestimonialForm({ initialData = {}, onSubmit, submitText
             onChange={handleChange}
             className="input"
           >
-            <option value="draft">Borrador</option>
+            <option value="rejected">Rechazado</option>
             <option value="pending">Pendiente</option>
-            <option value="published">Publicado</option>
+            <option value="approved">Publicado</option>
           </select>
         </div>
       </div>
