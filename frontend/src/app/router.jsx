@@ -115,7 +115,7 @@ import CreateTestimonial from "../features/testimonials/pages/CreateTestimonial"
 import EditTestimonial from "../features/testimonials/pages/EditTestimonial";
 import TestimonialList from "../features/testimonials/pages/TestimonialsList";
 import ProtectedRoute from "../components/ProtectedRoute";
-import AboutPage from "../features/about/pages/AboutPage";
+
 import UserList from "../features/users/pages/UserList";
 
 export default function AppRouter() {
