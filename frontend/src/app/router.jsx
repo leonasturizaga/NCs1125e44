@@ -106,7 +106,6 @@ import DashboardLayout from "../components/layout/DashboardLayout";
 import HomeVisitante from "../features/home/HomeVisitante";
 import LoginPage from "../features/auth/pages/LoginPage";
 import RegisterPage from "../features/auth/pages/RegisterPage";
-import AboutPage from "../features/about/pages/AboutPage";
 
 // Admin pages
 import DashboardPage from "../features/dashboard/pages/DashboardPage";
@@ -116,6 +115,8 @@ import CreateTestimonial from "../features/testimonials/pages/CreateTestimonial"
 import EditTestimonial from "../features/testimonials/pages/EditTestimonial";
 import TestimonialList from "../features/testimonials/pages/TestimonialsList";
 import ProtectedRoute from "../components/ProtectedRoute";
+import AboutPage from "../features/about/pages/AboutPage";
+import UserList from "../features/users/pages/UserList";
 
 export default function AppRouter() {
    return (
@@ -125,7 +126,7 @@ export default function AppRouter() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/nosotros" element={<AboutPage />} />
             <Route path="/register" element={<RegisterPage />} />
-{/*<Route path="/dashboard" element={<DashboardPage />} />*/}
+
             {/* A PARTIR DE AQUÍ DEBE SEGUIR LA ESTRUCTURA ORIGINAL DE RUTAS PROTEGIDAS */}
 <Route element={<ProtectedRoute />}>
                {/* ALL PROTECTED ROUTES INSIDE LAYOUT */}

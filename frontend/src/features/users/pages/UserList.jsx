@@ -14,6 +14,9 @@ export default function UserList() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
+const [filterRole, setFilterRole] = useState("all");
+  const [filterActive, setFilterActive] = useState("all");
+
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -33,6 +36,20 @@ export default function UserList() {
     fetchUsers();
   }, []);
 
+// Filtros
+  const filtered = users.filter((u) => {
+    const matchesSearch =
+      u.username?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      u.email?.toLowerCase().includes(searchTerm.toLowerCase());
+
+    const matchesRole = filterRole === "all" || u.role === filterRole;
+    const matchesActive =
+      filterActive === "all" ||
+      (filterActive === "active" ? u.isActive : !u.isActive);
+
+    return matchesSearch && matchesRole && matchesActive;
+  });
+
   const handleDeactivate = async (id) => {
     if (!confirm("¿Desactivar este usuario?")) return;
     try {
@@ -48,10 +65,6 @@ export default function UserList() {
     alert(`Eliminar usuario ${username} (no implementado aún)`);
   };
 
-  const filtered = users.filter(u =>
-    u.username?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    u.email?.toLowerCase().includes(searchTerm.toLowerCase())
-  );
 
   return (
     <div className="space-y-8">
@@ -69,7 +82,7 @@ export default function UserList() {
         </button>
       </div>
 
-      {/* Search */}
+      {/* Search
       <div className="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
         <div className="relative">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -81,7 +94,47 @@ export default function UserList() {
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-      </div>
+      </div> */}
+
+{/* Filtros */}
+      <div className="bg-white dark:bg-gray-800 p-5 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {/* Search */}
+          <div className="relative">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <input
+              type="text"
+              placeholder="Buscar por nombre o email..."
+              className="input pl-12"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+
+          {/* Filter by Role */}
+          <select
+            className="input"
+            value={filterRole}
+            onChange={(e) => setFilterRole(e.target.value)}
+          >
+            <option value="all">Todos los roles</option>
+            <option value="admin">Administrador</option>
+            <option value="editor">Editor</option>
+            <option value="visitante">Visitante</option>
+          </select>
+
+          {/* Filter by Status */}
+          <select
+            className="input"
+            value={filterActive}
+            onChange={(e) => setFilterActive(e.target.value)}
+          >
+            <option value="all">Todos los estados</option>
+            <option value="active">Activo</option>
+            <option value="inactive">Inactivo</option>
+          </select>
+        </div>
+      </div>      
 
       {/* Table */}
       {loading ? (
