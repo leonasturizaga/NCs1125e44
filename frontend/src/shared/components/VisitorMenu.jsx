@@ -2,11 +2,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Home, MessageSquare, Settings, LogIn, Contact, Users2Icon } from "lucide-react";
+import { FiBarChart2 } from 'react-icons/fi';
 
 // Lista de enlaces públicos y su ícono
 const links = [
     { to: '/', icon: Home, label: 'Home' },
     { to: '/nosotros', icon: Users2Icon , label: 'Nosotros' },
+    { to: '/dashboard', icon: FiBarChart2, label: 'Dashboard' },    
     { to: '/testimonials', icon: MessageSquare, label: 'Testimonios' },
     { to: '/configuracion', icon: Settings, label: 'Configuración' },
     { to: '/contacto', icon: Contact, label: 'Contacto' },
