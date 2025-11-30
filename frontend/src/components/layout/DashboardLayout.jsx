@@ -69,19 +69,36 @@ const pageComponents = {
 };
 
 export default function DashboardLayout() {
-  const { currentPage } = useLayout();
+    // 🛑 ELIMINAR: const { currentPage } = useLayout();
 
-  return (
-    <div className="layout-root">
-      <Sidebar />
-      <div className="layout-main">
-        <Header />
-        <main className="layout-content">
-          <div className="layout-container">
-            {pageComponents[currentPage] || <DashboardPage />}
-          </div>
-        </main>
-      </div>
-    </div>
-  );
+    return (
+        // 1. layout-root: Fondo oscuro de toda la app
+        <div className="flex min-h-screen bg-gray-900"> 
+            
+            {/* 2. Sidebar Fija */}
+            <div className={`fixed inset-y-0 left-0 z-30 ${SIDEBAR_WIDTH}`}>
+                <Sidebar />
+            </div>
+
+            {/* 3. layout-main: Contenedor Principal (ajustado con margen) */}
+            <div 
+                className="flex-1 flex flex-col transition-all duration-300" 
+                style={{ marginLeft: '16rem' }} // Margen para compensar la Sidebar
+            >
+                <Header />
+                
+                {/* 4. layout-content: Área de Contenido Principal */}
+                <main className="flex-1 p-8"> 
+                    
+                    {/* 5. layout-container: Renderiza la página hija */}
+                    <div className="w-full h-full"> 
+                        
+                        {/* 💡 IMPLEMENTACIÓN CRÍTICA: El Router decide qué mostrar */}
+                        <Outlet /> 
+                        
+                    </div>
+                </main>
+            </div>
+        </div>
+    );
 }
