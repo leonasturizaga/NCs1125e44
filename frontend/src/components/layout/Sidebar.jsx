@@ -1,6 +1,6 @@
 //----------------- version 3 Sidebar.jsx --------------------------
 // src/components/layout/Sidebar.jsx
-import { FiHome, FiMessageSquare, FiSettings, FiUsers, FiLogOut } from "react-icons/fi";
+import { FiHome, FiMessageSquare, FiSettings, FiUsers, FiBarChart2, FiLogOut } from "react-icons/fi";
 import { useLayout } from "../../context/LayoutContext";
 
 export default function Sidebar() {
@@ -15,6 +15,16 @@ export default function Sidebar() {
       </div>
 
       <nav className="sidebar-nav">
+        <div
+          onClick={() => setCurrentPage("dashboard")}
+          className={`flex items-center gap-3 px-6 py-3 rounded-xl transition-all cursor-pointer ${
+            currentPage === "dashboard" ? "nav-item-active" : "nav-item-inactive"
+          }`}
+        >
+          <FiBarChart2 className="w-5 h-5" />
+          Dashboard
+        </div>
+
         <div
           onClick={() => setCurrentPage("users")}
           className={`flex items-center gap-3 px-6 py-3 rounded-xl transition-all cursor-pointer ${
