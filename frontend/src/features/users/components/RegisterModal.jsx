@@ -2,21 +2,14 @@
 import { X } from "lucide-react";
 import UserForm from "./UserForm";
 
-export default function RegisterModal({ isOpen, onClose, onSuccess }) {
+export default function RegisterModal({ isOpen, onClose, user = null, onSuccess }) {
   if (!isOpen) return null;
 
-  const handleSubmit = async (formData) => {
-    console.log("Modal received form data:", formData);
-
-    const success = await onSuccess(formData);  // ← this comes from LoginPage
-
-    console.log("onSuccess returned:", success);
-
+const handleSubmit = async (formData) => {
+    const success = await onSuccess(formData);
     if (success) {
-      console.log("Closing modal...");
-      onClose();   // ← ONLY close if success = true
+      onClose();
     }
-    // If false → modal stays open (user sees error toast)
   };
 
   return (
@@ -24,7 +17,7 @@ export default function RegisterModal({ isOpen, onClose, onSuccess }) {
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-            Crear nueva cuenta
+            {user?.id ? "Editar usuario" : "Crear nueva cuenta"}
           </h2>
           <button
             onClick={onClose}
@@ -35,7 +28,12 @@ export default function RegisterModal({ isOpen, onClose, onSuccess }) {
         </div>
 
         <div className="modal-body">
-          <UserForm onSubmit={handleSubmit} submitText="Crear cuenta" />
+          <UserForm
+            initialData={user || {}}
+            onSubmit={handleSubmit}
+            submitText={user?.id ? "Guardar cambios" : "Crear cuenta"}
+            onCancel={onClose}  
+          />
         </div>
       </div>
     </div>

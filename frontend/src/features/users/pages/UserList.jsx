@@ -425,6 +425,7 @@ export default function UserList() {
       <RegisterModal
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
+        user={currentUser}
         onSuccess={handleSave}
       />
     </div>
