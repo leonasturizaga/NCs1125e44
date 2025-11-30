@@ -1,6 +1,6 @@
 // src/features/users/pages/UserList.jsx
 import { useState, useEffect } from "react";
-import { Plus, Search, Edit2, Trash2, UserX } from "lucide-react";
+import { FiPlus, FiSearch, FiEdit2, FiTrash2, FiUserX } from "react-icons/fi";
 import { toast, Toaster } from "react-hot-toast";
 import api from "@/services/apiClient";
 
@@ -77,7 +77,7 @@ const [filterRole, setFilterRole] = useState("all");
           <p className="text-gray-600 dark:text-gray-400">Administra todos los usuarios del sistema</p>
         </div>
         <button className="btn-primary">
-          <Plus className="w-5 h-5" />
+          <FiPlus className="w-5 h-5" />
           Nuevo Usuario
         </button>
       </div>
@@ -101,7 +101,7 @@ const [filterRole, setFilterRole] = useState("all");
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {/* Search */}
           <div className="relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
               type="text"
               placeholder="Buscar por nombre o email..."
@@ -181,17 +181,17 @@ const [filterRole, setFilterRole] = useState("all");
                     <td className="px-6 py-4 text-right">
                       <div className="flex items-center justify-end gap-3">
                         <button className="btn-ghost text-indigo-600">
-                          <Edit2 className="w-5 h-5" />
+                          <FiEdit2 className="w-5 h-5" />
                         </button>
                         <button
                           onClick={() => handleDeactivate(u.id)}
                           className="btn-ghost text-orange-600"
                           title="Desactivar"
                         >
-                          <UserX className="w-5 h-5" />
+                          <FiUserX className="w-5 h-5" />
                         </button>
                         <button onClick={() => handleDelete(u.username)} className="btn-ghost text-red-600">
-                          <Trash2 className="w-5 h-5" />
+                          <FiTrash2 className="w-5 h-5" />
                         </button>
                       </div>
                     </td>
