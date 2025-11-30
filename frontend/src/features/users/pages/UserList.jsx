@@ -379,7 +379,8 @@ export default function UserList() {
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-3">
                         <div className="w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center text-white font-bold">
-                          {u.profilePicture || u.username[0].toUpperCase()}
+                          {/* {u.profilePicture || u.username[0].toUpperCase()} */}
+                           {u.username[0].toUpperCase()}
                         </div>
                         <span className="font-medium text-gray-900 dark:text-white">
                           {u.username}
