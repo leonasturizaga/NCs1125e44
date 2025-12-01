@@ -1,5 +1,4 @@
 
-
 // src/features/dashboard/pages/DashboardPage.jsx
 
 import { Line } from 'react-chartjs-2';
@@ -92,7 +91,7 @@ function DashboardPage() {
     // Ajustar el fondo del contenido principal del dashboard
     // bg-gray-900 para que coincida con el fondo general del Layout si es necesario
     // Pero el Layout ya suele dar el fondo, así que el 'space-y-6' es suficiente
-    <div className="space-y-6"> 
+    <div className="space-y-6 bg-gray-900 text-gray-100 min-h-screen"> 
       
       {/* Título Principal */}
       <h1 className="text-4xl font-extrabold text-white">Dashboard Principal</h1>
