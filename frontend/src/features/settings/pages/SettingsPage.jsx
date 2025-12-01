@@ -1,6 +1,7 @@
 // src/features/settings/pages/SettingsPage.jsx
 
 import React, { useState } from 'react';
+import { Pencil, Trash2 } from "lucide-react";
 
 function SettingsPage() {
     const [settings, setSettings] = useState({
@@ -8,7 +9,14 @@ function SettingsPage() {
         adminEmail: 'admin@example.com',
         allowRegistrations: true,
         itemsPerPage: 10,
+
+        // Categorías
+        categories: ["Clientes", "Proveedores", "Empleados", "Partners"],
+        newCategory: "",
     });
+
+    // Estado nuevo: controlar el acordeón de categorías
+    const [showCategories, setShowCategories] = useState(false);
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -25,6 +33,37 @@ function SettingsPage() {
         alert('Configuración guardada (Mock)');
     };
 
+    // Agregar categoría
+    const addCategory = () => {
+        if (settings.newCategory.trim() === "") return;
+
+        setSettings(prev => ({
+            ...prev,
+            categories: [...prev.categories, prev.newCategory],
+            newCategory: ""
+        }));
+    };
+
+    // Eliminar categoría
+    const deleteCategory = (index) => {
+        setSettings(prev => ({
+            ...prev,
+            categories: prev.categories.filter((_, i) => i !== index)
+        }));
+    };
+
+    // Editar categoría
+    const editCategory = (index) => {
+        const nuevoNombre = prompt("Editar categoría:", settings.categories[index]);
+        if (!nuevoNombre || nuevoNombre.trim() === "") return;
+
+        setSettings(prev => {
+            const updated = [...prev.categories];
+            updated[index] = nuevoNombre;
+            return { ...prev, categories: updated };
+        });
+    };
+
     return (
         <div className="space-y-6">
             {/* Título Principal */}
@@ -34,7 +73,7 @@ function SettingsPage() {
 
             {/* Formulario de Configuración (Contenedor) */}
             <div className="bg-gray-800 p-8 rounded-lg shadow-xl border border-gray-700">
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-10">
                     
                     {/* Nombre del Sitio */}
                     <div>
@@ -94,6 +133,94 @@ function SettingsPage() {
                             <option className="bg-gray-700" value={20}>20</option>
                             <option className="bg-gray-700" value={50}>50</option>
                         </select>
+                    </div>
+
+                   
+                    {/* GESTIÓN DE CATEGORÍAS + ACORDEÓN */}
+                    <div className="space-y-4">
+
+                        {/* Botón Acordeón */}
+                        <button
+                            type="button"
+                            onClick={() => setShowCategories(!showCategories)}
+                            className="w-full flex justify-between items-center text-2xl font-bold text-indigo-300"
+                        >
+                            Gestión de Categorías
+                            <span className="text-indigo-400 text-xl">
+                                {showCategories ? "▲" : "▼"}
+                            </span>
+                        </button>
+
+                        {/* Contenido visible SOLO si showCategories === true */}
+                        {showCategories && (
+                            <div className="space-y-4">
+
+                                {/* Nueva Categoría */}
+                                <div>
+                                    <label htmlFor="newCategory" className="label text-gray-300 mb-1">
+                                        Nueva Categoría
+                                    </label>
+
+                                    <div className="flex gap-3">
+                                        <input
+                                            type="text"
+                                            id="newCategory"
+                                            name="newCategory"
+                                            placeholder="Ej: Nueva categoría..."
+                                            value={settings.newCategory}
+                                            onChange={handleChange}
+                                            className="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500"
+                                        />
+
+                                        <button
+                                            type="button"
+                                            onClick={addCategory}
+                                            className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg shadow-md flex items-center"
+                                        >
+                                            Agregar
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {/* Categorías existentes */}
+                                <label className="label text-gray-300 mb-1">
+                                    Categorías existentes
+                                </label>
+
+                                <ul className="space-y-2">
+                                    {settings.categories.map((cat, i) => (
+                                        <li
+                                            key={i}
+                                            className="px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white flex justify-between items-center"
+                                        >
+                                            <span>{cat}</span>
+
+                                            <div className="flex gap-4">
+
+                                                {/* Editar */}
+                                                <button
+                                                    type="button"
+                                                    onClick={() => editCategory(i)}
+                                                    className="text-indigo-400 hover:text-indigo-300"
+                                                >
+                                                    <Pencil size={20} strokeWidth={2.4} />
+                                                </button>
+
+                                                {/* Eliminar */}
+                                                <button
+                                                    type="button"
+                                                    onClick={() => deleteCategory(i)}
+                                                    className="text-red-400 hover:text-red-300"
+                                                >
+                                                    <Trash2 size={20} strokeWidth={2.4} />
+                                                </button>
+
+                                            </div>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
                     </div>
 
                     {/* Botón de Guardar */}
