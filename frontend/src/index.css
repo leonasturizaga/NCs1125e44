@@ -115,25 +115,16 @@ body {
 
   /* CONFIGURACIÓN PARA EL TEMA OSCURO */
 
-  .badge-approved {
-    @apply bg-indigo-700/50 text-indigo-300;
-  }
-
-  .badge-pending {
-    @apply bg-yellow-700/50 text-yellow-300;
-  }
-
-  .badge-rejected {
-    @apply bg-red-700/50 text-red-300;
-  }
-
-  .badge-published {
-    @apply bg-green-700/50 text-green-300;
-  }
-
-  .badge-draft {
-    @apply bg-gray-700/50 text-gray-400;
-  }
+  .badge-pending   {@apply bg-yellow-700/50 text-yellow-300;  }
+  .badge-approved  {@apply bg-indigo-700/50 text-indigo-300;}
+  .badge-rejected  {@apply bg-red-700/50 text-red-300;  }
+  .badge-draft     {@apply bg-gray-700/50 text-gray-400;  }
+  .badge-published {@apply bg-green-700/50 text-green-300;  }
+  .badge-admin {@apply bg-green-700/50 text-green-300;  }
+  .badge-editor   {@apply bg-yellow-700/50 text-yellow-300;  }
+  .badge-visitante  {@apply bg-indigo-700/50 text-indigo-300;}
+  .badge-true {@apply bg-green-700/50 text-green-300;  }
+  .badge-false  {@apply bg-red-700/50 text-red-300;  }
 }
 
 
