@@ -107,6 +107,7 @@ import HomeVisitante from "../features/home/HomeVisitante";
 import LoginPage from "../features/auth/pages/LoginPage";
 import RegisterPage from "../features/auth/pages/RegisterPage";
 import AboutPage from "../features/about/pages/AboutPage";
+import ContactPage from "../features/contact/pages/ContactPage";
 
 // Admin pages
 import DashboardPage from "../features/dashboard/pages/DashboardPage";
@@ -118,6 +119,7 @@ import TestimonialList from "../features/testimonials/pages/TestimonialsList";
 import ProtectedRoute from "../components/ProtectedRoute";
 
 import UserList from "../features/users/pages/UserList";
+//import { path } from 'path';
 
 export default function AppRouter() {
    return (
@@ -127,6 +129,7 @@ export default function AppRouter() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/nosotros" element={<AboutPage />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/contacto" element={<ContactPage/>} />
 
             {/* A PARTIR DE AQUÍ DEBE SEGUIR LA ESTRUCTURA ORIGINAL DE RUTAS PROTEGIDAS */}
 <Route element={<ProtectedRoute />}>
