@@ -10,7 +10,7 @@ import UserList from "../../features/users/pages/UserList";
 import HomeVisitante from "../../features/home/HomeVisitante";
 
 const pageComponents = {
-   dashboard: <DashboardPage />,
+  dashboard: <DashboardPage />,
   users: <UserList />,
   testimonials: <TestimonialList />,
   settings: <SettingsPage />,

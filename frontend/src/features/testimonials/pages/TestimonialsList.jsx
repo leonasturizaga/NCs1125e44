@@ -30,6 +30,7 @@ const statusConfig = {
   published: { color: "bg-green-100 text-green-800", Icon: CheckCircle },
   pending:   { color: "bg-yellow-100 text-yellow-800", Icon: Clock },
   draft:     { color: "bg-gray-100 text-gray-800", Icon: XCircle },
+  rejected:  { color: "bg-red-700/30 text-red-300", Icon: XCircle },
 };
 
 const ITEMS_PER_PAGE = 9;

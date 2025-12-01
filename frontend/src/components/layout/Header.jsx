@@ -8,9 +8,9 @@ export default function Header() {
   const { isDark, toggleTheme } = useTheme();
 
   return (
-    <header className="header">
+    <header className="p-4 bg-gray-800 border-b border-gray-700 sticky top-0 z-20">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+        <h2 className="text-2xl font-bold text-white">
           Dashboard
         </h2>
 
@@ -18,7 +18,7 @@ export default function Header() {
           {/* User Info */}
           <div className="flex items-center gap-3">
             <div className="text-right">
-              <p className="text-sm font-medium text-gray-900 dark:text-white">
+              <p className="text-sm font-medium text-white">
                 {user?.username || user?.email || "Usuario"}
               </p>
               <p className="text-xs text-gray-500 dark:text-gray-400 capitalize">
