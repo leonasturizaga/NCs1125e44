@@ -20,17 +20,21 @@ const deleteTestimony = async (id, userId) => {
       };
     }
 
-    // if (
-    //   foundTestimony.userId === userId ||
-    //   foundUser.role === ("admin" || "editor")
-    // ) {
+    if (
+      foundTestimony.userId === userId ||
+      foundUser.role === ("admin" || "editor")
+    ) {
       await testimony.destroy({ where: { id } });
-    // }
-
-    return {
-      success: true,
-      message: "Testimonio eliminado con exito",
-    };
+      return {
+        success: true,
+        message: "Testimonio eliminado con exito",
+      };
+    } else {
+      return {
+        success: false,
+        message: "No puedes eliminar este testimonio",
+      };
+    }
   } catch (error) {
     return {
       success: false,
