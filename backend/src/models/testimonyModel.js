@@ -15,6 +15,11 @@ module.exports = (sequelize) => {
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    youtubeUrl: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      validate: { is: /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+$/i },
+    },
     isActive: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,

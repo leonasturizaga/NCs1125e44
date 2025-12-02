@@ -97,8 +97,8 @@
 // }
 
 //------------- version 3 --------------------------
-// src/app/Router.jsx   (name router.jsx change to Router.jsx)
-// src/app/Router.jsx
+// src/app/Router.jsx   (name router.jsx change from Router.jsx)
+// src/app/router.jsx
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import DashboardLayout from "../components/layout/DashboardLayout";
 
@@ -110,23 +110,31 @@ import LoginPage from "../features/auth/pages/LoginPage";
 import DashboardPage from "../features/dashboard/pages/DashboardPage";
 import TestimonialsList from "../features/testimonials/pages/TestimonialsList";
 import SettingsPage from "../features/settings/pages/SettingsPage";
+import CreateTestimonial from "../features/testimonials/pages/CreateTestimonial";
+import EditTestimonial from "../features/testimonials/pages/EditTestimonial";
+import TestimonialList from "../features/testimonials/pages/TestimonialsList";
+import ProtectedRoute from "../components/ProtectedRoute";
+import AboutPage from "../features/about/pages/AboutPage";
 
 export default function AppRouter() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomeVisitante />} />
-        <Route path="/login" element={<LoginPage />} />
-{/* <Route path="/testimonials" element={<TestimonialsList />} /> */}
-
-        {/* ALL PROTECTED ROUTES INSIDE LAYOUT */}
-        <Route element={<DashboardLayout />}>
-          <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/testimonials" element={<TestimonialsList />} />
-          <Route path="/settings" element={<SettingsPage />} />
-          <Route path="*" element={<Navigate to="/dashboard" replace />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  );
+   return (
+      <BrowserRouter>
+         <Routes>
+            <Route path="/" element={<HomeVisitante />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/nosotros" element={<AboutPage />} />
+            <Route element={<ProtectedRoute />}>
+               {/* ALL PROTECTED ROUTES INSIDE LAYOUT */}
+               <Route element={<DashboardLayout />}>
+                  <Route path="/dashboard" element={<DashboardPage />} />
+                  <Route path="/testimonials" element={<TestimonialList />} />
+                  <Route path="/testimonials/create" element={<CreateTestimonial />} />
+                  <Route path="/testimonials/edit/:id" element={<EditTestimonial />} />
+                  <Route path="/settings" element={<SettingsPage />} />
+                  <Route path="*" element={<Navigate to="/" replace />} />
+               </Route>
+            </Route>
+         </Routes>
+      </BrowserRouter>
+   );
 }

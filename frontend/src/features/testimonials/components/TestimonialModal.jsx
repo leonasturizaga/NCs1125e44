@@ -1,10 +1,11 @@
 // src/features/testimonials/components/TestimonialModal.jsx
 import { X } from "lucide-react";
+import TestimonialForm from "./TestimonialForm";
 
 export default function TestimonialModal({
   isOpen,
   onClose,
-  testimonial,
+  testimonial = null,
   onSave,
   onDelete,
 }) {
@@ -13,68 +14,37 @@ export default function TestimonialModal({
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        {/* Header */}
         <div className="modal-header">
-          <h3 className="text-xl font-semibold">
-            {testimonial?.id ? "Edit Testimonial" : "New Testimonial"}
-          </h3>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+            {testimonial?.id ? "Editar Testimonio" : "Nuevo Testimonio"}
+          </h2>
+          <button
+            onClick={onClose}
+            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition"
+            aria-label="Cerrar modal"
+          >
             <X className="w-6 h-6" />
           </button>
         </div>
 
-        <div className="modal-body space-y-5">
-          <div>
-            <label className="label">Author</label>
-            <input
-              type="text"
-              className="input"
-              defaultValue={testimonial?.author || ""}
-              placeholder="John Doe"
-            />
-          </div>
-
-          <div>
-            <label className="label">Content</label>
-            <textarea
-              rows="5"
-              className="input"
-              defaultValue={testimonial?.content || ""}
-              placeholder="Write your testimonial..."
-            />
-          </div>
-
-          <div>
-            <label className="label">Category</label>
-            <select className="input" defaultValue={testimonial?.category || "Clients"}>
-              <option>Clients</option>
-              <option>Suppliers</option>
-              <option>Employees</option>
-            </select>
-          </div>
-
-          <div>
-            <label className="label">Status</label>
-            <select className="input" defaultValue={testimonial?.status || "draft"}>
-              <option value="published">Published</option>
-              <option value="pending">Pending</option>
-              <option value="draft">Draft</option>
-            </select>
-          </div>
+        {/* Body */}
+        <div className="modal-body">
+         <TestimonialForm
+            initialData={testimonial || {}}
+            onSubmit={onSave}
+            submitText={testimonial?.id ? "Guardar Cambios" : "Crear Testimonio"}
+          />
         </div>
 
-        <div className="modal-footer">
-          {testimonial?.id && (
-            <button onClick={onDelete} className="btn-danger mr-auto">
-              Delete
+        {/* Footer */}
+        {testimonial?.id && (
+          <div className="modal-footer">
+            <button onClick={onDelete} className="btn-danger">
+              Eliminar
             </button>
-          )}
-          <button onClick={onClose} className="btn-ghost">
-            Cancel
-          </button>
-          <button onClick={onSave} className="btn-primary">
-            {testimonial?.id ? "Save Changes" : "Create Testimonial"}
-          </button>
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );
