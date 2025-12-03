@@ -1,12 +1,10 @@
-<<<<<<< HEAD
+
 /* eslint-disable react-hooks/set-state-in-effect */
 /* eslint-disable no-unused-vars */
 import { mockTestimonials, ITEMS_PER_PAGE } from "../data/testimonialMocks";
-=======
-// /* eslint-disable react-hooks/set-state-in-effect */
-// /* eslint-disable no-unused-vars */
+
 // import { useState, useEffect } from "react";
-// import {
+ import {
 // Search,
 // Plus,
 // Grid3X3,
@@ -14,8 +12,8 @@ import { mockTestimonials, ITEMS_PER_PAGE } from "../data/testimonialMocks";
 // Table as TableIcon,
 // ChevronLeft,
 // ChevronRight,
-// CheckCircle, Clock, XCircle, X,FileText
-// } from "lucide-react";
+CheckCircle, Clock, XCircle, X,FileText
+ } from "lucide-react";
 // import { toast } from "react-toastify";
 // import api from "@/services/apiClient";
 // import TestimonialCard from "../components/TestimonialCard";
@@ -271,7 +269,7 @@ import { mockTestimonials, ITEMS_PER_PAGE } from "../data/testimonialMocks";
 
 //--------------------- version 8 ---------------------
 // src/features/testimonials/pages/TestimonialList.jsx
->>>>>>> 46fb509104563480e85110122b640d05f8b1ad3a
+
 import { useState, useEffect } from "react";
 import {
   Search,
@@ -288,7 +286,7 @@ import TestimonialCard from "../components/TestimonialCard";
 import TestimonialModal from "../components/TestimonialModal";
 import { STATUS_CONFIG } from "@/constants/statusConfig";
 
-<<<<<<< HEAD
+
 // ===============================================
 // MOCK DATA Y CONFIGURACIÓN
 // ===============================================
@@ -317,9 +315,7 @@ const statusConfig = {
 // ===============================================
 
 //const ITEMS_PER_PAGE = 9;
-=======
-const ITEMS_PER_PAGE = 6;
->>>>>>> 46fb509104563480e85110122b640d05f8b1ad3a
+
 
 export default function TestimonialList() {
   const [testimonials, setTestimonials] = useState([]);
