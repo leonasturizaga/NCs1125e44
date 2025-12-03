@@ -1,26 +1,16 @@
-/* eslint-disable react-hooks/set-state-in-effect */
-/* eslint-disable no-unused-vars */
-import { mockTestimonials, ITEMS_PER_PAGE } from "../data/testimonialMocks";
- import {
-// Search,
-// Plus,
-// Grid3X3,
-// Edit2, Trash2, Eye,
-// Table as TableIcon,
-// ChevronLeft,
-// ChevronRight,
-CheckCircle, Clock, XCircle, X,FileText
- } from "lucide-react";
-// import { toast } from "react-toastify";
-// import api from "@/services/apiClient";
-// import TestimonialCard from "../components/TestimonialCard";
-// import TestimonialModal from "../components/TestimonialModal";
-// // Nota: STATUS_CONFIG debe ser un archivo que exporte la configuración de colores/iconos
-// import { STATUS_CONFIG } from "@/constants/statusConfig"; 
 
-// // ===============================================
-// // MOCK DATA Y CONFIGURACIÓN
-// // ===============================================
+import { mockTestimonials, ITEMS_PER_PAGE } from "../data/testimonialMocks";
+ import {CheckCircle, Clock, XCircle, X,FileText} from "lucide-react";
+import { toast } from "react-toastify";
+import api from "@/services/apiClient";
+import TestimonialCard from "../components/TestimonialCard";
+import TestimonialModal from "../components/TestimonialModal";
+// Nota: STATUS_CONFIG debe ser un archivo que exporte la configuración de colores/iconos
+import { STATUS_CONFIG } from "@/constants/statusConfig"; 
+
+ // ===============================================
+ // MOCK DATA Y CONFIGURACIÓN
+ // ===============================================
 // const mockTestimonials = [
 //     { id: 1, author: "María González", title: "Excelente servicio", content: "Excellent service, exceeded my expectations...", category: "Clients", status: "published", date: "2025-11-15", views: 342, createdAt: new Date() },
 //     { id: 2, author: "Carlos Pérez", title: "Muy recomendado", content: "Highly recommended, personalized attention.", category: "Suppliers", status: "pending", date: "2025-11-18", views: 89, createdAt: new Date() },
@@ -31,7 +21,7 @@ CheckCircle, Clock, XCircle, X,FileText
 //     { id: 7, author: "Sofía Herrera", title: "Máxima calidad", content: "Top-notch quality.", category: "Clients", status: "published", date: "2025-11-05", views: 189, createdAt: new Date() },
 //     { id: 8, author: "Mateo Silva", title: "Superó expectativas", content: "Exceeded expectations.", category: "Employees", status: "draft", date: "2025-11-03", views: 45, createdAt: new Date() },
 // ];
-// // Configuración de íconos para la tabla (Usada como fallback si no usas STATUS_CONFIG)
+// Configuración de íconos para la tabla (Usada como fallback si no usas STATUS_CONFIG)
 // const statusConfig = {
 //     // CAMBIO: Usamos 'published' para el color verde
 //     published: { Icon: CheckCircle, label: 'Publicado', color: "bg-green-700/30 text-green-300" }, 
@@ -40,7 +30,6 @@ CheckCircle, Clock, XCircle, X,FileText
 //     // Eliminamos 'approved' si no se usa. Mantenemos 'rejected' como backup.
 //     rejected:   { Icon: XCircle, label: 'Rechazado', color: "bg-red-700/30 text-red-300" },
 // };
-// // ===============================================
 
 // const ITEMS_PER_PAGE = 9;
 
@@ -55,14 +44,14 @@ CheckCircle, Clock, XCircle, X,FileText
 //     const [modalOpen, setModalOpen] = useState(false);
 //     const [currentTestimonial, setCurrentTestimonial] = useState(null);
 
-//     // Lógica fetchAll, useEffects, handleCreate, handleEdit, handleDelete se mantienen aquí...
+//     Lógica fetchAll, useEffects, handleCreate, handleEdit, handleDelete se mantienen aquí...
 
-//     // Reset page when search/filter changes
+//     Reset page when search/filter changes
 //     useEffect(() => {
 //         setCurrentPage(1);
 //     }, [searchTerm, filterStatus]);
 
-//     // Client-side filtering
+//     Client-side filtering
 //     const filtered = testimonials.filter((t) => {
 //         const matchesSearch =
 //             t.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -278,13 +267,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import { toast } from "react-toastify";
-import api from "@/services/apiClient";
-import TestimonialCard from "../components/TestimonialCard";
-import TestimonialModal from "../components/TestimonialModal";
 
-// Nota: STATUS_CONFIG debe ser un archivo que exporte la configuración de colores/iconos
-import { STATUS_CONFIG } from "@/constants/statusConfig"; 
 
 // ===============================================
 // MOCK DATA Y CONFIGURACIÓN
