@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-vars */
 import { mockTestimonials, ITEMS_PER_PAGE } from "../data/testimonialMocks";
 
-//import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
  import {
 // Search,
 // Plus,
@@ -607,4 +607,4 @@ const msg = err.response?.data?.message || "Error al editar";
       />
     </div>
   );
-}  
+}
