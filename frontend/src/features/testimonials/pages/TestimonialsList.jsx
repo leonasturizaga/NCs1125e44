@@ -191,6 +191,18 @@ const confirmDelete = () => {
               value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value)}
             >
+              <option value="all">All categories</option>
+              <option value="published">Suppliers</option>
+              <option value="pending">Employees</option>
+              <option value="draft">Clients</option>
+            </select>
+
+            
+            <select
+              className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+              value={filterStatus}
+              onChange={(e) => setFilterStatus(e.target.value)}
+            >
               <option value="all">All statuses</option>
               <option value="published">Published</option>
               <option value="pending">Pending</option>
