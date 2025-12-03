@@ -2,6 +2,7 @@ const { Router } = require("express");
 const router = Router();
 const multer = require("../../middleware/multer");
 const Multer = require("multer");
+const tokenValidate = require("../../middleware/tokenValidate");
 
 const postTestimonyHandler = require("../../handlers/testimonies/postTestimonyHandler");
 const getTestimonyByIdHandler = require("../../handlers/testimonies/getTestimonyByIdHandler");
@@ -44,11 +45,11 @@ const uploadWithErrors = (req, res, next) => {
   });
 };
 
-router.post("/post", uploadWithErrors, postTestimonyHandler);
+router.post("/post", tokenValidate, uploadWithErrors, postTestimonyHandler);
 router.get("/getById/:id", getTestimonyByIdHandler);
 router.get("/getAll", getAllTestimoniesHandler);
-router.put("/edit/:id", editTestimonyHandler);
-router.put("/updateStatus", updateTestimonyStatusHandler);
-router.delete("/delete/:id", deleteTestimonyHandler);
+router.put("/edit/:id", tokenValidate, editTestimonyHandler);
+router.put("/updateStatus", tokenValidate, updateTestimonyStatusHandler);
+router.delete("/delete/:id", tokenValidate, deleteTestimonyHandler);
 
 module.exports = router;

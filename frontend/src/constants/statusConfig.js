@@ -1,5 +1,6 @@
 // src/constants/statusConfig.js
-import { CheckCircle, Clock, XCircle,FileText } from "lucide-react";
+import { LuSquare, LuSquareCheckBig } from "react-icons/lu";
+import { CheckCircle, Clock, XCircle, FileText } from "lucide-react";
 
 export const STATUS_CONFIG = {
     pending: 	{ Icon: Clock, 	   badge: "badge-pending", 	 label: "Pendiente" },
@@ -7,4 +8,9 @@ export const STATUS_CONFIG = {
     rejected: 	{ Icon: XCircle, 	   badge: "badge-rejected", 	 label: "Rechazado" }, 
     draft: 		{ Icon: FileText, 	   badge: "badge-draft", 	     label: "Borrador" }, // Cambiado Draft -> Borrador
     published: { Icon: CheckCircle, badge: "badge-published", label: "Publicado" }, // Cambiado Published -> Publicado
-};
+    admin: 	{ Icon: Clock, 	   badge: "badge-admin", 	 label: "Administrador" },
+    editor: 	{ Icon: Clock, 	   badge: "badge-editor", 	 label: "Editor" },
+    visitante: 	{ Icon: FileText, 	   badge: "badge-visitante", 	 label: "Visitante" },
+    true: 	{ Icon: LuSquareCheckBig, 	   badge: "badge-true", 	 label: "Activo" },
+    false: 	{ Icon: LuSquare, 	   badge: "badge-false", 	 label: "Inactivo" },
+   };
