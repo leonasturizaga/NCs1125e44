@@ -1,5 +1,5 @@
 
-import { mockTestimonials, ITEMS_PER_PAGE } from "../data/testimonialMocks";
+import {ITEMS_PER_PAGE } from "../data/testimonialMocks";
  import {CheckCircle, Clock, XCircle, X,FileText} from "lucide-react";
 import { toast } from "react-toastify";
 import api from "@/services/apiClient";
@@ -286,14 +286,14 @@ import {
 
 ];*/
 // Configuración de íconos para la tabla (Usada como fallback si no usas STATUS_CONFIG)
-const statusConfig = {
+//const statusConfig = {
     // CAMBIO: Usamos 'published' para el color verde
-    published: { Icon: CheckCircle, label: 'Publicado', color: "bg-green-700/30 text-green-300" }, 
-    pending: 	{ Icon: Clock, label: 'Pendiente', color: "bg-yellow-700/30 text-yellow-300" },
-    draft: 		{ Icon: FileText, label: 'Borrador', color: "bg-gray-700/30 text-gray-400" },
+  //  published: { Icon: CheckCircle, label: 'Publicado', color: "bg-green-700/30 text-green-300" }, 
+  //  pending: 	{ Icon: Clock, label: 'Pendiente', color: "bg-yellow-700/30 text-yellow-300" },
+   // draft: 		{ Icon: FileText, label: 'Borrador', color: "bg-gray-700/30 text-gray-400" },
     // Eliminamos 'approved' si no se usa. Mantenemos 'rejected' como backup.
-    rejected:   { Icon: XCircle, label: 'Rechazado', color: "bg-red-700/30 text-red-300" },
-};
+  //  rejected:   { Icon: XCircle, label: 'Rechazado', color: "bg-red-700/30 text-red-300" },
+//};
 
 //const ITEMS_PER_PAGE = 9;
 
