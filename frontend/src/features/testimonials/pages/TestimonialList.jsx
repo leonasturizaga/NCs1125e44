@@ -338,6 +338,7 @@ export default function TestimonialList() {
         if (res.data.success) {
            setTestimonials(res.data.data || []);
          }
+      // eslint-disable-next-line no-unused-vars
       } catch (err) {
         toast.error("Error loading testimonials");
       } finally {
