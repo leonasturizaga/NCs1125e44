@@ -1,9 +1,9 @@
 /* eslint-disable no-irregular-whitespace */
 // src/features/dashboard/pages/DashboardPage.jsx
-//import VisitorMenu from '../../shared/components/VisitorMenu'; 
+
 import TestimonialViewsChart from '../components/TestimonialViewsChart';
 import AuthorsByCategory from '../components/AuthorsByCategory';
-import React, { useState, /*useEffect*/} from 'react'; 
+import { useState, /*useEffect*/} from 'react'; 
 import { Line } from 'react-chartjs-2';
 import { mockTestimonials } from '../../testimonials/data/testimonialMocks'; 
 import {
