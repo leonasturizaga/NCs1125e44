@@ -600,4 +600,4 @@ const msg = err.response?.data?.message || "Error al editar";
       />
     </div>
   );
-}
+}  
