@@ -1,0 +1,33 @@
+export const ITEMS_PER_PAGE = 9; 
+
+export const mockTestimonials = [
+    // La data completa de tus testimonios va aquí:
+    { id: 1, author: "María González", title: "Excelente servicio", content: "Excellent service...", category: "Clients", status: "published", date: "2025-11-15", views: 342, createdAt: new Date() },
+    { id: 2, author: "Carlos Pérez", title: "Muy recomendado", content: "Highly recommended, personalized attention.", category: "Suppliers", status: "pending", date: "2025-11-18", views: 89, createdAt: new Date() },
+    { id: 3, author: "Ana Rodríguez", title: "Mejor equipo", content: "Best team I've worked with.", category: "Employees", status: "published", date: "2025-11-10", views: 567, createdAt: new Date() },
+    { id: 4, author: "Luis Fernández", title: "Rápido y profesional", content: "Fast and professional.", category: "Clients", status: "rejected", date: "2025-11-10", views: 12, createdAt: new Date() },
+    { id: 5, author: "Laura Méndez", title: "Gran experiencia", content: "Great experience.", category: "Clients", status: "published", date: "2025-11-08", views: 210, createdAt: new Date() },
+    { id: 6, author: "Diego Ruiz", title: "Siempre confiable", content: "Always reliable.", category: "Suppliers", status: "pending", date: "2025-11-07", views: 67, createdAt: new Date() },
+    { id: 7, author: "Sofía Herrera", title: "Máxima calidad", content: "Top-notch quality.", category: "Clients", status: "published", date: "2025-11-05", views: 189, createdAt: new Date() },
+    { id: 8, author: "Mateo Silva", title: "Superó expectativas", content: "Exceeded expectations.", category: "Employees", status: "draft", date: "2025-11-03", views: 45, createdAt: new Date() },
+    { id: 100, author: "Elena R.", title: "Servicio Superior", content: "El soporte al cliente fue excepcional; resolvieron mi duda en minutos.", category: "Clients", status: "published", date: "2025-10-10", views: 452, createdAt: new Date(1760000000000) },
+    { id: 101, author: "Roberto C.", title: "Gran Inversión", content: "Proceso de onboarding sencillo y rápido. Excelente relación calidad-precio.", category: "Suppliers", status: "pending", date: "2025-09-28", views: 189, createdAt: new Date(1759000000000) },
+    { id: 102, author: "Camila V.", title: "Profesionalismo Total", content: "La mejor herramienta que hemos implementado para nuestra área de gestión de contenidos.", category: "Employees", status: "draft", date: "2025-11-01", views: 93, createdAt: new Date(1761000000000) },
+    { id: 103, author: "Andrés M.", title: "Experiencia 5 Estrellas", content: "Definitivamente volveré a comprar. El producto superó mis expectativas.", category: "Clients", status: "rejected", date: "2025-08-15", views: 76, createdAt: new Date(1756000000000) },
+    { id: 104, author: "Valeria G.", title: "Muy Eficiente", content: "El equipo de desarrollo se adaptó a todas nuestras necesidades sin problemas.", category: "Clients", status: "published", date: "2025-10-22", views: 310, createdAt: new Date(1760500000000) },
+    { id: 105, author: "Javier P.", title: "Altamente Recomendado", content: "Demostraron gran experticia en el sector EdTech, justo lo que necesitábamos.", category: "Suppliers", status: "pending", date: "2025-07-05", views: 240, createdAt: new Date(1754000000000) },
+    { id: 106, author: "Sofía H.", title: "Solución Rápida", content: "Proceso de onboarding sencillo y rápido.", category: "Clients", status: "published", date: "2025-11-20", views: 501, createdAt: new Date(1762000000000) },
+    { id: 107, author: "Martín L.", title: "Gestión Óptima", content: "La mejor herramienta que hemos implementado.", category: "Employees", status: "draft", date: "2025-10-01", views: 65, createdAt: new Date(1758800000000) },
+    { id: 108, author: "Lucía D.", title: "Servicio 10/10", content: "El soporte fue excepcional; resolvieron mi duda en minutos.", category: "Clients", status: "published", date: "2025-09-12", views: 390, createdAt: new Date(1758000000000) },
+    { id: 109, author: "Diego V.", title: "Resultados Inmediatos", content: "Altamente recomendado, experiencia sin igual.", category: "Clients", status: "pending", date: "2025-06-01", views: 112, createdAt: new Date(1753000000000) },
+    { id: 110, author: "Elena R.", title: "Herramienta Poderosa", content: "La mejor herramienta que hemos implementado.", category: "Employees", status: "published", date: "2025-05-20", views: 410, createdAt: new Date(1752000000000) },
+    { id: 111, author: "Roberto C.", title: "Bug Solucionado", content: "El equipo de desarrollo se adaptó sin problemas.", category: "Suppliers", status: "rejected", date: "2025-04-15", views: 25, createdAt: new Date(1751000000000) },
+    { id: 112, author: "Camila V.", title: "Simple y Rápido", content: "Proceso de onboarding sencillo y rápido.", category: "Clients", status: "published", date: "2025-03-01", views: 320, createdAt: new Date(1749000000000) },
+    { id: 113, author: "Andrés M.", title: "Falta Integración", content: "Necesitamos la integración con el módulo X.", category: "Clients", status: "draft", date: "2025-02-14", views: 18, createdAt: new Date(1748000000000) },
+    { id: 114, author: "Valeria G.", title: "Gran Producto", content: "El producto superó mis expectativas.", category: "Employees", status: "published", date: "2025-01-05", views: 150, createdAt: new Date(1746000000000) },
+    { id: 115, author: "Javier P.", title: "Mejor ROI", content: "Demostraron gran experticia en el sector EdTech.", category: "Clients", status: "pending", date: "2025-08-01", views: 290, createdAt: new Date(1755800000000) },
+    { id: 116, author: "Sofía H.", title: "Funcionalidad Clave", content: "Funciona exactamente como esperábamos.", category: "Suppliers", status: "published", date: "2025-07-25", views: 420, createdAt: new Date(1755000000000) },
+    { id: 117, author: "Martín L.", title: "Necesita Revisión", content: "El testimonio tiene errores ortográficos.", category: "Clients", status: "rejected", date: "2025-06-10", views: 40, createdAt: new Date(1753500000000) },
+    { id: 118, author: "Lucía D.", title: "Borrador de Cliente", content: "Esquema inicial del testimonio.", category: "Clients", status: "draft", date: "2025-05-15", views: 20, createdAt: new Date(1751500000000) },
+    { id: 119, author: "Diego V.", title: "Métricas Útiles", content: "La sección de analíticas es muy útil.", category: "Employees", status: "published", date: "2025-04-01", views: 300, createdAt: new Date(1750000000000) },
+    ];

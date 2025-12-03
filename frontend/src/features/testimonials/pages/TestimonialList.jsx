@@ -1,7 +1,10 @@
-// /* eslint-disable react-hooks/set-state-in-effect */
-// /* eslint-disable no-unused-vars */
+
+/* eslint-disable react-hooks/set-state-in-effect */
+/* eslint-disable no-unused-vars */
+import { mockTestimonials, ITEMS_PER_PAGE } from "../data/testimonialMocks";
+
 // import { useState, useEffect } from "react";
-// import {
+ import {
 // Search,
 // Plus,
 // Grid3X3,
@@ -9,8 +12,8 @@
 // Table as TableIcon,
 // ChevronLeft,
 // ChevronRight,
-// CheckCircle, Clock, XCircle, X,FileText
-// } from "lucide-react";
+CheckCircle, Clock, XCircle, X,FileText
+ } from "lucide-react";
 // import { toast } from "react-toastify";
 // import api from "@/services/apiClient";
 // import TestimonialCard from "../components/TestimonialCard";
@@ -266,6 +269,7 @@
 
 //--------------------- version 8 ---------------------
 // src/features/testimonials/pages/TestimonialList.jsx
+
 import { useState, useEffect } from "react";
 import {
   Search,
@@ -283,7 +287,36 @@ import TestimonialModal from "../components/TestimonialModal";
 import { STATUS_CONFIG } from "@/constants/statusConfig";
 import { useAuth } from "@/context/AuthContext";
 
-const ITEMS_PER_PAGE = 6;
+
+// ===============================================
+// MOCK DATA Y CONFIGURACIÓN
+// ===============================================
+//ahora lo exporto de testimonialMocks,
+/*const mockTestimonials = [
+    // La data completa de tus testimonios va aquí:
+    { id: 1, author: "María González", title: "Excelente servicio", content: "Excellent service...", category: "Clients", status: "published", date: "2025-11-15", views: 342, createdAt: new Date() },
+    { id: 2, author: "Carlos Pérez", title: "Muy recomendado", content: "Highly recommended, personalized attention.", category: "Suppliers", status: "pending", date: "2025-11-18", views: 89, createdAt: new Date() },
+    { id: 3, author: "Ana Rodríguez", title: "Mejor equipo", content: "Best team I've worked with.", category: "Employees", status: "published", date: "2025-11-10", views: 567, createdAt: new Date() },
+    { id: 4, author: "Luis Fernández", title: "Rápido y profesional", content: "Fast and professional.", category: "Clients", status: "rejected", date: "2025-11-10", views: 12, createdAt: new Date() },
+    { id: 5, author: "Laura Méndez", title: "Gran experiencia", content: "Great experience.", category: "Clients", status: "published", date: "2025-11-08", views: 210, createdAt: new Date() },
+    { id: 6, author: "Diego Ruiz", title: "Siempre confiable", content: "Always reliable.", category: "Suppliers", status: "pending", date: "2025-11-07", views: 67, createdAt: new Date() },
+    { id: 7, author: "Sofía Herrera", title: "Máxima calidad", content: "Top-notch quality.", category: "Clients", status: "published", date: "2025-11-05", views: 189, createdAt: new Date() },
+    { id: 8, author: "Mateo Silva", title: "Superó expectativas", content: "Exceeded expectations.", category: "Employees", status: "draft", date: "2025-11-03", views: 45, createdAt: new Date() },
+
+];*/
+// Configuración de íconos para la tabla (Usada como fallback si no usas STATUS_CONFIG)
+const statusConfig = {
+    // CAMBIO: Usamos 'published' para el color verde
+    published: { Icon: CheckCircle, label: 'Publicado', color: "bg-green-700/30 text-green-300" }, 
+    pending: 	{ Icon: Clock, label: 'Pendiente', color: "bg-yellow-700/30 text-yellow-300" },
+    draft: 		{ Icon: FileText, label: 'Borrador', color: "bg-gray-700/30 text-gray-400" },
+    // Eliminamos 'approved' si no se usa. Mantenemos 'rejected' como backup.
+    rejected:   { Icon: XCircle, label: 'Rechazado', color: "bg-red-700/30 text-red-300" },
+};
+// ===============================================
+
+//const ITEMS_PER_PAGE = 9;
+
 
 export default function TestimonialList() {
   const { user } = useAuth();

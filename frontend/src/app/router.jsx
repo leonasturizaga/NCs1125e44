@@ -142,6 +142,7 @@ export default function AppRouter() {
                   <Route path="/testimonials/edit/:id" element={<EditTestimonial />} />
                   <Route path="/settings" element={<SettingsPage />} />
                   <Route path="*" element={<Navigate to="/" replace />} />
+                  <Route path="/contacto" element={<ContactPage />} />
                </Route>
             </Route>
          </Routes>
