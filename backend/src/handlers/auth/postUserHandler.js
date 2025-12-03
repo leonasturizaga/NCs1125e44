@@ -1,20 +1,24 @@
 const postUserController = require("../../controllers/users/postUser");
 require("dotenv").config();
+const upload = require("../../services/upload");
 
 module.exports = async (req, res) => {
   try {
-    let { username, email, password } = req.body;
+    const { username, email, password } = req.body;
+    const files = req.files;
+    let fileData = {};
 
-    //subida de archivo a nube para foto de perfil
-    //==============================================
+    if (files && files.length > 0) {
+      const cloudImg = await upload(files[0].buffer);
+      fileData = {
+        url: cloudImg.url,
+        publicId: cloudImg.publicId,
+        type: "image",
+      };
+    }
 
-    //==============================================
+    const data = await postUserController(username, email, password, fileData);
 
-    const data = await postUserController(
-      username,
-      email,
-      password,
-    );
     res.status(200).json(data);
   } catch (error) {
     res.status(500).json({
