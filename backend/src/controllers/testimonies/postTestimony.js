@@ -1,11 +1,12 @@
-const { testimony, user, image } = require("../../db");
+const { testimony, user, image, category } = require("../../db");
 
 const postTestimony = async (
   title,
   description,
   youtubeUrl,
   userId,
-  uploadedImages
+  uploadedImages,
+  categories
 ) => {
   try {
     const userFound = await user.findByPk(userId);
@@ -24,6 +25,11 @@ const postTestimony = async (
       userId,
     });
 
+    const categoryRecords = await category.findAll({
+      where: { name: categories },
+    });
+    await newTestimony.addCategories(categoryRecords);
+
     if (uploadedImages.length > 0) {
       await image.bulkCreate(
         uploadedImages.map((img) => ({
@@ -35,12 +41,7 @@ const postTestimony = async (
     }
 
     const createdTestimony = await testimony.findByPk(newTestimony.id, {
-      include: [
-        {
-          model: image,
-          as: "images",
-        },
-      ],
+      include: [category, { model: image, as: "images" }],
     });
 
     return {

@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt");
 const { user } = require("./src/db");
+require("dotenv").config();
 
 async function main() {
   try {
@@ -10,10 +11,10 @@ async function main() {
       process.exit(0);
     }
 
-    const password = process.env.INT_ADMIN_PASSWORD;
+    const password = process.env.ADMIN_PASSWORD;
 
     if(!password){
-        console.error("Falta variable de entorno INIT_ADMIN_PASSWORD");
+        console.error("Falta variable de entorno ADMIN_PASSWORD");
         process.exit(1);
     }
 

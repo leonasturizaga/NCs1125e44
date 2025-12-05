@@ -3,12 +3,28 @@ const upload = require("../../services/upload");
 
 module.exports = async (req, res) => {
   try {
-    const { title, description, youtubeUrl, userId } = req.body;
+    const { title, description, youtubeUrl, userId, categories } = req.body;
     const files = req.files;
 
-    if (!title) return res.status(400).json({ message: "El título es obligatorio" });
-    if (!description) return res.status(400).json({ message: "La descripción es obligatoria" });
-    if (!userId) return res.status(400).json({ message: "No se encontró el ID de usuario" });
+    if (typeof categories === "string") {
+      categories = JSON.parse(categories);
+    }
+
+    if (!title)
+      return res.status(400).json({ message: "El título es obligatorio" });
+    if (!description)
+      return res.status(400).json({ message: "La descripción es obligatoria" });
+    if (!userId)
+      return res
+        .status(400)
+        .json({ message: "No se encontró el ID de usuario" });
+
+    if (!Array.isArray(categories) || categories.length === 0) {
+      return res.status(400).json({
+        success: false,
+        message: "Debe incluir al menos una categoría",
+      });
+    }
 
     const uploadedImages = [];
 
@@ -26,7 +42,8 @@ module.exports = async (req, res) => {
       description,
       youtubeUrl,
       userId,
-      uploadedImages
+      uploadedImages,
+      categories
     );
 
     res.status(200).json(data);

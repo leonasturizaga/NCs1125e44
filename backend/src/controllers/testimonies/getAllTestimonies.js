@@ -1,4 +1,4 @@
-const { testimony, user, image } = require("../../db");
+const { testimony, user, image, category } = require("../../db");
 
 const getAllTestimonies = async (page, size) => {
   try {
@@ -13,6 +13,11 @@ const getAllTestimonies = async (page, size) => {
         {
           model: user,
           attributes: ["id", "username", "profilePicture"],
+        },
+        {
+          model: category,
+          attributes: ["id", "name"],
+          through: { attributes: [] },
         },
         {
           model: image,

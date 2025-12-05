@@ -26,8 +26,8 @@ testimony.hasMany(image, {
 });
 image.belongsTo(testimony, { foreignKey: "testimonyId", as: "testimony" });
 
-testimony.belongsToMany(category, { through: "petition_category" });
-category.belongsToMany(testimony, { through: "petition_category" });
+testimony.belongsToMany(category, { through: "testimony_category" });
+category.belongsToMany(testimony, { through: "testimony_category" });
 
 module.exports = {
   user,
