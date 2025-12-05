@@ -4,7 +4,7 @@ import TestimonialCountByProduct from '../components/TestimonialCountByProduct';
 import TestimonialsByProductChart from '../components/TestimonialsByProductChart';
 import TestimonialViewsChart from '../components/TestimonialViewsChart';
 import AuthorsByCategory from '../components/AuthorsByCategory';
-import RatingsDistributionChart from '../components/RatingsDistributionChart'; 
+import RatingsDistributionChart from '../../testimonials/components/RatingsDistributionChart'; 
 // 🛑 NUEVA IMPORTACIÓN
 import TopKeywordsChart from '../components/TopKeywordsChart'; 
 
