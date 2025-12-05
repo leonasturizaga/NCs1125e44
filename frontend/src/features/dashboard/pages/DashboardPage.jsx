@@ -124,7 +124,7 @@ const aggregateKeywords = (data, limit = 10) => {
 
     const words = textContent
         .toLowerCase()
-        .replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"") // Eliminar puntuación
+        .replace(/[.,\\/#!$%\\^&\\*;:{}=\-_`~()]/g,"") // Eliminar puntuación
         .split(/\s+/) // Dividir por espacios
         .filter(word => word.length > 2 && !STOP_WORDS.has(word)); // Filtrar longitud y stop words
 
