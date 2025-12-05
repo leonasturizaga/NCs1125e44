@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 //---------------- version 1 ----------------
 // src/context/AuthContext.jsx
 // import { createContext, useContext, useState, useEffect } from "react";
@@ -82,6 +83,7 @@ export function AuthProvider({ children }) {
         email: decoded.email || null,
         username: decoded.username || null,
       };
+    // eslint-disable-next-line no-unused-vars
     } catch (err) {
       console.error("Invalid token");
       return null;
