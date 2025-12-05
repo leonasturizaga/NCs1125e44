@@ -18,10 +18,12 @@ const editTestimony = async (id, updates, userId) => {
       };
     }
 
-    if (
-      foundTestimony.userId === userId ||
-      foundUser.role === ("admin" || "editor")
-    ) {
+    const protectedFields = ["id", "createdAt", "updatedAt", "userId"];
+    protectedFields.forEach((field) => delete updates[field]);
+
+    const isAdminOrEditor = ["admin", "editor"].includes(foundUser.role);
+
+    if (foundUser.id === foundTestimony.userId || isAdminOrEditor) {
       Object.entries(updates).forEach(([key, value]) => {
         if (foundTestimony.dataValues.hasOwnProperty(key)) {
           foundTestimony[key] = value;

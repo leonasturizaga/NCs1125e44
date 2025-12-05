@@ -285,6 +285,7 @@ import api from "@/services/apiClient";
 import TestimonialCard from "../components/TestimonialCard";
 import TestimonialModal from "../components/TestimonialModal";
 import { STATUS_CONFIG } from "@/constants/statusConfig";
+import { useAuth } from "@/context/AuthContext";
 
 
 // ===============================================
@@ -318,6 +319,7 @@ const statusConfig = {
 
 
 export default function TestimonialList() {
+  const { user } = useAuth();
   const [testimonials, setTestimonials] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
@@ -332,7 +334,7 @@ export default function TestimonialList() {
   const fetchAll = async () => {
      try {
         setLoading(true);
-        const res = await api.get("/testimonies/getAll?page=1&size=100");
+        const res = await api.get("/testimonies/getAll");
         if (res.data.success) {
            setTestimonials(res.data.data || []);
          }
@@ -382,10 +384,15 @@ export default function TestimonialList() {
 
 // CREATE — uses FormData
   const handleCreate = async (formData, files = []) => {
+   console.log("Creating testimonial:", user);
+      if (!user?.id) {
+         toast.error("Debes estar logueado");
+         return;
+      }
      const data = new FormData();
      data.append("title", formData.title);
      data.append("description", formData.description);
-     data.append("userId", "895e3aa4-475e-410c-8e26-e53f347e2cca");
+     data.append("userId", user.id);
      if (formData.youtubeUrl) data.append("youtubeUrl", formData.youtubeUrl);
 
      files.forEach((file) => data.append("images", file));
