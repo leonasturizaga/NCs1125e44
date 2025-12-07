@@ -74,40 +74,55 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const cleanToken = (token) => {
+  if (!token) return null;
+
+  // elimina BOM y espacios ocultos
+  return token.replace(/^\uFEFF/, "").trim();
+};
+
+
   const decodeToken = (token) => {
-    try {
-      const decoded = jwtDecode(token);  // ← use jwtDecode()
-      return {
-        id: decoded.id,
-        role: decoded.role,
-        email: decoded.email || null,
-        username: decoded.username || null,
-      };
-    // eslint-disable-next-line no-unused-vars
-    } catch (err) {
-      console.error("Invalid token");
+  try {
+    if (!token || token === "undefined" || token === "null" || token.trim() === "")
       return null;
-    }
-  };
+
+    const decoded = jwtDecode(token);
+    return {
+      id: decoded.id,
+      role: decoded.role,
+      email: decoded.email || null,
+      username: decoded.username || null,
+    };
+  } catch (err) {
+    console.error("Invalid token");
+    return null;
+  }
+};
+
 
   // Restore session
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      const userData = decodeToken(token);
-      if (userData) {
-        api.defaults.headers.Authorization = `Bearer ${token}`;
-        setUser(userData);
-      }
+useEffect(() => {
+  let token = localStorage.getItem("token");
+  token = cleanToken(token);
+
+  if (token) {
+    const userData = decodeToken(token);
+    if (userData) {
+      api.defaults.headers.Authorization = `Bearer ${token}`;
+      setUser(userData);
     }
-    setLoading(false);
-  }, []);
+  }
+  setLoading(false);
+}, []);
+
+
 
   const login = async (email, password) => {
     try {
       const res = await api.post("/auth/login", { email, password });
       if (res.data.success && res.data.token) {
-        const token = res.data.token;
+        const token = cleanToken(res.data.token);
         const userData = decodeToken(token);
 
         if (userData) {
