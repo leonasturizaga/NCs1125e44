@@ -87,13 +87,13 @@ export default function TestimonialModal({
 
 {/* Botón eliminar → llama a la función del padre */}
         {testimonial?.id && (
-          <div className="mt-6 pt-6 border-t border-gray-700">
+          <div className="flex justify-end mt-6 pt-6 border-t border-gray-700 right-0">
             <button
 onClick={() => {
         onDeleteClick(testimonial); // ← abre el modal de confirmación
         onClose(); // ← cierra el modal de edición
       }}
-              className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3.5 rounded-lg transition shadow-lg"
+              className="btn btn-danger"
             >
               Eliminar Testimonio
             </button>

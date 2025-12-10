@@ -340,7 +340,7 @@ export default function TestimonialForm({ initialData = {}, onSubmit, submitText
         </div>
       </div>
 
-      <div className="pt-6">
+      <div className="flex justify-end pt-6">
         <button type="submit"
           className="btn btn-primary">
           {submitText}
