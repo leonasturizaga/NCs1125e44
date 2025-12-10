@@ -8,7 +8,7 @@ const CATEGORY_OPTIONS = [
   { value: "Events", label: "Eventos" },
 ];
 
-// Reemplaza todo tu bloque de checkboxes por este componente bonito
+// Reemplaza todo tu bloque de checkboxes
 export default function CategoryMultiSelect({ selected, onChange }) {
   const [isOpen, setIsOpen] = useState(false);
 

@@ -1,4 +1,3 @@
-
  // ===============================================
  // MOCK DATA Y CONFIGURACIÓN
  // ===============================================
@@ -265,6 +264,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import CategoryMultiSelect from "../components/CategoryMultiselect";
+import DeleteConfirmModal from './../components/DeleteConfirmModal';
 
 export default function TestimonialList() {
    const { user } = useAuth();
@@ -336,41 +336,6 @@ export default function TestimonialList() {
       setModalOpen(true);
    };
 
-   // CREATE — uses FormData
-   //   const handleCreate = async (formData, files = []) => {
-   //    console.log("Creating testimonial:", user);
-   //       if (!user?.id) {
-   //          toast.error("Debes estar logueado");
-   //          return;
-   //       }
-   //      const data = new FormData();
-   //      data.append("title", formData.title);
-   //      data.append("description", formData.description);
-   //      data.append("userId", user.id);
-   //      if (formData.youtubeUrl) data.append("youtubeUrl", formData.youtubeUrl);
-
-   //      files.forEach((file) => data.append("images", file));
-
-   //      try {
-   //         const res = await api.post("/testimonies/post", data, {
-   //            headers: {
-   //               "Content-Type": "multipart/form-data",
-   //            },
-   //         });
-   //         console.log(res);
-   //         console.log(data);
-   //         if (res.data.success) {
-   //            toast.success("Testimonio creado con éxito!");
-   //            setModalOpen(false);
-   //            fetchAll(); // refresh
-   //         }
-   //      } catch (err) {
-   //         const msg = err.response?.data?.message || "Error al crear testimonio";
-   //         toast.error(msg);
-   //         console.error("Create error:", err.response?.data || err);
-   //      }
-   //   };
-
    const handleCreate = async (formData, files = []) => {
       if (!user?.id) {
          toast.error("Debes estar logueado");
@@ -434,9 +399,47 @@ export default function TestimonialList() {
       }
    };
 
-   const handleDelete = () => {
-      alert("Delete not implemented yet");
-   };
+const [modalIsOpen, setModalIsOpen] = useState(false);
+const [selectedTestimonial, setSelectedTestimonial] = useState(null);   
+const [deleteModal, setDeleteModal] = useState({
+  isOpen: false,
+  testimonial: null,
+  onConfirm: null, // opcional, lo usaremos en el modal de edición
+});
+
+// FUNCIÓN PARA CERRAR EL MODAL DE EDICIÓN
+const closeModal = () => {
+  setModalIsOpen(false);
+  setSelectedTestimonial(null);
+};
+
+
+// FUNCIÓN PARA CERRAR EL MODAL DE CONFIRMACIÓN
+const closeDeleteConfirm = () => {
+  setDeleteModal({ isOpen: false, testimonial: null });
+};
+
+// FUNCIÓN DE ELIMINACIÓN (¡AHORA SÍ TIENE ACCESO A closeModal!)
+const deleteTestimonial = async (testimonial) => {
+  if (!testimonial?.id) return;
+
+  try {
+    await api.delete(`/testimonies/delete/${testimonial.id}`);
+
+    toast.success(`"${testimonial.title}" eliminado correctamente`);
+
+    // Actualiza la lista
+    setTestimonials(prev => prev.filter(t => t.id !== testimonial.id));
+
+    // Cierra ambos modales
+    closeDeleteConfirm();
+    closeModal(); // ← AHORA SÍ EXISTE AQUÍ
+
+  } catch (err) {
+    console.error("Error eliminando:", err);
+    toast.error("No se pudo eliminar el testimonio");
+  }
+};
 
    return (
       <div className="space-y-8">
@@ -483,11 +486,11 @@ export default function TestimonialList() {
                      <option value="Products">Productos</option>
                      <option value="Events">Eventos</option>
                   </select> */}
-{/* Multi-Select de Categorías (¡queda perfecto!) */}
-  <CategoryMultiSelect
-    selected={filterCategories}
-    onChange={setFilterCategories}
-  />
+                  {/* Multi-Select de Categorías (¡queda perfecto!) */}
+                  <CategoryMultiSelect
+                     selected={filterCategories}
+                     onChange={setFilterCategories}
+                  />
 
                   <select
                      className="input"
@@ -537,7 +540,7 @@ export default function TestimonialList() {
                         testimonial={t}
                         showActions={true}
                         onEdit={openModal}
-                        onDelete={() => openModal(t)}
+                        onDelete={() => setDeleteModal({ isOpen: true, testimonial: t })}
                      />
                   ))
                )}
@@ -664,7 +667,9 @@ export default function TestimonialList() {
                                           <Edit2 className="w-5 h-5" />
                                        </button>
                                        <button
-                                          onClick={() => openDeleteModal(t)}
+                                          onClick={() => {
+    setDeleteModal({ isOpen: true, testimonial: t });
+  }}
                                           className="text-red-600 hover:text-red-500 transition"
                                           title="Eliminar">
                                           <Trash2 className="w-5 h-5" />
@@ -706,7 +711,15 @@ export default function TestimonialList() {
             onClose={() => setModalOpen(false)}
             testimonial={currentTestimonial}
             onSave={currentTestimonial?.id ? handleEdit : handleCreate}
-            onDelete={currentTestimonial ? handleDelete : undefined}
+onDeleteClick={(testimonial) => {
+    setDeleteModal({ isOpen: true, testimonial });
+  }}
+         />
+         <DeleteConfirmModal
+            isOpen={deleteModal.isOpen}
+            onClose={closeDeleteConfirm}
+            onConfirm={() => deleteTestimonial(deleteModal.testimonial)}
+            title={deleteModal.testimonial?.title || "el testimonio"}
          />
       </div>
    );
