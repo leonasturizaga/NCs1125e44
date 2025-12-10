@@ -263,8 +263,9 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import CategoryMultiSelect from "../components/CategoryMultiselect";
+
 import DeleteConfirmModal from './../components/DeleteConfirmModal';
+import CategoryMultiSelect from "../components/CategoryMultiSelect";
 
 export default function TestimonialList() {
    const { user } = useAuth();

@@ -4,7 +4,8 @@ import { useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { toast } from "react-toastify";
 import { Edit3, Link, Image, Tag, CheckCircle } from "lucide-react";
-import CategoryMultiSelect from "../components/CategoryMultiselect";
+import CategoryMultiSelect from "./CategoryMultiSelect";
+
 
 
 export default function TestimonialForm({ initialData = {}, onSubmit, submitText = "Guardar" }) {
