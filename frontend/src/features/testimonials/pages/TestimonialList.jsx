@@ -363,39 +363,73 @@ export default function TestimonialList() {
   };
 
 // CREATE — uses FormData
-  const handleCreate = async (formData, files = []) => {
-   console.log("Creating testimonial:", user);
-      if (!user?.id) {
-         toast.error("Debes estar logueado");
-         return;
-      }
-     const data = new FormData();
-     data.append("title", formData.title);
-     data.append("description", formData.description);
-     data.append("userId", user.id);
-     if (formData.youtubeUrl) data.append("youtubeUrl", formData.youtubeUrl);
+//   const handleCreate = async (formData, files = []) => {
+//    console.log("Creating testimonial:", user);
+//       if (!user?.id) {
+//          toast.error("Debes estar logueado");
+//          return;
+//       }
+//      const data = new FormData();
+//      data.append("title", formData.title);
+//      data.append("description", formData.description);
+//      data.append("userId", user.id);
+//      if (formData.youtubeUrl) data.append("youtubeUrl", formData.youtubeUrl);
 
-     files.forEach((file) => data.append("images", file));
+//      files.forEach((file) => data.append("images", file));
 
-     try {
-        const res = await api.post("/testimonies/post", data, {
-           headers: {
-              "Content-Type": "multipart/form-data",
-           },
-        });
-        console.log(res);
-        console.log(data);
-        if (res.data.success) {
-           toast.success("Testimonio creado con éxito!");
-           setModalOpen(false);
-           fetchAll(); // refresh
-        }
-     } catch (err) {
-        const msg = err.response?.data?.message || "Error al crear testimonio";
-        toast.error(msg);
-        console.error("Create error:", err.response?.data || err);
-     }
-  };
+//      try {
+//         const res = await api.post("/testimonies/post", data, {
+//            headers: {
+//               "Content-Type": "multipart/form-data",
+//            },
+//         });
+//         console.log(res);
+//         console.log(data);
+//         if (res.data.success) {
+//            toast.success("Testimonio creado con éxito!");
+//            setModalOpen(false);
+//            fetchAll(); // refresh
+//         }
+//      } catch (err) {
+//         const msg = err.response?.data?.message || "Error al crear testimonio";
+//         toast.error(msg);
+//         console.error("Create error:", err.response?.data || err);
+//      }
+//   };
+
+const handleCreate = async (formData, files = []) => {
+  if (!user?.id) {
+    toast.error("Debes estar logueado");
+    return;
+  }
+
+  const data = new FormData();
+  data.append("title", formData.title);
+  data.append("description", formData.description);
+  data.append("userId", user.id);
+  if (formData.youtubeUrl) data.append("youtubeUrl", formData.youtubeUrl);
+
+  // ENVIAR CATEGORÍAS MÚLTIPLES (mínimo 2, duplicamos si solo hay 1)
+  const categories = formData.categories.length >= 2 
+    ? formData.categories 
+    : [...formData.categories, formData.categories[0] || "Clients"];
+
+  categories.forEach(cat => data.append("categories", cat));
+
+  files.forEach(file => data.append("images", file));
+
+  try {
+    const res = await api.post("/testimonies/post", data);
+    if (res.data.success) {
+      toast.success("Testimonio creado!");
+      setModalOpen(false);
+      fetchAll();
+    }
+  } catch (err) {
+    toast.error(err.response?.data?.message || "Error al crear");
+  }
+};
+
 
   // EDIT — uses JSON PUT
   const handleEdit = async (formData) => {
