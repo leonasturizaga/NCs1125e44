@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Search, Plus, Grid3X3, Table as TableIcon, Edit2, Trash2, Eye, ChevronLeft, ChevronRight, CheckCircle, Clock, XCircle, X } from "lucide-react";
 import TestimonialCard from "../components/TestimonialCard";
-import TestimonialModal from "../components/TestimonialModal";
+// import TestimonialModal from "../components/TestimonialModal";
 
 const mockTestimonials = [
   { id: 1, author: "María González", content: "Excellent service, exceeded my expectations...", category: "Clients", status: "published", date: "2025-11-15", views: 342 },

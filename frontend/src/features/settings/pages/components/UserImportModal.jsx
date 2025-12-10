@@ -1,7 +1,7 @@
 // src/features/settings/components/UserImportModal.jsx
 import { useState } from "react";
 import { X, Upload, FileText, CheckCircle, AlertCircle, Loader2 } from "lucide-react";
-import { toast } from "react-hot-toast";
+import { toast } from "react-toastify";
 import api from "@/services/apiClient";
 
 export default function UserImportModal({ isOpen, onClose }) {
