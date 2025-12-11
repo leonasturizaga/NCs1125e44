@@ -33,11 +33,11 @@ export default function CategoryMultiSelect({ selected, onChange }) {
       : `${selected.length} seleccionadas`;
 
   return (
-    <div className="relative">
+    <div className="relative ">
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="input flex items-center justify-between gap-2 min-w-[200px] text-left"
+        className="input  dark:bg-gray-900 flex items-center justify-between gap-2 min-w-[200px] text-left"
       >
         <span className="truncate">{displayText}</span>
         <ChevronDown
@@ -54,7 +54,7 @@ export default function CategoryMultiSelect({ selected, onChange }) {
           />
 
           {/* Dropdown */}
-          <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg z-50 overflow-hidden">
+          <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg z-50 overflow-hidden">
             <div className="p-3 space-y-2 max-h-64 overflow-y-auto">
               {CATEGORY_OPTIONS.map((option) => {
                 const isChecked = selected.includes(option.value);
