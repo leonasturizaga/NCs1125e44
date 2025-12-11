@@ -422,6 +422,7 @@ import {
 import DeleteConfirmModal from './../components/DeleteConfirmModal';
 import CategoryMultiSelect from "../components/CategoryMultiSelect";
 import MediaThumbnail from "../components/MediaThumbnail";
+import { getItemsPerPage } from "../../../constants/appConfig";
 
 // ===================================================
 // INICIO DEL COMPONENTE PRINCIPAL
@@ -446,7 +447,7 @@ export default function TestimonialList() {
       isOpen: false,
       testimonial: null,
    });
-   
+  const ITEMS_PER_PAGE = getItemsPerPage(); 
    // Funciones para Modales
    const closeDeleteConfirm = () => {
       setDeleteModal({ isOpen: false, testimonial: null });
@@ -736,7 +737,7 @@ export default function TestimonialList() {
             return (
               <tr key={t.id} className="hover:bg-gray-50 dark:hover:bg-gray-700 transition">
                 {/* NUEVA COLUMNA: Media */}
-                <td className="px-6 py-4">
+                <td className="flex-shrink-0 px-6 py-4">
                   <MediaThumbnail images={t.images || []} youtubeUrl={t.youtubeUrl} />
                 </td>
 
