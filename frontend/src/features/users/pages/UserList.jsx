@@ -388,7 +388,7 @@ const ITEMS_PER_PAGE = getItemsPerPage();
     data.append("password", formData.password);
     data.append("role", formData.role || "visitante");
 
-    files.forEach((file) => data.append("profilePicture", file));
+   //  files.forEach((file) => data.append("profilePicture", file));
 
     try {
       const res = await api.post("/auth/register", data);
