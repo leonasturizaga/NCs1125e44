@@ -476,7 +476,7 @@ const [selectedUser, setSelectedUser] = useState(null); // ← objeto completo d
   const fetchUsers = async () => {
     try {
       setLoading(true);
-      const res = await api.get("/users/getAll"); // ← CORRECTO
+      const res = await api.get("/users/getAll?page=1&size=100"); // ← CORRECTO
       if (res.data.success) {
         setUsers(res.data.data || []);
       }

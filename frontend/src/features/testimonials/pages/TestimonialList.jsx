@@ -71,7 +71,6 @@ export default function TestimonialList() {
          } else {
             setTestimonials(mockTestimonials); 
          }
-// eslint-disable-next-line no-unused-vars
       } catch (err) {
          toast.error("Error loading testimonials, showing mock data."); 
          setTestimonials(mockTestimonials); 
@@ -337,7 +336,6 @@ export default function TestimonialList() {
                                     <button onClick={() => openModal(t)} className="btn-ghost text-indigo-600">
                                        <Edit2 className="w-5 h-5" />
                                     </button>
-                                 {/* CORRECCIÓN: Llamar al modal de confirmación */}
                                     <button onClick={() => setDeleteModal({ isOpen: true, testimonial: t })} className="btn-ghost text-red-600">
                                        <Trash2 className="w-5 h-5" />
                                     </button>

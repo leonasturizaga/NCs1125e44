@@ -1,6 +1,6 @@
 // src/constants/statusConfig.js
 import { LuSquare, LuSquareCheckBig } from "react-icons/lu";
-import { CheckCircle, Clock, XCircle, FileText } from "lucide-react";
+import { CheckCircle, Clock, XCircle, FileText, PackageSearch, UserSearch, CalendarSearch } from "lucide-react";
 
 export const STATUS_CONFIG = {
     pending: 	{ Icon: Clock, 	   badge: "badge-pending", 	 label: "Pendiente" },
@@ -13,4 +13,8 @@ export const STATUS_CONFIG = {
     visitante: 	{ Icon: FileText, 	   badge: "badge-visitante", 	 label: "Visitante" },
     true: 	{ Icon: LuSquareCheckBig, 	   badge: "badge-true", 	 label: "Activo" },
     false: 	{ Icon: LuSquare, 	   badge: "badge-false", 	 label: "Inactivo" },
+    Clients: { Icon: UserSearch, 	   badge: "badge-editor", 	 label: "Clientes"},
+    Suppliers: { Icon: Clock, 	   badge: "badge-pending", 	 label: "Proveedores"},
+    Products: { Icon: PackageSearch, 	   badge: "badge-published", 	 label: "Productos"},
+    Events: { Icon: CalendarSearch, 	   badge: "badge-rejected", 	 label: "Eventos"},
    };
