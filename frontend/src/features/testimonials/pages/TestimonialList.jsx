@@ -71,6 +71,7 @@ export default function TestimonialList() {
          } else {
             setTestimonials(mockTestimonials); 
          }
+// eslint-disable-next-line no-unused-vars
       } catch (err) {
          toast.error("Error loading testimonials, showing mock data."); 
          setTestimonials(mockTestimonials); 
