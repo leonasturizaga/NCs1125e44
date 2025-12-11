@@ -421,6 +421,7 @@ import {
 // Componentes que añadió la rama dev
 import DeleteConfirmModal from './../components/DeleteConfirmModal';
 import CategoryMultiSelect from "../components/CategoryMultiSelect";
+import MediaThumbnail from "../components/MediaThumbnail";
 
 // ===================================================
 // INICIO DEL COMPONENTE PRINCIPAL
@@ -653,10 +654,10 @@ export default function TestimonialList() {
                      onChange={(e) => setFilterStatus(e.target.value)}
                   >
                      <option value="all">Todos</option>
-                     <option value="published">Publicado</option>
+                     <option value="published">Aprobado</option>
                      <option value="pending">Pendiente</option>
                      <option value="rejected">Rechazado</option>
-                     <option value="draft">Borrador</option>
+{/*                      <option value="draft">Borrador</option> */}
                   </select>
 
                   <div className="flex bg-gray-100 dark:bg-gray-700 rounded-lg p-1">
@@ -698,25 +699,26 @@ export default function TestimonialList() {
             </div> 
          )}
 
-         {/* Table View */}
-         {viewMode === "table" && !loading && (
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
-               <div className="overflow-x-auto">
-                  <table className="w-full">
-                     <thead className="bg-gray-50 dark:bg-gray-700 border-b border-gray-200 dark:border-gray-600">
-                        <tr>
-                           <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Usuario</th>
-                           <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Titulo</th>
-                           <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase hidden sm:table-cell">Descripción</th>
-                           <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Categoria</th>
-                           <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Estado</th>
-                           <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase hidden md:table-cell">Fecha</th>
-                           <th className="px-6 py-4 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Acciones</th>
-                        </tr>
-                     </thead>
+{/* Table View */}
+{viewMode === "table" && !loading && (
+  <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <div className="overflow-x-auto">
+      <table className="w-full">
+        <thead className="bg-gray-50 dark:bg-gray-700 border-b border-gray-200 dark:border-gray-600">
+          <tr>
+            <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Media</th>
+            <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Usuario</th>
+            <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Título</th>
+            <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase hidden sm:table-cell">Descripción</th>
+            <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Categoría</th>
+            <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Estado</th>
+            <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase hidden md:table-cell">Fecha</th>
+            <th className="px-6 py-4 text-right text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Acciones</th>
+          </tr>
+        </thead>
 
-                     <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-                        {paginated.map((t) => {
+        <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+          {paginated.map((t) => {
                            const categories = (t.categories || []).map(
                               (cat) => {
                                  const config = STATUS_CONFIG[cat.name] || {
@@ -728,31 +730,26 @@ export default function TestimonialList() {
                               }
                            );
 
-                           const statusConfig =
-                              STATUS_CONFIG[t.status] || STATUS_CONFIG.draft;
-                           const StatusIcon = statusConfig.Icon;
+            const statusConfig = STATUS_CONFIG[t.status] || STATUS_CONFIG.draft;
+            const StatusIcon = statusConfig.Icon;
 
-                           return (
-                              <tr
-                                 key={t.id}
-                                 className="hover:bg-gray-50 dark:hover:bg-gray-700 transition">
-                                 {/* Usuario */}
-                                 <td className="px-6 py-4 text-gray-900 dark:text-white">
-                                    {t.user?.username || "Anónimo"}
-                                 </td>
+            return (
+              <tr key={t.id} className="hover:bg-gray-50 dark:hover:bg-gray-700 transition">
+                {/* NUEVA COLUMNA: Media */}
+                <td className="px-6 py-4">
+                  <MediaThumbnail images={t.images || []} youtubeUrl={t.youtubeUrl} />
+                </td>
 
-                                 {/* Título */}
-                                 <td className="px-6 py-4 font-medium text-gray-900 dark:text-white max-w-xs">
-                                    <p className="truncate">{t.title}</p>
-                                 </td>
-
-                                 {/* Descripción (oculta en móvil) */}
-                                 <td className="px-6 py-4 text-gray-600 dark:text-gray-300 hidden sm:table-cell max-w-md">
-                                    <p className="line-clamp-2 text-sm">
-                                       {t.description}
-                                    </p>
-                                 </td>
-
+                {/* Resto de columnas (sin cambios) */}
+                <td className="px-6 py-4 text-gray-900 dark:text-white">
+                  {t.user?.username || "Anónimo"}
+                </td>
+                <td className="px-6 py-4 font-medium text-gray-900 dark:text-white max-w-xs">
+                  <p className="truncate">{t.title}</p>
+                </td>
+                <td className="px-6 py-4 text-gray-600 dark:text-gray-300 hidden sm:table-cell max-w-md">
+                  <p className="line-clamp-2 text-sm">{t.description}</p>
+                </td>
                                  {/* Categorías → múltiples badges con ícono */}
                                  <td className="px-6 py-4">
                                     <div className="flex flex-wrap gap-1.5">
@@ -777,7 +774,6 @@ export default function TestimonialList() {
                                        )}
                                     </div>
                                  </td>
-
                                  {/* Estado */}
                                  <td className="px-6 py-4">
                                     <span
@@ -786,44 +782,30 @@ export default function TestimonialList() {
                                        {statusConfig.label}
                                     </span>
                                  </td>
-
-                                 {/* Fecha */}
-                                 <td className="px-6 py-4 text-gray-500 dark:text-gray-400 text-sm hidden md:table-cell">
-                                    {new Date(t.createdAt).toLocaleDateString(
-                                       "es-ES"
-                                    )}
-                                 </td>
-
-                                 {/* Acciones */}
-                                 <td className="px-6 py-4 text-right">
-                                    <div className="flex items-center justify-end gap-3">
-                                       <button
-                                          onClick={() => openModal(t)}
-                                          className="text-indigo-600 hover:text-indigo-500 transition"
-                                          title="Editar">
-                                          <Edit2 className="w-5 h-5" />
-                                       </button>
-                                       <button
-                                          onClick={() => {
-                                             setDeleteModal({
-                                                isOpen: true,
-                                                testimonial: t,
-                                             });
-                                          }}
-                                          className="text-red-600 hover:text-red-500 transition"
-                                          title="Eliminar">
-                                          <Trash2 className="w-5 h-5" />
-                                       </button>
-                                    </div>
-                                 </td>
-                              </tr>
-                           );
-                        })}
-                     </tbody>
-                  </table>
-               </div>
-            </div>
-         )}
+                <td className="px-6 py-4 text-gray-500 dark:text-gray-400 text-sm hidden md:table-cell">
+                  {new Date(t.createdAt).toLocaleDateString("es-ES")}
+                </td>
+                <td className="px-6 py-4 text-right">
+                  <div className="flex items-center justify-end gap-3">
+                    <button onClick={() => openModal(t)} className="text-indigo-600 hover:text-indigo-500">
+                      <Edit2 className="w-5 h-5" />
+                    </button>
+                    <button
+                      onClick={() => setDeleteModal({ isOpen: true, testimonial: t })}
+                      className="text-red-600 hover:text-red-500"
+                    >
+                      <Trash2 className="w-5 h-5" />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  </div>
+)}
 
          {/* Pagination */}
          {totalPages > 1 && (
