@@ -240,13 +240,15 @@ import React, { useState } from "react";
 import { Pencil, Trash2 } from "lucide-react";
 import UserImportModal from "./components/UserImportModal";
 import TestimonyImportModal from "./components/TestimonyImportModal";
+import { getItemsPerPage, setItemsPerPage } from "../../../constants/appConfig";
+
 
 function SettingsPage() {
    const [settings, setSettings] = useState({
       siteName: "Testimonial CMS",
       adminEmail: "admin@example.com",
       allowRegistrations: true,
-      itemsPerPage: 10,
+      itemsPerPage: getItemsPerPage(),
 
       // Categorías
       categories: ["Clientes", "Proveedores", "Empleados", "Partners"],
@@ -256,12 +258,27 @@ function SettingsPage() {
    // Estado nuevo: controlar el acordeón de categorías
    const [showCategories, setShowCategories] = useState(false);
 
+   // const handleChange = (e) => {
+   //    const { name, value, type, checked } = e.target;
+   //    setSettings((prevSettings) => ({
+   //       ...prevSettings,
+   //       [name]: type === "checkbox" ? checked : value,
+   //    }));
+   // };
+
    const handleChange = (e) => {
       const { name, value, type, checked } = e.target;
+      const newValue = type === "checkbox" ? checked : value;
+
       setSettings((prevSettings) => ({
          ...prevSettings,
-         [name]: type === "checkbox" ? checked : value,
+         [name]: newValue,
       }));
+
+      // GUARDAMOS EN LOCALSTORAGE SOLO SI ES itemsPerPage
+      if (name === "itemsPerPage") {
+         setItemsPerPage(newValue);
+      }
    };
 
    const handleSubmit = (e) => {
@@ -387,11 +404,11 @@ function SettingsPage() {
                      onChange={handleChange}
                      // Select: Fondo oscuro
                      className="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500">
-                     <option className="bg-gray-700" value={5}>
-                        5
+                     <option className="bg-gray-700" value={6}>
+                        6
                      </option>
-                     <option className="bg-gray-700" value={10}>
-                        10
+                     <option className="bg-gray-700" value={12}>
+                        12
                      </option>
                      <option className="bg-gray-700" value={20}>
                         20
