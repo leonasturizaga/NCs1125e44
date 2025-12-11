@@ -33,7 +33,7 @@ export default function Header() {
           {/* Dark Mode Toggle */}
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition"
+            className="hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition"
             aria-label="Toggle dark mode"
           >
             {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}

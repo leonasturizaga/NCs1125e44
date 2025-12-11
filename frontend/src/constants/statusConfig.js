@@ -13,8 +13,8 @@ export const STATUS_CONFIG = {
     visitante: 	{ Icon: FileText, 	   badge: "badge-visitante", 	 label: "Visitante" },
     true: 	{ Icon: LuSquareCheckBig, 	   badge: "badge-true", 	 label: "Activo" },
     false: 	{ Icon: LuSquare, 	   badge: "badge-false", 	 label: "Inactivo" },
-    Clients: { Icon: UserSearch, 	   badge: "badge-visitante", 	 label: "Clientes"},
-    Suppliers: { Icon: Clock, 	   badge: "badge-pending", 	 label: "Proveedores"},
-    Products: { Icon: PackageSearch, 	   badge: "badge-published", 	 label: "Productos"},
-    Events: { Icon: CalendarSearch, 	   badge: "badge-rejected", 	 label: "Eventos"},
+    Clients: { Icon: UserSearch, 	   badge: "badge-clients", 	 label: "Clientes"},
+    Suppliers: { Icon: Clock, 	   badge: "badge-suppliers", 	 label: "Proveedores"},
+    Products: { Icon: PackageSearch, 	   badge: "badge-products", 	 label: "Productos"},
+    Events: { Icon: CalendarSearch, 	   badge: "badge-events", 	 label: "Eventos"},
    };

@@ -4,11 +4,12 @@ import { createContext, useContext, useState, useEffect } from "react";
 const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
-  const [isDark, setIsDark] = useState(() => {
-    const saved = localStorage.getItem("theme") === "dark" ||
-      (!localStorage.getItem("theme") &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches);
-  });
+//   const [isDark, setIsDark] = useState(() => {
+//     const saved = localStorage.getItem("theme") === "dark" ||
+//       (!localStorage.getItem("theme") &&
+//         window.matchMedia("(prefers-color-scheme: dark)").matches);
+//   });
+   const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
     if (isDark) {
