@@ -2,6 +2,7 @@
 import { Edit2, Trash2, PlayCircle, X } from "lucide-react";
 import { STATUS_CONFIG } from "@/constants/statusConfig";
 import { useState, useEffect, useRef } from "react";
+import placeholder from '@/assets/TestimonialCMSicon.svg';
 
 export default function TestimonialCard({
   testimonial,
@@ -137,14 +138,14 @@ export default function TestimonialCard({
                 alt="Video thumbnail"
                 className="w-full h-full object-cover brightness-75"
                 onError={(e) => {
-                  e.target.src = "/src/assets/TestimonialCMSicon.svg";
+                  e.target.src = placeholder;
                 }}
               />
             ) : (
               // ID inválido → logo local directamente
               <div className="w-full h-full bg-gray-800 flex items-center justify-center">
                 <img 
-                  src="/src/assets/TestimonialCMSicon.svg" 
+                  src= {`${placeholder}`}
                   alt="Video no disponible" 
                   className="w-24 h-24 opacity-60" 
                 />

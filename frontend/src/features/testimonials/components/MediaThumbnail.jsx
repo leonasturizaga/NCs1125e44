@@ -1,6 +1,7 @@
 // src/components/MediaThumbnail.jsx
 import { Play } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
+import placeholder from '@/assets/TestimonialCMSicon.svg';
 
 const getYoutubeId = (url) => {
   if (!url) return null;
@@ -53,7 +54,7 @@ export default function MediaThumbnail({ images = [], youtubeUrl }) {
           src={images[currentIndex].url}
           alt="testimonio"
           className="w-full h-full object-cover"
-          onError={(e) => (e.target.src = "/src/assets/TestimonialCMSicon.svg")}
+          onError={(e) => (e.target.src = `"${placeholder}"` )}
         />
         {/* Contador pequeño */}
         <div className="absolute bottom-0 left-0 right-0 bg-black/70 text-[9px] text-white text-center font-medium">
@@ -70,7 +71,7 @@ export default function MediaThumbnail({ images = [], youtubeUrl }) {
         src={images[0].url}
         alt="testimonio"
         className="w-12 h-12 rounded-lg object-cover border border-gray-600"
-        onError={(e) => (e.target.src = "/src/assets/TestimonialCMSicon.svg")}
+        onError={(e) => (e.target.src = `"${placeholder}"` )}
       />
     );
   }
@@ -83,7 +84,7 @@ export default function MediaThumbnail({ images = [], youtubeUrl }) {
           src={`https://img.youtube.com/vi/${youtubeId}/default.jpg`}
           alt="video"
           className="w-full h-full object-cover"
-          onError={(e) => (e.target.src = "/src/assets/TestimonialCMSicon.svg")}
+          onError={(e) => (e.target.src = `"${placeholder}"` )}
         />
         <div className="absolute  inset-0 bg-black/40 flex items-center justify-center">
           <Play className="w-2 h-2  text-white fill-white" />
@@ -95,7 +96,7 @@ export default function MediaThumbnail({ images = [], youtubeUrl }) {
   // 4. Nada → tu logo
   return (
     <div className="w-12 h-12 bg-gray-800 rounded-lg flex items-center justify-center border border-gray-600">
-      <img src="/src/assets/TestimonialCMSicon.svg" alt="sin media" className="w-10 h-10 opacity-70" />
+      <img src={`${placeholder}`}  alt="sin media" className="w-10 h-10 opacity-70" />
     </div>
   );
 }
