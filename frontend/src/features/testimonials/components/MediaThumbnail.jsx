@@ -101,7 +101,7 @@ export default function MediaThumbnail({ images = [], youtubeUrl }) {
           className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity"
         >
           {hasVideo && (
-            <Play className="w-6 h-6 text-white fill-white drop-shadow-lg" />
+            <Play className="absolute w-2 h-2 top-2 right-2  text-white fill-white drop-shadow-lg" />
           )}
         </button>
       </div>
