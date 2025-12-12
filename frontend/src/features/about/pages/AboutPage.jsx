@@ -1,5 +1,4 @@
 // src/features/about/pages/AboutPage.jsx
-
 import React from 'react';
 // Importamos los íconos necesarios para la visualización de valor
 import { Server, Zap, Users, Shield, TrendingUp, Code } from 'lucide-react'; 

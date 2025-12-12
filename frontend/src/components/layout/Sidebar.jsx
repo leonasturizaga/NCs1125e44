@@ -84,7 +84,7 @@ export default function Sidebar() {
            {menuItem("dashboard", FiBarChart2, "Dashboard")}
            {menuItem("users", FiUsers, "Usuarios")}
            {menuItem("testimonials", FiMessageSquare, "Testimonios")}
-           {menuItem("videoTestimonials", FiPlayCircle, "Videos")}
+           {/* {menuItem("videoTestimonials", FiPlayCircle, "Videos")} */}
            {menuItem("settings", FiSettings, "Configuración")}
 
            {/* Home special item */}
