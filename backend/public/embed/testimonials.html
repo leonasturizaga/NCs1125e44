@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Testimonios</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .testimonial {
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.2s;
+    }
+
+    .testimonial:hover {
+      transform: translateY(-5px);
+    }
+
+    .testimonial h2 {
+      margin: 0 0 10px 0;
+      font-size: 1.3rem;
+      text-align: center;
+    }
+
+    .testimonial p {
+      margin: 0 0 15px 0;
+      text-align: center;
+    }
+
+    .testimonial iframe {
+      width: 100%;
+      max-width: 560px;
+      height: 315px;
+      border: none;
+      border-radius: 8px;
+    }
+
+    @media (max-width: 600px) {
+      .testimonial iframe {
+        height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Testimonios</h1>
+  <div id="testimonials" class="grid">Cargando testimonios...</div>
+
+  <script>
+    function getYouTubeEmbedUrl(url) {
+      let videoId = '';
+      if (url.includes('youtu.be/')) {
+        videoId = url.split('youtu.be/')[1].split('?')[0];
+      } else if (url.includes('youtube.com/watch?v=')) {
+        videoId = url.split('v=')[1].split('&')[0];
+      }
+      return `https://www.youtube.com/embed/${videoId}`;
+    }
+
+    async function loadTestimonials() {
+      try {
+        const res = await fetch('/api/video-testimonials');
+        const data = await res.json();
+
+        const container = document.getElementById('testimonials');
+        container.innerHTML = '';
+
+        data.forEach(t => {
+          const div = document.createElement('div');
+          div.className = 'testimonial';
+          const embedUrl = getYouTubeEmbedUrl(t.url);
+          div.innerHTML = `
+            <h2>${t.title}</h2>
+            <p>${t.description}</p>
+            <iframe src="${embedUrl}" allowfullscreen></iframe>
+          `;
+          container.appendChild(div);
+        });
+      } catch (err) {
+        console.error('Error cargando testimonios:', err);
+        document.getElementById('testimonials').innerText = 'Error cargando testimonios';
+      }
+    }
+
+    loadTestimonials();
+  </script>
+</body>
+</html>

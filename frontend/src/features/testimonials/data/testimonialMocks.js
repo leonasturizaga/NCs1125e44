@@ -1,6 +1,8 @@
 export const ITEMS_PER_PAGE = 9; 
 
 export const mockTestimonials = [
+    
+
     // Se han añadido las columnas 'sentiment', 'attributedRevenue', 'country' y 'channel'
     { id: 1, author: "María González", title: "Excelente servicio", content: "El soporte al cliente fue excelente, siempre atentos y el servicio muy rápido.", category: "Clients", status: "published", date: "2025-11-15", views: 342, createdAt: new Date(1762000000000), rating: 5, product: "App Móvil", sentiment: "Positivo", attributedRevenue: 15000, country: "Chile", channel: "Sitio Web" },
     { id: 2, author: "Carlos Pérez", title: "Muy recomendado", content: "Altamente recomendado. El equipo de ventas nos dio atención personalizada.", category: "Suppliers", status: "pending", date: "2025-11-18", views: 89, createdAt: new Date(1762200000000), rating: 4, product: "Soporte VIP", sentiment: "Positivo", attributedRevenue: 0, country: "Argentina", channel: "Material de Venta" },

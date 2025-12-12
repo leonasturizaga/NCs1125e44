@@ -108,6 +108,7 @@ import LoginPage from "../features/auth/pages/LoginPage";
 import RegisterPage from "../features/auth/pages/RegisterPage";
 import AboutPage from "../features/about/pages/AboutPage";
 import ContactPage from "../features/contact/pages/ContactPage";
+import EmbedTestimonials from "../features/testimonials/pages/EmbedTestimonials";
 
 // Admin pages
 import DashboardPage from "../features/dashboard/pages/DashboardPage";
@@ -133,6 +134,7 @@ export default function AppRouter() {
             <Route path="/nosotros" element={<AboutPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/contacto" element={<ContactPage/>} />
+            
 
             {/* A PARTIR DE AQUÍ DEBE SEGUIR LA ESTRUCTURA ORIGINAL DE RUTAS PROTEGIDAS */}
 <Route element={<ProtectedRoute />}>
@@ -143,7 +145,7 @@ export default function AppRouter() {
                   <Route path="/testimonials" element={<TestimonialList />} />
                   <Route path="/testimonials/create" element={<CreateTestimonial />} />
                   <Route path="/testimonials/edit/:id" element={<EditTestimonial />} />
-
+                  <Route path="/embed/testimonials" element={<EmbedTestimonials />} />
                   <Route path="/video-testimonials" element={<VideoTestimonialsList />} />
                   <Route path="/video-testimonials/create" element={<CreateVideoTestimonial />} />
                   <Route path="/settings" element={<SettingsPage />} />

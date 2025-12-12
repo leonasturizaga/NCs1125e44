@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitio Web Externo - Demostración de Embed</title>
+    <style>
+        body { font-family: sans-serif; background-color: #f4f4f4; color: #333; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+        .cms-embed { border: 2px solid #6366f1; border-radius: 8px; margin-top: 20px; overflow: hidden; }
+        iframe { display: block; border: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mi Sitio Web Principal</h1>
+        <p>Esta página simula un sitio web externo que está incrustando la lista de testimonios desde el CMS.</p>
+        
+        <h2>Testimonios Incrustados (Cargados desde tu CMS)</h2>
+        
+        <div class="cms-embed">
+            <iframe 
+  src="https://bloodier-nonnegative-knox.ngrok-free.dev/embed/testimonials"
+  width="100%"
+  height="800"
+  frameborder="0"
+  allowfullscreen>
+</iframe>
+        </div>
+        
+        <p>El contenido anterior es completamente independiente de este sitio.</p>
+    </div>
+</body>
+</html>

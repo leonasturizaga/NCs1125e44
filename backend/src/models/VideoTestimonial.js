@@ -1,24 +1,13 @@
-module.exports = (sequelize) => {
-  sequelize.define("videoTestimonial", {
-    id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      primaryKey: true,
-    },
-    title: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    description: {
-      type: DataTypes.TEXT,
-    },
-    videoUrl: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    type: {
-      type: DataTypes.ENUM("youtube", "file"),
-      allowNull: false,
-    }
+
+// backend/src/models/VideoTestimonial.js
+module.exports = (sequelize, DataTypes) => {
+  return sequelize.define('VideoTestimonial', {
+    title: { type: DataTypes.STRING, allowNull: false },
+    url: { type: DataTypes.STRING },
+    description: { type: DataTypes.TEXT }
+  }, {
+    tableName: 'VideoTestimonials',
+    timestamps: true
   });
 };
+

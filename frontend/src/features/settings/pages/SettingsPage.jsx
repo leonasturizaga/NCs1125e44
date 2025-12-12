@@ -1,534 +1,198 @@
-// src/features/settings/pages/SettingsPage.jsx
-// import React, { useState } from "react";
-// import { Pencil, Trash2 } from "lucide-react";
-// import UserImportModal from "./components/UserImportModal";
-
-// function SettingsPage() {
-//    const [settings, setSettings] = useState({
-//       siteName: "Testimonial CMS",
-//       adminEmail: "admin@example.com",
-//       allowRegistrations: true,
-//       itemsPerPage: 10,
-
-  
-//    });
-
-//     // integrar testimonios
-//    const [showWidget, setShowWidget] = useState(false);
-//    const [widgetCantidad, setWidgetCantidad] = useState(3);
-//    const [codigo, setCodigo] = useState("");
-
-//    const handleChange = (e) => {
-//       const { name, value, type, checked } = e.target;
-//       setSettings((prevSettings) => ({
-//          ...prevSettings,
-//          [name]: type === "checkbox" ? checked : value,
-//       }));
-//    };
-
-//    const handleSubmit = (e) => {
-//       e.preventDefault();
-//       console.log("Configuración guardada:", settings);
-//       // Aquí iría la lógica para enviar los datos al backend
-//       alert("Configuración guardada (Mock)");
-//    };
-
-
-
-//    // para importar usuarios desde un CSV
-//    const [importModalOpen, setImportModalOpen] = useState(false);
-//    const [showImportarDatos, setShowImportarDatos] = useState(false);
-
-//    // función para generar el embed
-//    const generarCodigo = () => {
-//       const embed = `
-// <div id="testimonial-widget"
-//      data-cantidad="${widgetCantidad}">
-// </div>
-
-// <script src="http://localhost:3000/widget.js" async></script>
-// `;
-
-//       setCodigo(embed.trim());
-//    };
-
- 
-
-
-
-//    return (
-//       <div className="space-y-6">
-//          {/* Título Principal */}
-//          <h1 className="text-4xl font-extrabold text-white">Configuración</h1>
-//          <p className="text-xl text-indigo-400 mt-1">
-//             Ajusta las opciones generales del CMS
-//          </p>
-//          <hr className="border-gray-700 mt-6" />
-
-//          {/* Formulario de Configuración (Contenedor) */}
-//          <div className="bg-gray-800 p-8 rounded-lg shadow-xl border border-gray-700">
-//             <form onSubmit={handleSubmit} className="space-y-10">
-//                {/* Nombre del Sitio */}
-//                <div>
-//                   {/* Label: Gris claro */}
-//                   <label
-//                      htmlFor="siteName"
-//                      className="label text-gray-300 mb-1">
-//                      Nombre del Sitio
-//                   </label>
-//                   <input
-//                      type="text"
-//                      id="siteName"
-//                      name="siteName"
-//                      value={settings.siteName}
-//                      onChange={handleChange}
-//                      // Input: Fondo oscuro, texto blanco, foco índigo
-//                      className="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500"
-//                   />
-//                </div>
-
-//                {/* Correo Electrónico del Administrador */}
-//                <div>
-//                   <label
-//                      htmlFor="adminEmail"
-//                      className="label text-gray-300 mb-1">
-//                      Correo Electrónico del Administrador
-//                   </label>
-//                   <input
-//                      type="email"
-//                      id="adminEmail"
-//                      name="adminEmail"
-//                      value={settings.adminEmail}
-//                      onChange={handleChange}
-//                      className="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500"
-//                   />
-//                </div>
-
-//                {/* Permitir Registros (Checkbox) */}
-//                <div className="flex items-center gap-3 pt-2">
-//                   <input
-//                      type="checkbox"
-//                      id="allowRegistrations"
-//                      name="allowRegistrations"
-//                      checked={settings.allowRegistrations}
-//                      onChange={handleChange}
-//                      // Checkbox: Acento índigo
-//                      className="h-5 w-5 text-indigo-600 rounded border-gray-600 focus:ring-indigo-500 bg-gray-700 cursor-pointer"
-//                   />
-//                   <label htmlFor="allowRegistrations" className="text-gray-300">
-//                      Permitir Nuevos Registros de Usuarios
-//                   </label>
-//                </div>
-
-//                {/* Elementos por Página (Select) */}
-//                <div>
-//                   <label
-//                      htmlFor="itemsPerPage"
-//                      className="label text-gray-300 mb-1">
-//                      Elementos por Página (Tablas)
-//                   </label>
-//                   <select
-//                      id="itemsPerPage"
-//                      name="itemsPerPage"
-//                      value={settings.itemsPerPage}
-//                      onChange={handleChange}
-//                      // Select: Fondo oscuro
-//                      className="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500">
-//                      <option className="bg-gray-700" value={5}>
-//                         5
-//                      </option>
-//                      <option className="bg-gray-700" value={10}>
-//                         10
-//                      </option>
-//                      <option className="bg-gray-700" value={20}>
-//                         20
-//                      </option>
-//                      <option className="bg-gray-700" value={50}>
-//                         50
-//                      </option>
-//                   </select>
-//                </div>
-
-            
-//             </form>
-
-//             <div className="mt-10">
-//                {/* Botón Acordeón */}
-//                <button
-//                   type="button"
-//                   onClick={() => setShowImportarDatos(!showImportarDatos)}
-//                   className="w-full flex justify-between items-center text-2xl font-bold text-indigo-300">
-//                   Importar Datos iniciales
-//                   <span className="text-indigo-400 text-xl">
-//                      {showImportarDatos ? "▲" : "▼"}
-//                   </span>
-//                </button>
-//                {/* Contenido visible SOLO si showImportarDatos === true */}
-//                {showImportarDatos && (
-//                   <button
-//                      onClick={() => setImportModalOpen(true)}
-//                      className="bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium mt-8">
-//                      Importar Usuarios desde CSV
-//                   </button>
-//                )}
-//                <UserImportModal
-//                   isOpen={importModalOpen}
-//                   onClose={() => setImportModalOpen(false)}
-//                />
-//             </div>
-//    {/* ⭐ SECCIÓN INTEGRAR TESTIMONIOS */}
-//             <div className="mt-14">
-//                <button
-//                   type="button"
-//                   onClick={() => setShowWidget(!showWidget)}
-//                   className="w-full flex justify-between items-center text-2xl font-bold text-indigo-300"
-//                >
-//                   Integrar testimonios en tu sitio web
-//                   <span className="text-indigo-400 text-xl">
-//                      {showWidget ? "▲" : "▼"}
-//                   </span>
-//                </button>
-
-//                {showWidget && (
-//                   <div className="mt-6 bg-gray-900 p-6 rounded-lg border border-gray-700 space-y-6">
-
-//                      {/* Cantidad */}
-//                      <div>
-//                         <label className="text-gray-300 mb-1">
-//                            Cantidad de testimonios a mostrar
-//                         </label>
-//                         <input
-//                            type="number"
-//                            min="1"
-//                            value={widgetCantidad}
-//                            onChange={(e) => setWidgetCantidad(e.target.value)}
-//                            className="w-full px-4 py-2 bg-gray-800 text-white rounded-lg border border-gray-700"
-//                         />
-//                      </div>
-
-//                      {/* Generar */}
-//                      <button
-//                         onClick={generarCodigo}
-//                         className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-lg font-semibold shadow-md"
-//                      >
-//                         Generar código de inserción
-//                      </button>
-
-//                      {/* Resultado */}
-//                      {codigo && (
-//                         <textarea
-//                            readOnly
-//                            className="w-full h-48 p-4 bg-gray-800 text-indigo-300 border border-gray-700 
-//                            rounded-lg font-mono text-sm"
-//                            value={codigo}
-//                         />
-//                      )}
-//                   </div>
-//                )}
-//             </div>
-
-//          </div>
-//       </div>
-//    );
-// }
-
-// export default SettingsPage;
-
-//--------------------- version 2 categorias -----------------------
-// src/features/settings/pages/SettingsPage.jsx
+/* eslint-disable no-irregular-whitespace */
 import React, { useState } from "react";
-import { Pencil, Trash2 } from "lucide-react";
-import UserImportModal from "./components/UserImportModal";
-import TestimonyImportModal from "./components/TestimonyImportModal";
+import { Pencil, Trash2, Code } from "lucide-react";
+import UserImportModal from "../components/UserImportModal";
+import TestimonyImportModal from "../components/TestimonyImportModal";
+import SettingsEmbeds from "../components/SettingsEmbeds"; // 🎯 Importación del componente de Embeds
 
 function SettingsPage() {
-   const [settings, setSettings] = useState({
-      siteName: "Testimonial CMS",
-      adminEmail: "admin@example.com",
-      allowRegistrations: true,
-      itemsPerPage: 10,
+   // === ESTADOS DE CONFIGURACIÓN ===
+   const [settings, setSettings] = useState({
+      siteName: "Testimonial CMS",
+      adminEmail: "admin@example.com",
+      allowRegistrations: true,
+      itemsPerPage: 10,
+      categories: ["Clientes", "Proveedores", "Empleados", "Partners"],
+      newCategory: "",
+   });
 
-      // Categorías
-      categories: ["Clientes", "Proveedores", "Empleados", "Partners"],
-      newCategory: "",
-   });
+   // === ESTADOS DE UI ===
+   const [showCategories, setShowCategories] = useState(false);
+   const [showImportarDatos, setShowImportarDatos] = useState(false);
+   const [importModalOpen, setImportModalOpen] = useState(false);
+   const [importTestimonyOpen, setImportTestimonyOpen] = useState(false);
 
-   // Estado nuevo: controlar el acordeón de categorías
-   const [showCategories, setShowCategories] = useState(false);
 
-   const handleChange = (e) => {
-      const { name, value, type, checked } = e.target;
-      setSettings((prevSettings) => ({
-         ...prevSettings,
-         [name]: type === "checkbox" ? checked : value,
-      }));
-   };
+   // === LÓGICA GENERAL ===
 
-   const handleSubmit = (e) => {
-      e.preventDefault();
-      console.log("Configuración guardada:", settings);
-      // Aquí iría la lógica para enviar los datos al backend
-      alert("Configuración guardada (Mock)");
-   };
+   const handleChange = (e) => {
+      const { name, value, type, checked } = e.target;
+      setSettings((prevSettings) => ({
+         ...prevSettings,
+         [name]: type === "checkbox" ? checked : value,
+      }));
+   };
 
-   // Agregar categoría
-   const addCategory = () => {
-      if (settings.newCategory.trim() === "") return;
+   const handleSubmit = (e) => {
+      e.preventDefault();
+      console.log("Configuración guardada:", settings);
+      alert("Configuración guardada (Mock)");
+   };
 
-      setSettings((prev) => ({
-         ...prev,
-         categories: [...prev.categories, prev.newCategory],
-         newCategory: "",
-      }));
-   };
 
-   // Eliminar categoría
-   const deleteCategory = (index) => {
-      setSettings((prev) => ({
-         ...prev,
-         categories: prev.categories.filter((_, i) => i !== index),
-      }));
-   };
+   // === LÓGICA DE CATEGORÍAS ===
 
-   // Editar categoría
-   const editCategory = (index) => {
-      const nuevoNombre = prompt(
-         "Editar categoría:",
-         settings.categories[index]
-      );
-      if (!nuevoNombre || nuevoNombre.trim() === "") return;
+   const addCategory = () => {
+      if (settings.newCategory.trim() === "") return;
 
-      setSettings((prev) => {
-         const updated = [...prev.categories];
-         updated[index] = nuevoNombre;
-         return { ...prev, categories: updated };
-      });
-   };
+      setSettings((prev) => ({
+         ...prev,
+         categories: [...prev.categories, prev.newCategory],
+         newCategory: "",
+      }));
+   };
 
-   // para importar usuarios desde un CSV
-   const [showImportarDatos, setShowImportarDatos] = useState(false);
-   const [importModalOpen, setImportModalOpen] = useState(false);
-   const [importTestimonyOpen, setImportTestimonyOpen] = useState(false);
-   return (
-      <div className="space-y-6">
-         {/* Título Principal */}
-         <h1 className="text-4xl font-extrabold text-white">Configuración</h1>
-         <p className="text-xl text-indigo-400 mt-1">
-            Ajusta las opciones generales del CMS
-         </p>
-         <hr className="border-gray-700 mt-6" />
+   const deleteCategory = (index) => {
+      setSettings((prev) => ({
+         ...prev,
+         categories: prev.categories.filter((_, i) => i !== index),
+      }));
+   };
 
-         {/* Formulario de Configuración (Contenedor) */}
-         <div className="bg-gray-800 p-8 rounded-lg shadow-xl border border-gray-700">
-            <form onSubmit={handleSubmit} className="space-y-10">
-               {/* Nombre del Sitio */}
-               <div>
-                  {/* Label: Gris claro */}
-                  <label
-                     htmlFor="siteName"
-                     className="label text-gray-300 mb-1">
-                     Nombre del Sitio
-                  </label>
-                  <input
-                     type="text"
-                     id="siteName"
-                     name="siteName"
-                     value={settings.siteName}
-                     onChange={handleChange}
-                     // Input: Fondo oscuro, texto blanco, foco índigo
-                     className="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500"
-                  />
-               </div>
+   const editCategory = (index) => {
+      const nuevoNombre = prompt(
+         "Editar categoría:",
+         settings.categories[index]
+      );
+      if (!nuevoNombre || nuevoNombre.trim() === "") return;
 
-               {/* Correo Electrónico del Administrador */}
-               <div>
-                  <label
-                     htmlFor="adminEmail"
-                     className="label text-gray-300 mb-1">
-                     Correo Electrónico del Administrador
-                  </label>
-                  <input
-                     type="email"
-                     id="adminEmail"
-                     name="adminEmail"
-                     value={settings.adminEmail}
-                     onChange={handleChange}
-                     className="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500"
-                  />
-               </div>
+      setSettings((prev) => {
+         const updated = [...prev.categories];
+         updated[index] = nuevoNombre;
+         return { ...prev, categories: updated };
+      });
+   };
 
-               {/* Permitir Registros (Checkbox) */}
-               <div className="flex items-center gap-3 pt-2">
-                  <input
-                     type="checkbox"
-                     id="allowRegistrations"
-                     name="allowRegistrations"
-                     checked={settings.allowRegistrations}
-                     onChange={handleChange}
-                     // Checkbox: Acento índigo
-                     className="h-5 w-5 text-indigo-600 rounded border-gray-600 focus:ring-indigo-500 bg-gray-700 cursor-pointer"
-                  />
-                  <label htmlFor="allowRegistrations" className="text-gray-300">
-                     Permitir Nuevos Registros de Usuarios
-                  </label>
-               </div>
 
-               {/* Elementos por Página (Select) */}
-               <div>
-                  <label
-                     htmlFor="itemsPerPage"
-                     className="label text-gray-300 mb-1">
-                     Elementos por Página (Tablas)
-                  </label>
-                  <select
-                     id="itemsPerPage"
-                     name="itemsPerPage"
-                     value={settings.itemsPerPage}
-                     onChange={handleChange}
-                     // Select: Fondo oscuro
-                     className="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500">
-                     <option className="bg-gray-700" value={5}>
-                        5
-                     </option>
-                     <option className="bg-gray-700" value={10}>
-                        10
-                     </option>
-                     <option className="bg-gray-700" value={20}>
-                        20
-                     </option>
-                     <option className="bg-gray-700" value={50}>
-                        50
-                     </option>
-                  </select>
-               </div>
+   // === RENDERIZADO (JSX) ===
 
-               {/* GESTIÓN DE CATEGORÍAS + ACORDEÓN */}
-               <div className="space-y-4">
-                  {/* Botón Acordeón */}
-                  <button
-                     type="button"
-                     onClick={() => setShowCategories(!showCategories)}
-                     className="w-full flex justify-between items-center text-2xl font-bold text-indigo-300">
-                     Gestión de Categorías
-                     <span className="text-indigo-400 text-xl">
-                        {showCategories ? "▲" : "▼"}
-                     </span>
-                  </button>
+   return (
+      <div className="space-y-6">
+         {/* Título Principal */}
+         <h1 className="text-4xl font-extrabold text-white">Configuración</h1>
+         <p className="text-xl text-indigo-400 mt-1">
+            Ajusta las opciones generales del CMS
+         </p>
+         <hr className="border-gray-700 mt-6" />
 
-                  {/* Contenido visible SOLO si showCategories === true */}
-                  {showCategories && (
-                     <div className="space-y-4">
-                        {/* Nueva Categoría */}
-                        <div>
-                           <label
-                              htmlFor="newCategory"
-                              className="label text-gray-300 mb-1">
-                              Nueva Categoría
-                           </label>
+         {/* Contenedor Principal de Ajustes */}
+         <div className="bg-gray-800 p-8 rounded-lg shadow-xl border border-gray-700 space-y-12">
+            
+            {/* 1. SECCIÓN DE AJUSTES GENERALES */}
+            <form onSubmit={handleSubmit} className="space-y-10">
+               
+                {/* Nombre del Sitio */}
+                <div>
+                   <label htmlFor="siteName" className="label text-gray-300 mb-1">Nombre del Sitio</label>
+                   <input type="text" id="siteName" name="siteName" value={settings.siteName} onChange={handleChange} className="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500" />
+                </div>
 
-                           <div className="flex gap-3">
-                              <input
-                                 type="text"
-                                 id="newCategory"
-                                 name="newCategory"
-                                 placeholder="Ej: Nueva categoría..."
-                                 value={settings.newCategory}
-                                 onChange={handleChange}
-                                 className="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500"
-                              />
+                {/* Correo Electrónico del Administrador */}
+                <div>
+                   <label htmlFor="adminEmail" className="label text-gray-300 mb-1">Correo Electrónico del Administrador</label>
+                   <input type="email" id="adminEmail" name="adminEmail" value={settings.adminEmail} onChange={handleChange} className="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500" />
+                </div>
 
-                              <button
-                                 type="button"
-                                 onClick={addCategory}
-                                 className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg shadow-md flex items-center">
-                                 Agregar
-                              </button>
-                           </div>
-                        </div>
+                {/* Permitir Registros (Checkbox) */}
+                <div className="flex items-center gap-3 pt-2">
+                   <input type="checkbox" id="allowRegistrations" name="allowRegistrations" checked={settings.allowRegistrations} onChange={handleChange} className="h-5 w-5 text-indigo-600 rounded border-gray-600 focus:ring-indigo-500 bg-gray-700 cursor-pointer" />
+                   <label htmlFor="allowRegistrations" className="text-gray-300">Permitir Nuevos Registros de Usuarios</label>
+                </div>
 
-                        {/* Categorías existentes */}
-                        <label className="label text-gray-300 mb-1">
-                           Categorías existentes
-                        </label>
+                {/* Elementos por Página (Select) */}
+                <div>
+                   <label htmlFor="itemsPerPage" className="label text-gray-300 mb-1">Elementos por Página (Tablas)</label>
+                   <select id="itemsPerPage" name="itemsPerPage" value={settings.itemsPerPage} onChange={handleChange} className="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500">
+                      <option className="bg-gray-700" value={5}>5</option>
+                      <option className="bg-gray-700" value={10}>10</option>
+                      <option className="bg-gray-700" value={20}>20</option>
+                      <option className="bg-gray-700" value={50}>50</option>
+                   </select>
+                </div>
 
-                        <ul className="space-y-2">
-                           {settings.categories.map((cat, i) => (
-                              <li
-                                 key={i}
-                                 className="px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white flex justify-between items-center">
-                                 <span>{cat}</span>
+                {/* --- ACORDEÓN DE CATEGORÍAS --- */}
+                <div className="space-y-4">
+                   <button type="button" onClick={() => setShowCategories(!showCategories)} className="w-full flex justify-between items-center text-2xl font-bold text-indigo-300">
+                      Gestión de Categorías
+                      <span className="text-indigo-400 text-xl">{showCategories ? "▲" : "▼"}</span>
+                   </button>
 
-                                 <div className="flex gap-4">
-                                    {/* Editar */}
-                                    <button
-                                       type="button"
-                                       onClick={() => editCategory(i)}
-                                       className="text-indigo-400 hover:text-indigo-300">
-                                       <Pencil size={20} strokeWidth={2.4} />
-                                    </button>
+                   {showCategories && (
+                      <div className="space-y-4 pt-4 border-t border-gray-700/50">
+                         {/* Nueva Categoría Input */}
+                         <div>
+                            <label htmlFor="newCategory" className="label text-gray-300 mb-1">Nueva Categoría</label>
+                            <div className="flex gap-3">
+                               <input type="text" id="newCategory" name="newCategory" placeholder="Ej: Nueva categoría..." value={settings.newCategory} onChange={handleChange} className="w-full px-4 py-2 border border-gray-700 rounded-lg bg-gray-900 text-white focus:ring-indigo-500 focus:border-indigo-500" />
+                               <button type="button" onClick={addCategory} className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg shadow-md flex items-center">Agregar</button>
+                            </div>
+                         </div>
 
-                                    {/* Eliminar */}
-                                    <button
-                                       type="button"
-                                       onClick={() => deleteCategory(i)}
-                                       className="text-red-400 hover:text-red-300">
-                                       <Trash2 size={20} strokeWidth={2.4} />
-                                    </button>
-                                 </div>
-                              </li>
-                           ))}
-                        </ul>
-                     </div>
-                  )}
-               </div>
+                         {/* Categorías existentes Listado */}
+                         <label className="label text-gray-300 mb-1">Categorías existentes</label>
+                         <ul className="space-y-2">
+                            {settings.categories.map((cat, i) => (
+                              <li key={i} className="px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-white flex justify-between items-center">
+                                <span>{cat}</span>
+                                <div className="flex gap-4">
+                                   <button type="button" onClick={() => editCategory(i)} className="text-indigo-400 hover:text-indigo-300">
+                                      <Pencil size={20} strokeWidth={2.4} />
+                                   </button>
+                                   <button type="button" onClick={() => deleteCategory(i)} className="text-red-400 hover:text-red-300">
+                                      <Trash2 size={20} strokeWidth={2.4} />
+                                   </button>
+                                </div>
+                              </li>
+                            ))}
+                         </ul>
+                      </div>
+                   )}
+               </div>
 
-               {/* Botón de Guardar */}
-               <button
-                  type="submit"
-                  // Botón Primario: Índigo
-                  className="bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium mt-8">
-                  Guardar Configuración
-               </button>
-            </form>
-
-            <div className="mt-10">
-               {/* Botón Acordeón */}
-               <button
-                  type="button"
-                  onClick={() => setShowImportarDatos(!showImportarDatos)}
-                  className="w-full flex justify-between items-center text-2xl font-bold text-indigo-300">
-                  Importar Datos iniciales
-                  <span className="text-indigo-400 text-xl">
-                     {showImportarDatos ? "▲" : "▼"}
-                  </span>
-               </button>
-               {/* Contenido visible SOLO si showImportarDatos === true */}
-               {showImportarDatos && (
-                  <div >   
-                  <button
-                     onClick={() => setImportModalOpen(true)}
-                     className="bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium mt-8">
-                     Importar Usuarios desde CSV
-                  </button>
-                  <button
-                     onClick={() => setImportTestimonyOpen(true)}
-                     className="bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium mt-8">
-                     Importar Testimonios desde CSV
-                  </button>
-                  </div>
-               )}
-               <UserImportModal
-                  isOpen={importModalOpen}
-                  onClose={() => setImportModalOpen(false)}
-               />
-               <TestimonyImportModal
-                  isOpen={importTestimonyOpen}
-                  onClose={() => setImportTestimonyOpen(false)}
-               />
+               {/* Botón de Guardar */}
+               <button type="submit" className="bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium mt-8">
+                  Guardar Configuración
+               </button>
+            </form>
+            
+            {/* 2. SECCIÓN DE EMBEDS (API PÚBLICA) */}
+            <div className="mt-12 pt-8 border-t border-gray-700/50">
+                <SettingsEmbeds /> 
             </div>
-         </div>
-      </div>
-   );
+
+            {/* 3. SECCIÓN DE IMPORTACIÓN */}
+            <div className="mt-10 pt-8 border-t border-gray-700/50">
+                <button type="button" onClick={() => setShowImportarDatos(!showImportarDatos)} className="w-full flex justify-between items-center text-2xl font-bold text-indigo-300">
+                  Importar Datos iniciales
+                  <span className="text-indigo-400 text-xl">{showImportarDatos ? "▲" : "▼"}</span>
+                </button>
+                
+                {showImportarDatos && (
+                   <div className="flex flex-col sm:flex-row gap-4 mt-6">   
+                      <button onClick={() => setImportModalOpen(true)} className="bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium">
+                        Importar Usuarios desde CSV
+                      </button>
+                      <button onClick={() => setImportTestimonyOpen(true)} className="bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg flex items-center gap-2 px-5 py-2.5 rounded-lg font-medium">
+                        Importar Testimonios desde CSV
+                      </button>
+                   </div>
+               )}
+               <UserImportModal isOpen={importModalOpen} onClose={() => setImportModalOpen(false)} />
+               <TestimonyImportModal isOpen={importTestimonyOpen} onClose={() => setImportTestimonyOpen(false)} />
+            </div>
+         </div>
+      </div>
+   );
 }
 
 export default SettingsPage;

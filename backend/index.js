@@ -1,115 +1,101 @@
-
-
 require('dotenv').config();
 const express = require('express');
-const { Sequelize, DataTypes } = require('sequelize');
-const multer = require('multer');
-const path = require('path');
 const cors = require('cors');
+const path = require('path');
+const fs = require('fs');
+const multer = require('multer');
+const { Sequelize, DataTypes } = require('sequelize');
 
+// Inicializar app
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// -------------------------
-// ⚡ Crear carpeta uploads si no existe
-// -------------------------
-//const uploadsDir = path.join(__dirname, 'uploads');
-//if (!fs.existsSync(uploadsDir)) {
- // fs.mkdirSync(uploadsDir, { recursive: true });
- // console.log('Carpeta "uploads" creada automáticamente.');
-//}
-
-// ==========================
-// Middleware
-// ==========================
+// Middlewares
+app.use(cors());
 app.use(express.json());
-app.use(cors()); // ⚡ permitir CORS desde frontend
 
-// Carpeta para almacenar videos subidos
+// Archivos estáticos
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use('/embed', express.static(path.join(__dirname, 'public', 'embed')));
 
-// ==========================
-// Configuración Multer
-// ==========================
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, 'uploads/'),
-  filename: (req, file, cb) => cb(null, Date.now() + path.extname(file.originalname))
-});
-const upload = multer({ storage });
-
-// ==========================
-// Inicializar Sequelize
-// ==========================
+// Conexión a la base de datos con logging
 const sequelize = new Sequelize(
-  process.env.POSTGRES_DB,
+  process.env.POSTGRES_DATABASE,
   process.env.POSTGRES_USER,
   process.env.POSTGRES_PASSWORD,
   {
     host: process.env.POSTGRES_HOST,
     port: process.env.POSTGRES_PORT,
     dialect: 'postgres',
-    logging: false,
+    logging: console.log, // Loguea todas las queries
   }
 );
 
-// Probar conexión
+// Testear conexión
 sequelize.authenticate()
-  .then(() => console.log('Conexión a la base de datos exitosa'))
-  .catch(err => console.error('Error de conexión:', err));
+  .then(() => console.log('✅ Conexión a PostgreSQL exitosa'))
+  .catch(err => console.error('❌ Error de conexión a PostgreSQL:', err));
 
-// ==========================
 // Modelos
-// ==========================
-const VideoTestimonial = sequelize.define('VideoTestimonial', {
-  title: { type: DataTypes.STRING, allowNull: false },
-  url: { type: DataTypes.STRING }, // YouTube URL
-  file: { type: DataTypes.STRING }, // archivo local
-  description: { type: DataTypes.TEXT }
-}, {
-  tableName: 'videoTestimonials',
-  timestamps: true
+const VideoTestimonialModel = require('./src/models/VideoTestimonial');
+const VideoTestimonial = VideoTestimonialModel(sequelize, DataTypes);
+
+// Sincronizar DB
+sequelize.sync({ force: true })
+
+// Multer
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const dir = path.join(__dirname, 'uploads');
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir);
+    cb(null, dir);
+  },
+  filename: (req, file, cb) => {
+    const unique = Date.now() + '-' + Math.random().toString(36).substring(2);
+    cb(null, unique + path.extname(file.originalname));
+  }
 });
+const upload = multer({ storage });
 
-// ==========================
-// Sincronizar tablas
-// ==========================
-sequelize.sync({ alter: true })
-  .then(() => console.log('Tablas sincronizadas correctamente'))
-  .catch(err => console.error('Error al sincronizar las tablas:', err));
+// ----------------- RUTAS -----------------
 
-// ==========================
-// Endpoints
-// ==========================
+// API Video Testimonials
+const apiRouter = express.Router();
 
-// Listado
-app.get('/api/video-testimonials', async (req, res) => {
+apiRouter.get('/video-testimonials', async (req, res) => {
   try {
     const testimonials = await VideoTestimonial.findAll();
-    res.json({ message: 'Lista de video testimonials', data: testimonials });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Error al obtener los testimonials' });
+    res.json(testimonials);
+  } catch (err) {
+    console.error('❌ Error al obtener testimonios:', err); // Log real
+    res.status(500).json({ error: 'Error al obtener testimonios' });
   }
 });
 
-// Crear
-app.post('/api/video-testimonials', upload.single('file'), async (req, res) => {
-  try {
-    const { title, url, description } = req.body;
-    const file = req.file ? `/uploads/${req.file.filename}` : null;
+app.use('/api', apiRouter);
 
-    const newVideo = await VideoTestimonial.create({ title, url, description, file });
-    res.status(201).json({ message: 'Video testimonial creado', data: newVideo });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Error al crear video testimonial' });
-  }
+// Servir testimonials.html
+app.get('/embed/testimonials', (req, res) => {
+  const filePath = path.join(__dirname, 'public', 'embed', 'testimonials.html');
+  fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+      console.error('❌ Error leyendo testimonials.html:', err); // Log real
+      return res.status(500).send('Error cargando testimonials.html');
+    }
+    res.send(data);
+  });
 });
 
-// Root
-app.get('/', (req, res) => res.send('Servidor funcionando correctamente'));
+// Home
+app.get('/', (req, res) => {
+  res.send('Servidor funcionando correctamente');
+});
 
-// ==========================
-// Iniciar servidor
-// ==========================
-app.listen(PORT, () => console.log(`Servidor escuchando en http://localhost:${PORT}`));
+// Start server
+app.listen(PORT, () => {
+  console.log(`Servidor escuchando en http://localhost:${PORT}`);
+});
+
+// Exportar sequelize y modelos
+module.exports = { sequelize, VideoTestimonial };
