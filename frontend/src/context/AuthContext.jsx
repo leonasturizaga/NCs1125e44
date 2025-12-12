@@ -1,7 +1,7 @@
 // src/context/AuthContext.jsx
-// src/context/AuthContext.jsx
 import { createContext, useContext, useState, useEffect } from "react";
 import api from "@/services/apiClient";
+import {jwtDecode} from "jwt-decode";   // ← NAMED IMPORT (no curly braces!)
 
 const AuthContext = createContext();
 
@@ -9,36 +9,69 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Restore session on load
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    const savedUser = localStorage.getItem("user");
-    if (token && savedUser) {
+  const cleanToken = (token) => {
+  if (!token) return null;
+
+  // elimina BOM y espacios ocultos
+  return token.replace(/^\uFEFF/, "").trim();
+};
+
+
+  const decodeToken = (token) => {
+  try {
+    if (!token || token === "undefined" || token === "null" || token.trim() === "")
+      return null;
+
+    const decoded = jwtDecode(token);
+    return {
+      id: decoded.id,
+      role: decoded.role,
+      email: decoded.email || null,
+      username: decoded.username || null,
+    };
+  } catch (err) {
+    console.error("Invalid token");
+    return null;
+  }
+};
+
+
+  // Restore session
+useEffect(() => {
+  let token = localStorage.getItem("token");
+  token = cleanToken(token);
+
+  if (token) {
+    const userData = decodeToken(token);
+    if (userData) {
       api.defaults.headers.Authorization = `Bearer ${token}`;
-      setUser(JSON.parse(savedUser));
+      setUser(userData);
     }
-    setLoading(false);
-  }, []);
+  }
+  setLoading(false);
+}, []);
+
+
 
   const login = async (email, password) => {
     try {
       const res = await api.post("/auth/login", { email, password });
+      if (res.data.success && res.data.token) {
+        const token = cleanToken(res.data.token);
+        const userData = decodeToken(token);
 
-      if (res.data.success) {
-        const token = res.data.token;           // ← your real format
-        const userData = res.data.user || { email }; // fallback
-
-        localStorage.setItem("token", token);
-        localStorage.setItem("user", JSON.stringify(userData));
-
-        api.defaults.headers.Authorization = `Bearer ${token}`;
-        setUser(userData);
-        return true;
+        if (userData) {
+          localStorage.setItem("token", token);
+          localStorage.setItem("user", JSON.stringify(userData));
+          api.defaults.headers.Authorization = `Bearer ${token}`;
+          setUser(userData);
+          return true;
+        }
       }
     } catch (err) {
-      console.error("Login failed:", err.response?.data || err);
-      return false;
+      console.error("Login failed:", err);
     }
+    return false;
   };
 
   const logout = () => {

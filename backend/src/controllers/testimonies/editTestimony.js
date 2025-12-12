@@ -1,6 +1,6 @@
-const { testimony } = require("../../db");
+const { testimony, user } = require("../../db");
 
-const editTestimony = async (id, updates) => {
+const editTestimony = async (id, updates, userId) => {
   try {
     const foundTestimony = await testimony.findByPk(id);
     if (!foundTestimony) {
@@ -10,19 +10,39 @@ const editTestimony = async (id, updates) => {
       };
     }
 
-    Object.entries(updates).forEach(([key, value]) => {
-      if (foundTestimony.dataValues.hasOwnProperty(key)) {
-        foundTestimony[key] = value;
-      }
-    });
+    const foundUser = await user.findByPk(userId);
+    if (!foundUser) {
+      return {
+        success: false,
+        message: "Usuario no encontrado",
+      };
+    }
 
-    await foundTestimony.save();
+    const protectedFields = ["id", "createdAt", "updatedAt", "userId"];
+    protectedFields.forEach((field) => delete updates[field]);
 
-    return {
-      success: true,
-      message: "Testimonio actualizado con éxito",
-      data: foundTestimony,
-    };
+    const isAdminOrEditor = ["admin", "editor"].includes(foundUser.role);
+
+    if (foundUser.id === foundTestimony.userId || isAdminOrEditor) {
+      Object.entries(updates).forEach(([key, value]) => {
+        if (foundTestimony.dataValues.hasOwnProperty(key)) {
+          foundTestimony[key] = value;
+        }
+      });
+
+      await foundTestimony.save();
+
+      return {
+        success: true,
+        message: "Testimonio actualizado con éxito",
+        data: foundTestimony,
+      };
+    } else {
+      return {
+        success: false,
+        message: "No puedes actualizar este testimonio",
+      };
+    }
   } catch (error) {
     return {
       success: false,

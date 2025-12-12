@@ -2,7 +2,7 @@ const { testimony, user } = require("../../db");
 
 const deleteTestimony = async (id, userId) => {
   try {
-    const foundUser = user.findByPk(userId);
+    const foundUser = await user.findByPk(userId);
 
     if (!foundUser) {
       return {
@@ -20,17 +20,21 @@ const deleteTestimony = async (id, userId) => {
       };
     }
 
-    // if (
-    //   foundTestimony.userId === userId ||
-    //   foundUser.role === ("admin" || "editor")
-    // ) {
-      await testimony.destroy({ where: { id } });
-    // }
+    const isOwner = foundTestimony.userId === userId;
+    const isAdminOrEditor = ["admin", "editor"].includes(foundUser.role);
 
-    return {
-      success: true,
-      message: "Testimonio eliminado con exito",
-    };
+    if (isOwner || isAdminOrEditor) {
+      await testimony.destroy({ where: { id } });
+      return {
+        success: true,
+        message: "Testimonio eliminado con éxito",
+      };
+    } else {
+      return {
+        success: false,
+        message: "No tienen permisos para eliminar este testimonio",
+      };
+    }
   } catch (error) {
     return {
       success: false,

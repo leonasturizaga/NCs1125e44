@@ -107,17 +107,22 @@ import HomeVisitante from "../features/home/HomeVisitante";
 import LoginPage from "../features/auth/pages/LoginPage";
 import RegisterPage from "../features/auth/pages/RegisterPage";
 import AboutPage from "../features/about/pages/AboutPage";
+import ContactPage from "../features/contact/pages/ContactPage";
 
 // Admin pages
 import DashboardPage from "../features/dashboard/pages/DashboardPage";
-import TestimonialsList from "../features/testimonials/pages/TestimonialsList";
+//import TestimonialsList from "../features/testimonials/pages/TestimonialsList";
 import SettingsPage from "../features/settings/pages/SettingsPage";
 import CreateTestimonial from "../features/testimonials/pages/CreateTestimonial";
 import EditTestimonial from "../features/testimonials/pages/EditTestimonial";
 import TestimonialList from "../features/testimonials/pages/TestimonialsList";
 import ProtectedRoute from "../components/ProtectedRoute";
+import VideoTestimonialsList from "../features/videoTestimonials/pages/VideoTestimonialsList";
+import CreateVideoTestimonial from "../features/videoTestimonials/pages/CreateVideoTestimonial";
+
 
 import UserList from "../features/users/pages/UserList";
+//import { path } from 'path';
 
 export default function AppRouter() {
    return (
@@ -127,6 +132,7 @@ export default function AppRouter() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/nosotros" element={<AboutPage />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/contacto" element={<ContactPage/>} />
 
             {/* A PARTIR DE AQUÍ DEBE SEGUIR LA ESTRUCTURA ORIGINAL DE RUTAS PROTEGIDAS */}
 <Route element={<ProtectedRoute />}>
@@ -137,8 +143,12 @@ export default function AppRouter() {
                   <Route path="/testimonials" element={<TestimonialList />} />
                   <Route path="/testimonials/create" element={<CreateTestimonial />} />
                   <Route path="/testimonials/edit/:id" element={<EditTestimonial />} />
+
+                  <Route path="/video-testimonials" element={<VideoTestimonialsList />} />
+                  <Route path="/video-testimonials/create" element={<CreateVideoTestimonial />} />
                   <Route path="/settings" element={<SettingsPage />} />
                   <Route path="*" element={<Navigate to="/" replace />} />
+                  <Route path="/contacto" element={<ContactPage />} />
                </Route>
             </Route>
          </Routes>

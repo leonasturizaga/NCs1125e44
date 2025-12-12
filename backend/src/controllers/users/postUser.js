@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const { user } = require("../../db");
 
-const postUser = async (username, email, password, profilePicture) => {
+const postUser = async (username, email, password, fileData) => {
   try {
     const foundUsername = await user.findOne({
       where: {
@@ -38,8 +38,8 @@ const postUser = async (username, email, password, profilePicture) => {
         password: hashedPassword,
       };
 
-      if (profilePicture) {
-        newUserData.profilePicture = profilePicture;
+      if (fileData) {
+        newUserData.profilePicture = fileData.url;
       }
 
       const createdUser = await user.create(newUserData);

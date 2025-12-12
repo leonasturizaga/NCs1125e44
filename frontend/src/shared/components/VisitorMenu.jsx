@@ -1,17 +1,18 @@
 // src/shared/components/VisitorMenu.jsx
+
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Home, MessageSquare, Settings, LogIn, Contact, Users2Icon } from "lucide-react";
-import { FiBarChart2 } from 'react-icons/fi';
+// Asegúrate de importar todos los íconos necesarios para las rutas públicas
+import { Home, MessageSquare, Settings, LogIn, Contact, Users2Icon, Edit2 } from "lucide-react"; 
+import { FiBarChart2 } from 'react-icons/fi'; // Aunque no lo uses, mantén la importación si la necesitas en otro lado
 
-// Lista de enlaces públicos y su ícono
+// Lista de enlaces que solo el visitante debe ver
 const links = [
-    { to: '/', icon: Home, label: 'Home' },
+    { to: '/', icon: Home, label: 'Inicio' }, // Usamos 'Inicio' en lugar de 'Home'
     { to: '/nosotros', icon: Users2Icon , label: 'Nosotros' },
-    { to: '/dashboard', icon: FiBarChart2, label: 'Dashboard' },    
-    { to: '/testimonials', icon: MessageSquare, label: 'Testimonios' },
-    { to: '/configuracion', icon: Settings, label: 'Configuración' },
     { to: '/contacto', icon: Contact, label: 'Contacto' },
+    // El enlace de Registro debe ir a la página de registro
+    { to: '/register', icon: Edit2, label: 'Registro' }, 
     { to: '/login', icon: LogIn, label: 'Iniciar Sesión' },
 ];
 

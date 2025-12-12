@@ -4,9 +4,11 @@ module.exports = {
     "./index.html",
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
-  darkMode: "class",  // ← Important for .dark to work
+  darkMode: "class",  
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar'),
+  ],
 }
