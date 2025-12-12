@@ -310,6 +310,7 @@ export default function TestimonialList() {
         <thead className="bg-gray-50 dark:bg-gray-700 border-b border-gray-200 dark:border-gray-600">
           <tr>
             <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Media</th>
+ {/* <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">TEMPORARIO</th> */}
             <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Usuario</th>
             <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">Título</th>
             <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase hidden sm:table-cell">Descripción</th>
@@ -339,10 +340,17 @@ export default function TestimonialList() {
             return (
               <tr key={t.id} className="hover:bg-gray-50 dark:hover:bg-gray-700 transition">
                 {/* NUEVA COLUMNA: Media */}
-                <td className="flex-shrink-0 px-6 py-4">
-                  <MediaThumbnail images={t.images || []} youtubeUrl={t.youtubeUrl} />
-                </td>
+<td className="flex-shrink-0 px-6 py-4">
+  <MediaThumbnail 
+    images={t.images || []} 
+    youtubeUrl={t.youtubeUrl || ""} 
+  />
+</td>
 
+{/* <td>
+  ID: {getYoutubeId(t.youtubeUrl) || "NO ID"}<br />
+  URL: {t.youtubeUrl?.slice(0, 40)}...
+</td> */}
                 {/* Resto de columnas (sin cambios) */}
                 <td className="px-6 py-4 text-gray-900 dark:text-white">
                   {t.user?.username || "Anónimo"}
