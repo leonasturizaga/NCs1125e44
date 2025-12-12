@@ -1,18 +1,33 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Frontend – Testimonial CMS
 
-Currently, two official plugins are available:
+![React](https://img.shields.io/badge/React-18.3-61DAFB?logo=react&logoColor=black)
+![Vite](https://img.shields.io/badge/Vite-5.0-646CFF?logo=vite&logoColor=white)
+![Tailwind](https://img.shields.io/badge/Tailwind-3.4-06B6D4?logo=tailwind-css&logoColor=white)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## React Compiler
+## Características
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+Dashboard completo con cards y tabla
+Paginación dinámica
+Carrusel automático en hover
+Popup de video con autoplay
+Formularios con subida múltiple de imágenes
+Dark mode permanente
+Responsive total
 
-Note: This will impact Vite dev & build performances.
+## Desarrollado por
 
-## Expanding the ESLint configuration
+Florencia Lavie – Frontend
+Paula  Verónica Quiroga – Frontend + UX/UI
+León Asturizaga – Frontend + Testing & QA
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Deploy: https://testimonial-cms.vercel.app
+
+## Scripts
+
+```bash
+npm run dev        # Desarrollo local
+npm run build      # Build para producción
+npm run preview    # Previsualizar build
