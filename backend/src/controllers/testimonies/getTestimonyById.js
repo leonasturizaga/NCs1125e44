@@ -1,8 +1,25 @@
-const { testimony } = require("../../db");
+const { testimony, category, user, image } = require("../../db");
 
 const getTestimonyById = async (id) => {
   try {
-    const foundTestimony = await testimony.findByPk(id);
+    const foundTestimony = await testimony.findByPk(id, {
+      include: [
+        {
+          model: user,
+          attributes: ["id", "username", "profilePicture"],
+        },
+        {
+          model: category,
+          attributes: ["id", "name"],
+          through: { attributes: [] },
+        },
+        {
+          model: image,
+          as: "images",
+          attributes: ["id", "url", "publicId"],
+        },
+      ],
+    });
 
     if (!foundTestimony) {
       return {
@@ -19,6 +36,7 @@ const getTestimonyById = async (id) => {
     return {
       success: false,
       message: "Error al intentar buscar el testimonio",
+      error: error.message
     };
   }
 };

@@ -1,6 +1,6 @@
 const { user } = require("../../db");
 
-const editUser = async (id, updates) => {
+const editUser = async (id, updates, userId) => {
   try {
     const foundUser = await user.findByPk(id);
     if (!foundUser) {
@@ -10,8 +10,20 @@ const editUser = async (id, updates) => {
       };
     }
 
-    const protectedFields = ["id", "role", "email", "password"];
+    const requestUser = await user.findByPk(userId);
+    if (!requestUser) {
+      return {
+        success: false,
+        message: "Usuario no encontrado",
+      };
+    }
+
+    const protectedFields = ["id", "email", "password", "createdAt"];
     protectedFields.forEach((field) => delete updates[field]);
+
+    if (updates.role && requestUser.role !== "admin") {
+      delete updates.role;
+    }
 
     Object.entries(updates).forEach(([key, value]) => {
       if (foundUser.dataValues.hasOwnProperty(key)) {
@@ -28,6 +40,7 @@ const editUser = async (id, updates) => {
         id: foundUser.id,
         username: foundUser.username,
         isActive: foundUser.isActive,
+        role: foundUser.role,
       },
     };
   } catch (error) {
