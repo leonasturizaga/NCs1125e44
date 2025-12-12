@@ -7,14 +7,17 @@
 
 
 
-  <img src="image.png" width="480" class="mx-auto rounded-2xl shadow-2xl" alt="Testimonial CMS" /> 
-  <img src="image-1.png" width="240" class="mx-auto rounded-2xl shadow-2xl" alt="Testimonial CMS" />  <img src="image-2.png" width="240" class="mx-auto rounded-2xl shadow-2xl" alt="Testimonial CMS" />
+  <img src="image.png" width="400" class="mx-auto rounded-2xl shadow-2xl" alt="Testimonial CMS" /> 
 
+  <img src="image-1.png" width="200" class="mx-auto rounded-2xl shadow-2xl" alt="Testimonial CMS" />  <img src="image-2.png" width="200" class="mx-auto rounded-2xl shadow-2xl" alt="Testimonial CMS" />
 
-**Un CMS especializado en gestionar, moderar y publicar testimonios reales con texto, imágenes y videos — diseñado para instituciones educativas y empresas EdTech.**
+<p>
+**Un CMS especializado en gestionar, moderar y publicar testimonios reales con texto, imágenes y videos
+ — diseñado para instituciones educativas y empresas EdTech.**
+</p>
 
-Live Demo: https://testimonial-cms.vercel.app  
-API Docs: https://testimonial-cms-api.vercel.app/api-docs
+Live Demo: https://testimonial-cms-main.vercel.app  
+API Docs: https://n-cs1125e44.vercel.app/api-docs
 
 ---
 
@@ -25,7 +28,7 @@ API Docs: https://testimonial-cms-api.vercel.app/api-docs
 | Backend Lead      | Mateo Jeremias Pinto  | [LinkedIn](https://linkedin.com/in/mateolopez) | [GitHub](https://github.com/Argiiasd) | <img src="https://avatars.githubusercontent.com/u/115590765?v=4&s=120" width="60" height="60" style="border-radius:50%; object-fit:cover;" /> |
 | Frontend      | Florencia Lavie | [LinkedIn](https://www.linkedin.com/in/florencia-lavie/)   | [GitHub](https://github.com/FlorLavie)    | <img src="https://avatars.githubusercontent.com/u/94700391?v=4&s=120" width="60" height="60" style="border-radius:50%; object-fit:cover;" /> |
 | Frontend + UX/UI | Paula Verónica Quiroga  | [LinkedIn](https://linkedin.com/in/paulagomez) | [GitHub](https://github.com/RONIE70) | <img src="https://avatars.githubusercontent.com/u/72896165?v=4&s=120" width="60" height="60" style="border-radius:50%; object-fit:cover;" /> |
-| QA & Testing      | León Asturizaga  | [LinkedIn](https://www.linkedin.com/in/leon-asturizaga-94a80377/) | [GitHub](https://github.com/leonasturizaga)   | <img src="https://avatars.githubusercontent.com/u/128533111?v=4&s=120" width="60" height="60" style="border-radius:50%; object-fit:cover;" /> |
+| Frontend + QA & Testing      | León Asturizaga  | [LinkedIn](https://www.linkedin.com/in/leon-asturizaga-94a80377/) | [GitHub](https://github.com/leonasturizaga)   | <img src="https://avatars.githubusercontent.com/u/128533111?v=4&s=120" width="60" height="60" style="border-radius:50%; object-fit:cover;" /> |
 
 ---
 
@@ -59,7 +62,6 @@ API Docs: https://testimonial-cms-api.vercel.app/api-docs
 - Popup de video con autoplay
 - API REST pública documentada
 - Integración total con Cloudinary y YouTube
-- Diseño 100% Dark Mode
 
 ---
 

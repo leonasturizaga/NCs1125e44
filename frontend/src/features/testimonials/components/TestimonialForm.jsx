@@ -1,4 +1,3 @@
-//----------------- version 5 con categories multiselect images up to  3---------------------
 // src/features/testimonials/components/TestimonialForm.jsx
 import { useState } from "react";
 import { useAuth } from "@/context/AuthContext";

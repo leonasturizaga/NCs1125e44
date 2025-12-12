@@ -1,4 +1,3 @@
-//------------------- verion solo modal sin formulario --------------------
 // src/features/testimonials/components/TestimonialModal.jsx
 import { X } from "lucide-react";
 import TestimonialForm from "./TestimonialForm";

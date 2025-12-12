@@ -18,7 +18,7 @@
 ## Desarrollado por
 Mateo López – Backend Lead
 
-Deploy: https://testimonial-cms-api.vercel.app
+Deploy: https://n-cs1125e44.vercel.app
 
 ## Scripts
 

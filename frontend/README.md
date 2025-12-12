@@ -23,7 +23,7 @@ Florencia Lavie – Frontend
 Paula  Verónica Quiroga – Frontend + UX/UI
 León Asturizaga – Frontend + Testing & QA
 
-Deploy: https://testimonial-cms.vercel.app
+Deploy: https://testimonial-cms-main.vercel.app
 
 ## Scripts
 
